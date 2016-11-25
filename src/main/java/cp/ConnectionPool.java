@@ -21,7 +21,7 @@ public class ConnectionPool {
     private static final Logger log = LoggerFactory.getLogger(ConnectionPool.class);
     private static final String PROPERTY_FILE_NAME = "db.properties";
 
-    private static volatile ConnectionPool instance;
+    private static ConnectionPool instance;
     private BlockingQueue<Connection> connections;
     private String driverName;
     private String url;
@@ -32,6 +32,44 @@ public class ConnectionPool {
     private ConnectionPool() {
         loadProperties();
         init();
+    }
+
+    private void loadProperties() {
+        Properties properties = new Properties();
+        InputStream inputStream = ConnectionPool.class.getClassLoader().getResourceAsStream(PROPERTY_FILE_NAME);
+        try {
+            properties.load(inputStream);
+        } catch (IOException e) {
+            log.error("Failed to load the property file");
+        }
+        this.driverName = properties.getProperty("jdbc.driver");
+        this.url = properties.getProperty("jdbc.url");
+        this.username = properties.getProperty("jdbc.username");
+        this.password = properties.getProperty("jdbc.password");
+        //TODO: invalid pool size exception handling
+        this.poolSize = Integer.parseInt(properties.getProperty("jdbc.poolsize"));
+    }
+
+    private void init() {
+        connections = new ArrayBlockingQueue<Connection>(poolSize);
+        try {
+            Connection connection = DriverManager.getConnection(url, username, password);
+            for (int i = 0; i < poolSize; i++) {
+                connections.add(connection);
+            }
+        } catch (SQLException e) {
+            log.debug("Couldn't load properties. Check the property file.");
+        }
+    }
+
+    public Connection getConnection() {
+        Connection connection = null;
+        try {
+            connection = connections.take();
+        } catch (InterruptedException e) {
+            log.debug("Connection error occurred. Thread interrupted.");
+        }
+        return connection;
     }
 
     static ConnectionPool getInstance() {
@@ -50,34 +88,6 @@ public class ConnectionPool {
             }
         }
         connections.clear();
-    }
-
-    private void loadProperties() {
-        Properties properties = new Properties();
-        InputStream inputStream = ConnectionPool.class.getClassLoader().getResourceAsStream(PROPERTY_FILE_NAME);
-        try {
-            properties.load(inputStream);
-        } catch (IOException e) {
-            log.error("Failed to load the property file");
-        }
-        this.driverName = properties.getProperty("jdbc.driver");
-        this.url = properties.getProperty("jdbc.url");
-        this.username = properties.getProperty("jdbc.username");
-        this.password = properties.getProperty("jdbc.password");
-        //TODO: invalid poolsize exception handling
-        this.poolSize = Integer.parseInt(properties.getProperty("jdbc.poolsize"));
-    }
-
-    private void init() {
-        connections = new ArrayBlockingQueue<Connection>(poolSize);
-        try {
-            Connection connection = DriverManager.getConnection(url, username, password);
-            for (int i = 0; i < poolSize; i++) {
-                connections.add(connection);
-            }
-        } catch (SQLException e) {
-            log.debug("Couldn't load properties. Check the property file.");
-        }
     }
 
     private static class InstanceHolder {
