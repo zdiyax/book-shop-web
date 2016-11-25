@@ -1,5 +1,6 @@
 package model;
 
+import lombok.Data;
 import model.order.Order;
 import model.product.Product;
 
@@ -10,9 +11,11 @@ import java.util.List;
  * Zhannur Diyas
  * 11/25/2016 | 4:41 PM
  */
+@Data
 public class ShoppingCart {
     private List<Product> productList;
     private double sum;
+
     public Order order() {
         Order order = new Order();
 
@@ -31,7 +34,7 @@ public class ShoppingCart {
         productList.remove(product);
     }
 
-    public void setSum() {
+    public void updateSum() {
         for (Product product : productList) {
             sum += product.getPrice();
         }

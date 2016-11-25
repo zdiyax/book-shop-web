@@ -1,10 +1,12 @@
 package model.product;
 
+import lombok.Data;
+
 /**
  * Zhannur Diyas
  * 11/25/2016 | 4:04 PM
  */
-
+@Data
 public class Book extends Product {
     private String author;
     private String domain;
