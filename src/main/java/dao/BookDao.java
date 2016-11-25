@@ -30,7 +30,6 @@ public class BookDao implements Dao<Book> {
 
     @Override
     public void update(Book book) {
-
     }
 
     @Override
