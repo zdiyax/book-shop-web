@@ -4,6 +4,6 @@ package tags;
  * Zhannur Diyas
  * 11/25/2016 | 5:33 PM
  */
-public class HelloTag /* TagSupport from  */ {
+public class HelloTag {
 
 }

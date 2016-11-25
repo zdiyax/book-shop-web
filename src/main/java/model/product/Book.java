@@ -8,6 +8,7 @@ import lombok.Data;
  */
 @Data
 public class Book extends Product {
+    private String isbn;
     private String author;
     private String domain;
     private String publisher;
