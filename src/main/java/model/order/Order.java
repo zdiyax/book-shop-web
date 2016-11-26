@@ -29,5 +29,6 @@ public class Order {
             throw new ModelException("Non-positive orderTotal entered");
         }
     }
+
 }
 

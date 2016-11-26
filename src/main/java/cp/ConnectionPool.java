@@ -31,7 +31,15 @@ public class ConnectionPool {
 
     private ConnectionPool() {
         loadProperties();
-        init();
+        connections = new ArrayBlockingQueue<Connection>(poolSize);
+        try {
+            Connection connection = DriverManager.getConnection(url, username, password);
+            for (int i = 0; i < poolSize; i++) {
+                connections.add(connection);
+            }
+        } catch (SQLException e) {
+            log.debug("Couldn't load properties. Check the property file.");
+        }
     }
 
     private void loadProperties() {
@@ -50,24 +58,13 @@ public class ConnectionPool {
         this.poolSize = Integer.parseInt(properties.getProperty("jdbc.poolsize"));
     }
 
-    private void init() {
-        connections = new ArrayBlockingQueue<Connection>(poolSize);
-        try {
-            Connection connection = DriverManager.getConnection(url, username, password);
-            for (int i = 0; i < poolSize; i++) {
-                connections.add(connection);
-            }
-        } catch (SQLException e) {
-            log.debug("Couldn't load properties. Check the property file.");
-        }
-    }
-
-    public Connection getConnection() {
+    public Connection getConnection() throws ConnectionPoolException {
         Connection connection = null;
         try {
             connection = connections.take();
         } catch (InterruptedException e) {
             log.debug("Connection error occurred. Thread interrupted.");
+            throw new ConnectionPoolException();
         }
         return connection;
     }
@@ -76,7 +73,7 @@ public class ConnectionPool {
         return InstanceHolder.instance;
     }
 
-    public synchronized void close() {
+    public synchronized void close() throws ConnectionPoolException {
         for (Connection con : connections) {
             try {
                 if (con.isClosed()) {
@@ -85,6 +82,7 @@ public class ConnectionPool {
                 }
             } catch (SQLException e) {
                 log.error("Can't close connection to the pool");
+                throw new ConnectionPoolException();
             }
         }
         connections.clear();

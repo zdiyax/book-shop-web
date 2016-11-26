@@ -1,8 +1,6 @@
 package dao;
 
 import model.product.Book;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -11,7 +9,6 @@ import java.util.List;
  * 11/25/2016 | 9:57 PM
  */
 public class BookDao implements Dao<Book> {
-    private static final Logger log = LoggerFactory.getLogger(BookDao.class);
 
     @Override
     public Book insert(Book book) {

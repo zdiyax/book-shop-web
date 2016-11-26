@@ -5,6 +5,10 @@ package cp;
  * 11/25/2016 | 10:03 PM
  */
 public class ConnectionPoolException extends Exception {
+
+    ConnectionPoolException() {
+    }
+
     public ConnectionPoolException(String message) {
         super(message);
     }
