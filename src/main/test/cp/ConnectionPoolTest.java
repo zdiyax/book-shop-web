@@ -1,6 +1,8 @@
 package cp;
 
 import java.sql.Connection;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Zhannur Diyas
@@ -8,19 +10,20 @@ import java.sql.Connection;
  */
 public class ConnectionPoolTest {
 
-    static Connection connection;
-
-    public static void init() {
+    private static void init() {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         try {
-            connection = connectionPool.getConnection();
+            Connection connection = connectionPool.getConnection();
         } catch (ConnectionPoolException e) {
             e.printStackTrace();
         }
-
     }
 
     public static void main(String[] args) {
         init();
+        ExecutorService exec = Executors.newCachedThreadPool();
+        for (int i = 0; i < 5; i++) {
+            exec.execute(new ConnectionPoolRunnable());
+        }
     }
 }

@@ -38,7 +38,7 @@ public class ConnectionPool {
                 connections.add(connection);
             }
         } catch (SQLException e) {
-            log.debug("Couldn't load properties. Check the property file.");
+            log.error("Couldn't load properties. Check the property file." + e);
         }
     }
 
@@ -47,15 +47,19 @@ public class ConnectionPool {
         InputStream inputStream = ConnectionPool.class.getClassLoader().getResourceAsStream(PROPERTY_FILE_NAME);
         try {
             properties.load(inputStream);
+            log.debug("Properties successfully loaded");
         } catch (IOException e) {
-            log.error("Failed to load the property file");
+            log.error("Failed to load the property file" + e.getMessage());
+            e.printStackTrace();
         }
+        log.debug("Properties value: {}", properties);
         this.driverName = properties.getProperty("jdbc.driver");
         this.url = properties.getProperty("jdbc.url");
         this.username = properties.getProperty("jdbc.username");
         this.password = properties.getProperty("jdbc.password");
         //TODO: invalid pool size exception handling
         this.poolSize = Integer.parseInt(properties.getProperty("jdbc.poolsize"));
+        log.info("Properties set");
     }
 
     public Connection getConnection() throws ConnectionPoolException {
