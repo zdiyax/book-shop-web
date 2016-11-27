@@ -5,4 +5,5 @@ package action;
  * 11/25/2016 | 4:44 PM
  */
 public interface Action {
+
 }

@@ -38,7 +38,7 @@ public class ConnectionPool {
                 connections.add(connection);
             }
         } catch (SQLException e) {
-            log.error("Couldn't load properties. Check the property file." + e);
+            log.error("Couldn't load connections in connection pool " + e);
         }
     }
 
