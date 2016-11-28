@@ -14,7 +14,7 @@ public class ConnectionPoolRunnable implements Runnable {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         try {
             Connection connection = connectionPool.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO books (isbn, language, title, description, price) VALUES ('978-0321356680',  'English', 'Effective Java', 'Some Description', '50');");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO books (isbn, language, title, description, price) VALUES ('isbn',  'language', 'title', 'description', '1000');");
             boolean resultSet = preparedStatement.execute();
         } catch (SQLException | ConnectionPoolException e) {
             e.printStackTrace();

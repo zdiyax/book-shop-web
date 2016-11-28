@@ -73,7 +73,7 @@ public class ConnectionPool {
         return connection;
     }
 
-    static ConnectionPool getInstance() {
+    public static ConnectionPool getInstance() {
         return InstanceHolder.instance;
     }
 

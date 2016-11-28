@@ -1,5 +1,7 @@
 package dao;
 
+import dao.jdbc.JdbcException;
+
 import java.util.List;
 
 /**
@@ -10,9 +12,10 @@ import java.util.List;
  *
  */
 public interface Dao <T> {
-    T insert(T t);
-    List<T> get();
-    T getById(int id);
-    void update(T t);
-    void delete(int id);
+    T insert(T t) throws JdbcException;
+    List<T> getAll() throws JdbcException;
+    T getById(int id) throws JdbcException;
+    void update(T t) throws  JdbcException;
+    void delete(T t) throws JdbcException;
+    void deleteById(int id) throws JdbcException;
 }

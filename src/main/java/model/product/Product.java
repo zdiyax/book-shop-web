@@ -1,6 +1,7 @@
 package model.product;
 
 import lombok.Data;
+import model.Model;
 import model.ModelException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,10 +14,10 @@ import org.slf4j.LoggerFactory;
 TODO: Connect Lombok, @Entity?
  */
 @Data
-public abstract class Product {
+public abstract class Product extends Model{
     private final Logger log = LoggerFactory.getLogger(Product.class);
 
-    private ProductLanguage language;
+    private String language;
     private String title;
     private String description;
     private double price;
