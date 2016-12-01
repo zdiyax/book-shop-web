@@ -163,6 +163,9 @@
 
 	.footer-distributed .footer-center i{
 		margin-left: 0;
+		line-height: 80px;
 	}
+
+	.fa-camera-retro { line-height: inherit;}
 
 }

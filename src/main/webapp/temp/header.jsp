@@ -32,11 +32,9 @@
         <h1><a href="#">Book<span>shop</span></a></h1>
 
         <nav>
-            <a href="#">Home</a>
-            <a href="#" class="selected">Blog</a>
-            <a href="#">Pricing</a>
+            <a href="../WEB-INF/jsp/index.jsp">Home</a>
+            <a href="catalog.jsp">Catalog</a>
             <a href="#">About</a>
-            <a href="#">Faq</a>
             <a href="#">Contact</a>
         </nav>
 
@@ -44,15 +42,13 @@
 
 </header>
 
-<!-- You need this element to prevent the content of the page from jumping up -->
 <div class="header-fixed-placeholder"></div>
 
-<!-- The content of your page would go here. -->
 
 
 <div class="menu">
 
-    <img src="assets/demo-arrow.png" alt="arrow" height="120">
+    <img src="resources/arrow.png" alt="arrow" height="30">
 
 </div>
 

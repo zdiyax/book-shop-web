@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 
 <!DOCTYPE html>
 <html>
@@ -21,15 +23,13 @@
     <title>Footer With Address And Phones</title>
 
 
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
-    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
 
-<!-- The content of your page would go here. -->
+<!-- Content -->
 
 <footer class="footer-distributed">
 
@@ -38,37 +38,33 @@
         <h3>Book<span>shop</span></h3>
 
         <p class="footer-links">
-            <a href="#">Home</a>
+            <a href="index.jsp">Home</a>
             ·
-            <a href="#">Blog</a>
-            ·
-            <a href="#">Pricing</a>
+            <a href="#">Catalog</a>
             ·
             <a href="#">About</a>
-            ·
-            <a href="#">Faq</a>
             ·
             <a href="#">Contact</a>
         </p>
 
-        <p class="footer-company-name">Bookshop &copy; 2015</p>
+        <p class="footer-company-name">Bookshop &copy; 2017</p>
     </div>
 
     <div class="footer-center">
 
         <div>
             <i class="fa fa-map-marker"></i>
-            <p><span>21 Revolution Street</span> Barcelona, Spain</p>
+            <p><span>7 Qurylysshylar Avenue</span> Qaraghandy, Qazaqstan</p>
         </div>
 
         <div>
             <i class="fa fa-phone"></i>
-            <p>+1 555 123456</p>
+            <p>+7 (700) 149 11 64</p>
         </div>
 
         <div>
             <i class="fa fa-envelope"></i>
-            <p><a href="mailto:support@company.com">support@company.com</a></p>
+            <p><a href="mailto:support@company.com">support@bookshop.kz</a></p>
         </div>
 
     </div>
@@ -77,15 +73,14 @@
 
         <p class="footer-company-about">
             <span>About the company</span>
-            Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+            Books for fucking everyone! Enjoy your best deals!
         </p>
 
         <div class="footer-icons">
 
             <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-github"></i></a>
+            <a href="https://vk.com/tatikara"><i class="fa fa-vk"></i></a>
+            <a href="https://github.com/zhannur-diyas"><i class="fa fa-github"></i></a>
 
         </div>
 
