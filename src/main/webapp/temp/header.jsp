@@ -17,8 +17,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Basic Header</title>
-
     <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 
 </head>
@@ -29,7 +27,7 @@
 
     <div class="header-limiter">
 
-        <h1><a href="#">Book<span>shop</span></a></h1>
+        <h1><a href="index.jsp">Book<span>shop</span></a></h1>
 
         <nav>
             <a href="index.jsp">Home</a>
@@ -46,8 +44,6 @@
 
 
 <div class="menu">
-
-    <img src="resources/arrow.png" alt="arrow" height="30">
 
 </div>
 

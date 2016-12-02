@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,9 +35,9 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
             statement = connection.prepareStatement(query);
             setPsFields(statement,t);
             statement.executeUpdate();
-            ResultSet generatedKeys = statement.getGeneratedKeys();
-            generatedKeys.next();
-            t.setId(generatedKeys.getInt(1));
+            ResultSet resultSet = statement.getGeneratedKeys();
+            resultSet.next();
+            t.setId(resultSet.getInt(1));
             statement.close();
         } catch (SQLException e) {
             log.error("saving entity:{} was failed",t,e);
@@ -49,9 +50,13 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
     public List<T> getAll() {
         String query = getSelectAllQuery();
         PreparedStatement statement;
+        List<T> ts = new ArrayList<T>();
         try {
             statement = connection.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+
+            }
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();

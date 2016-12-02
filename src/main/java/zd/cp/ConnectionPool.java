@@ -65,10 +65,19 @@ public class ConnectionPool {
     public Connection getConnection() throws ConnectionPoolException {
         Connection connection = null;
         try {
+            if (connections.peek() == null) {
+                connections = new ArrayBlockingQueue<Connection>(poolSize*2);
+                connection = DriverManager.getConnection(url, username, password);
+                for (int i = 0; i < poolSize*2; i++) {
+                    connections.add(connection);
+                }
+            }
             connection = connections.take();
         } catch (InterruptedException e) {
             log.debug("Connection error occurred. Thread interrupted.");
             throw new ConnectionPoolException();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return connection;
     }

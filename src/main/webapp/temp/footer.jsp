@@ -20,16 +20,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="footer, address, phone, icons" />
 
-    <title>Footer With Address And Phones</title>
-
-
-
-
 </head>
 
 <body>
-
 <!-- Content -->
+
+</body>
+
 
 <footer class="footer-distributed">
 
@@ -43,7 +40,6 @@
             <a href="catalog.jsp">Catalog</a>
             ·
             <a href="about.jsp">About</a>
-            ·
         </p>
 
         <p class="footer-company-name">Bookshop &copy; 2017</p>
@@ -87,7 +83,6 @@
 
 </footer>
 
-</body>
 
 </html>
 

@@ -34,6 +34,12 @@
 	margin: 0;
 }
 
+p {
+	font: normal 26px Cookie, Arial, Helvetica, sans-serif;
+	float: left;
+	margin: 0;
+}
+
 .header-fixed .header-limiter h1 span {
 	color: #5383d3;
 }

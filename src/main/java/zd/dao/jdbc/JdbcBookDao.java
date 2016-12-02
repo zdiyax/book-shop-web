@@ -47,7 +47,7 @@ public class JdbcBookDao extends JdbcDao<Book> implements BookDao {
 
     @Override
     protected String getSelectByIdQuery(int id) {
-        return "select * from books where (id =1);";
+        return "select * from books where (id = " + id + ");";
     }
 
     @Override
