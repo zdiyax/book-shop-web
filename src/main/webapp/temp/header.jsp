@@ -32,10 +32,9 @@
         <h1><a href="#">Book<span>shop</span></a></h1>
 
         <nav>
-            <a href="../WEB-INF/jsp/index.jsp">Home</a>
+            <a href="index.jsp">Home</a>
             <a href="catalog.jsp">Catalog</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <a href="about.jsp">About</a>
         </nav>
 
     </div>

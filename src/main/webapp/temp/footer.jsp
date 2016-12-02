@@ -40,11 +40,10 @@
         <p class="footer-links">
             <a href="index.jsp">Home</a>
             ·
-            <a href="#">Catalog</a>
+            <a href="catalog.jsp">Catalog</a>
             ·
-            <a href="#">About</a>
+            <a href="about.jsp">About</a>
             ·
-            <a href="#">Contact</a>
         </p>
 
         <p class="footer-company-name">Bookshop &copy; 2017</p>
