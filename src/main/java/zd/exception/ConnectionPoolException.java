@@ -1,4 +1,4 @@
-package zd.cp;
+package zd.exception;
 
 /**
  * Zhannur Diyas
@@ -6,7 +6,7 @@ package zd.cp;
  */
 public class ConnectionPoolException extends Exception {
 
-    ConnectionPoolException() {
+    public ConnectionPoolException() {
     }
 
     public ConnectionPoolException(String message) {

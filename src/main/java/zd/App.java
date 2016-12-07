@@ -2,8 +2,7 @@ package zd;
 
 
 import zd.cp.ConnectionPool;
-import zd.cp.ConnectionPoolException;
-import zd.cp.ConnectionPoolRunnable;
+import zd.exception.ConnectionPoolException;
 import zd.dao.jdbc.JdbcBookDao;
 import zd.dao.jdbc.JdbcDaoFactory;
 import zd.dao.jdbc.JdbcException;
@@ -37,10 +36,6 @@ public class App {
             e.printStackTrace();
         }
 
-        ExecutorService exec = Executors.newCachedThreadPool();
-        for (int i = 0; i < 3; i++) {
-            exec.execute(new ConnectionPoolRunnable());
-        }
         exec.shutdown();
         JdbcDaoFactory factory = new JdbcDaoFactory();
         JdbcBookDao dao = null;

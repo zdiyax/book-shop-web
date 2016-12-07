@@ -2,6 +2,7 @@ package zd.cp;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import zd.exception.ConnectionPoolException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -101,6 +102,9 @@ public class ConnectionPool {
         connections.clear();
     }
 
+    public void returnConnection(Connection connection) {
+        connections.add(connection);
+    }
     private static class InstanceHolder {
         final static ConnectionPool instance = new ConnectionPool();
     }
