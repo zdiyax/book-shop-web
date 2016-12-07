@@ -10,7 +10,6 @@
 
 <jsp:include page="/temp/header.jsp" />
 <!-- content -->
-<link rel="stylesheet" href="css/header.css">
 <html>
     <head>
       <title>About</title>

@@ -16,6 +16,6 @@
 <body>
 
 </body>
+</html>
 
 <jsp:include page="/temp/footer.jsp"/>
-</html>
