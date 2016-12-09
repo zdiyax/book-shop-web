@@ -23,13 +23,14 @@ public class ConnectionPool {
     private static final String PROPERTY_FILE_NAME = "db.properties";
 
     private static ConnectionPool instance;
-    private BlockingQueue<Connection> connections;
+
+    private static BlockingQueue<Connection> connections;
+
     private String driverName;
     private String url;
     private String username;
     private String password;
     private int poolSize;
-
     private ConnectionPool() {
         loadProperties();
         connections = new ArrayBlockingQueue<Connection>(poolSize);
@@ -105,6 +106,11 @@ public class ConnectionPool {
     public void returnConnection(Connection connection) {
         connections.add(connection);
     }
+
+    public static BlockingQueue<Connection> getConnections() {
+        return connections;
+    }
+
     private static class InstanceHolder {
         final static ConnectionPool instance = new ConnectionPool();
     }

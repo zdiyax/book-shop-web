@@ -20,6 +20,7 @@ public class PooledConnection implements Connection {
 
     public void returnConnection() {
         ConnectionPool.getInstance().returnConnection(this.connection);
+        ConnectionPool.getConnections().add(this.connection);
     }
 
     @Override
