@@ -1,8 +1,6 @@
 package zd.model;
 
 import lombok.Data;
-import zd.model.order.Order;
-import zd.model.product.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +11,7 @@ import java.util.List;
  */
 @Data
 public class ShoppingCart {
-    private List<Product> productList;
+    private List<Book> productList;
     private double sum;
 
     public Order order() {
@@ -26,17 +24,17 @@ public class ShoppingCart {
         productList = new ArrayList<>();
     }
 
-    public void add(Product product) {
-        productList.add(product);
+    public void add(Book book) {
+        productList.add(book);
     }
 
-    public void remove(Product product) {
-        productList.remove(product);
+    public void remove(Book book) {
+        productList.remove(book);
     }
 
     public void updateSum() {
-        for (Product product : productList) {
-            sum += product.getPrice();
+        for (Book book : productList) {
+            sum += book.getPrice();
         }
     }
 }

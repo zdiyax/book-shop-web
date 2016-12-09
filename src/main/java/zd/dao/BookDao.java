@@ -1,6 +1,6 @@
 package zd.dao;
 
-import zd.model.product.Book;
+import zd.model.Book;
 
 /**
  * Zhannur Diyas

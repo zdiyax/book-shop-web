@@ -3,7 +3,7 @@ package zd.dao.jdbc;
 import zd.dao.BookDao;
 import zd.exception.JdbcDaoException;
 import zd.model.ModelException;
-import zd.model.product.Book;
+import zd.model.Book;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

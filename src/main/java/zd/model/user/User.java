@@ -1,7 +1,7 @@
 package zd.model.user;
 
 import lombok.Data;
-import zd.model.order.Order;
+import zd.model.Order;
 
 import java.util.List;
 
