@@ -1,5 +1,6 @@
 package zd.model.user;
 
+import lombok.Data;
 import zd.model.order.Order;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
  * Zhannur Diyas
  * 11/25/2016 | 4:06 PM
  */
+@Data
 public class User {
     private Role role = Role.CUSTOMER;
     private String username;
