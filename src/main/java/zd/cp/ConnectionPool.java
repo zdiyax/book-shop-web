@@ -31,7 +31,7 @@ public class ConnectionPool {
     private String username;
     private String password;
     private int poolSize;
-    private ConnectionPool() {
+    public ConnectionPool() {
         loadProperties();
         connections = new ArrayBlockingQueue<Connection>(poolSize);
         try {

@@ -6,7 +6,7 @@ import java.util.Date;
  * Zhannur Diyas
  * 11/25/2016 | 4:13 PM
  */
-public class UserInfo {
+class UserInfo {
     private String name;
     private String surname;
     private Date dateOfBirth;

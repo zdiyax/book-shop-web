@@ -1,4 +1,4 @@
-package zd.validator;
+package zd.exception;
 
 /**
  * Zhannur Diyas

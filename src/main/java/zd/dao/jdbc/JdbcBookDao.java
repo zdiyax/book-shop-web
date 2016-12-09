@@ -1,6 +1,7 @@
 package zd.dao.jdbc;
 
 import zd.dao.BookDao;
+import zd.exception.JdbcDaoException;
 import zd.model.ModelException;
 import zd.model.product.Book;
 import org.slf4j.Logger;
@@ -31,7 +32,7 @@ public class JdbcBookDao extends JdbcDao<Book> implements BookDao {
     }
 
     @Override
-    protected void setPsFields(PreparedStatement ps, Book entity) throws JdbcException {
+    protected void setPsFields(PreparedStatement ps, Book entity) throws JdbcDaoException {
 
     }
 
@@ -51,7 +52,7 @@ public class JdbcBookDao extends JdbcDao<Book> implements BookDao {
     }
 
     @Override
-    protected Book createEntityFromResultSet(ResultSet resultSet) throws SQLException, JdbcException {
+    protected Book createEntityFromResultSet(ResultSet resultSet) throws SQLException, JdbcDaoException {
 
         try {
             Book book = new Book();
@@ -68,7 +69,7 @@ public class JdbcBookDao extends JdbcDao<Book> implements BookDao {
             return book;
         } catch (SQLException e) {
             log.error("Failed to create an entity from result set");
-            throw new JdbcException();
+            throw new JdbcDaoException();
         } catch (ModelException e) {
             e.printStackTrace();
         }

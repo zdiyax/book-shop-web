@@ -1,6 +1,7 @@
 package zd.dao.jdbc;
 
 import zd.dao.Dao;
+import zd.exception.JdbcDaoException;
 import zd.model.Model;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +29,7 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
 
 
     @Override
-    public T insert(T t) throws JdbcException {
+    public T insert(T t) throws JdbcDaoException {
         String query = getInsertQuery();
         PreparedStatement statement;
         try {
@@ -41,7 +42,7 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
             statement.close();
         } catch (SQLException e) {
             log.error("saving entity:{} was failed",t,e);
-            throw new JdbcException();
+            throw new JdbcDaoException();
         }
         return t;
     }
@@ -66,7 +67,7 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
 
 
     @Override
-    public T getById(int id) throws JdbcException {
+    public T getById(int id) throws JdbcDaoException {
         T model = null;
         try {
             PreparedStatement statement = connection.prepareStatement(getSelectByIdQuery(id));
@@ -74,7 +75,7 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
             model = createEntityFromResultSet(resultSet);
         } catch (SQLException e) {
             log.error("Could not find entity with id = {}  {}", id, e);
-            throw new JdbcException();
+            throw new JdbcDaoException();
         }
         return model;
     }
@@ -85,12 +86,12 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
     }
 
     @Override
-    public void delete(T t) throws JdbcException {
+    public void delete(T t) throws JdbcDaoException {
         deleteById(t.getId());
     }
 
     @Override
-    public void deleteById(int id) throws JdbcException {
+    public void deleteById(int id) throws JdbcDaoException {
 
     }
 
@@ -98,11 +99,11 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
 
 
     protected abstract String getDeleteQuery();
-    protected abstract void setPsFields(PreparedStatement ps,T entity) throws JdbcException;
+    protected abstract void setPsFields(PreparedStatement ps,T entity) throws JdbcDaoException;
     protected abstract String getInsertQuery();
     protected abstract String getUpdateQuery();
     protected abstract String getSelectByIdQuery(int id);
-    protected abstract T createEntityFromResultSet(ResultSet rs) throws SQLException, JdbcException;
+    protected abstract T createEntityFromResultSet(ResultSet rs) throws SQLException, JdbcDaoException;
     protected abstract String getSelectAllQuery();
 
 }

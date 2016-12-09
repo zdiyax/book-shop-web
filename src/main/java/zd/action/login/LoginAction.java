@@ -1,6 +1,7 @@
-package zd.action;
+package zd.action.login;
 
-import zd.validator.ValidatorException;
+import zd.action.Action;
+import zd.exception.ValidatorException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

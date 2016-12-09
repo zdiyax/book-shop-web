@@ -1,6 +1,6 @@
 package zd.dao;
 
-import zd.dao.jdbc.JdbcException;
+import zd.exception.JdbcDaoException;
 
 import java.util.List;
 
@@ -12,10 +12,10 @@ import java.util.List;
  *
  */
 public interface Dao <T> {
-    T insert(T t) throws JdbcException;
-    List<T> getAll() throws JdbcException;
-    T getById(int id) throws JdbcException;
-    void update(T t) throws  JdbcException;
-    void delete(T t) throws JdbcException;
-    void deleteById(int id) throws JdbcException;
+    T insert(T t) throws JdbcDaoException;
+    List<T> getAll() throws JdbcDaoException;
+    T getById(int id) throws JdbcDaoException;
+    void update(T t) throws JdbcDaoException;
+    void delete(T t) throws JdbcDaoException;
+    void deleteById(int id) throws JdbcDaoException;
 }

@@ -9,13 +9,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:include page="/temp/header.jsp" />
+<jsp:include page="/WEB-INF/temp/header.jsp" />
 <html>
 <head>
     <title>Book Shop</title>
 </head>
 <body>
-<jsp:body>
+<form action="${pageContext.request.contextPath}/do/?action=login" method="post">
     <p><fmt:message key="login.message"/></p>
     <label><b><fmt:message key="register.login"/></b></label><br>
     <input type="text" name="login"> <br><br>
@@ -23,8 +23,8 @@
     <input type="password" name="password" value="" ><br><br>
     <button type="submit"><fmt:message key="login.button.submit"/></button>
     <br>
-</jsp:body>
+</form>
 </body>
 
-<jsp:include page="/temp/footer.jsp"/>
+<jsp:include page="/WEB-INF/temp/footer.jsp"/>
 </html>

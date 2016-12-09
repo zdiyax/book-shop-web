@@ -30,8 +30,8 @@
 
         <nav>
             <a href="index.jsp">Home</a>
-            <a href="catalog.jsp">Catalog</a>
-            <a href="about.jsp">About</a>
+            <a href="../WEB-INF/jsp/catalog.jsp">Catalog</a>
+            <a href="../WEB-INF/jsp/about.jsp">About</a>
         </nav>
 
     </div>

@@ -1,6 +1,6 @@
 package zd.action;
 
-import zd.validator.ValidatorException;
+import zd.exception.ValidatorException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

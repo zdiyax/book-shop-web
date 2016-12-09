@@ -1,10 +1,11 @@
 package zd.model.order;
 
 import lombok.Data;
-import zd.model.ModelException;
-import zd.model.product.Product;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import zd.model.ModelException;
+import zd.model.product.Product;
+import zd.model.user.ShippingAddress;
 
 import java.util.Date;
 import java.util.List;
@@ -21,6 +22,7 @@ public class Order {
     private Status status;
     private List<Product> books;
     private Date dateOrdered;
+    private ShippingAddress shippingAddress;
     private double orderTotal;
 
     public void setOrderTotal(double orderTotal) throws ModelException {

@@ -13,6 +13,6 @@ public class User {
     private String username;
     private String password;
     private UserInfo userInfo;
-    private List<UserAddress> userAddressList;
+    private List<ShippingAddress> shippingAddressList;
     private List<Order> orders;
 }

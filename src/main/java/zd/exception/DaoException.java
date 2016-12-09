@@ -1,4 +1,4 @@
-package zd.dao;
+package zd.exception;
 
 /**
  * Zhannur Diyas
