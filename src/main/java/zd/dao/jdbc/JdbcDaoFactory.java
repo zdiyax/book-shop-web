@@ -1,8 +1,7 @@
 package zd.dao.jdbc;
 
+import zd.cp.PooledConnection;
 import zd.dao.DaoFactory;
-
-import java.sql.Connection;
 
 /**
  * Zhannur Diyas
@@ -12,7 +11,7 @@ public class JdbcDaoFactory extends DaoFactory {
 
 
     @Override
-    public JdbcBookDao getJdbcBookDao(Connection connection) {
+    public JdbcBookDao getJdbcBookDao(PooledConnection connection) {
         return new JdbcBookDao(connection);
     }
 

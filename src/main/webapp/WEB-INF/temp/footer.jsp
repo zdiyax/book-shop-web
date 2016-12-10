@@ -6,11 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="WEB-INF/temp/footer.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 
-<!DOCTYPE html>
 <html>
 
 <head>
@@ -37,9 +36,9 @@
         <p class="footer-links">
             <a href="index.jsp">Home</a>
             ·
-            <a href="catalog.jsp">Catalog</a>
+            <a href="/WEB-INF/jsp/catalog.jsp">Catalog</a>
             ·
-            <a href="about.jsp">About</a>
+            <a href="/WEB-INF/jsp/about.jsp">About</a>
         </p>
 
         <p class="footer-company-name">Bookshop &copy; 2017</p>

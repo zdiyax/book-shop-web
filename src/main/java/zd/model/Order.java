@@ -3,9 +3,10 @@ package zd.model;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import zd.exception.ModelException;
 import zd.model.user.ShippingAddress;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -16,8 +17,7 @@ import java.util.List;
 public class Order {
     private final Logger log = LoggerFactory.getLogger(Order.class);
 
-    private int orderId;
-    private Status status;
+    private OrderStatus status;
     private List<Book> books;
     private Date dateOrdered;
     private ShippingAddress shippingAddress;

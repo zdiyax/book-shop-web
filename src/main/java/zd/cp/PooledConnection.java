@@ -13,14 +13,9 @@ public class PooledConnection implements Connection {
 
     private Connection connection;
 
-    /**
-     * Overridden for ConnectionPool support
-     * @throws SQLException
-     */
-
-    public void returnConnection() {
-        ConnectionPool.getInstance().returnConnection(this.connection);
-        ConnectionPool.getConnections().add(this.connection);
+    private void returnConnection() {
+        ConnectionPool.getInstance().returnConnection((PooledConnection) this.connection);
+        ConnectionPool.getConnections().add((PooledConnection) this.connection);
     }
 
     @Override

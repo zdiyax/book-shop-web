@@ -1,12 +1,12 @@
 package zd.dao.jdbc;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import zd.cp.PooledConnection;
 import zd.dao.Dao;
 import zd.exception.JdbcDaoException;
 import zd.model.Model;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,9 +21,9 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
 
     private static final Logger log = LoggerFactory.getLogger(JdbcDao.class);
 
-    private Connection connection;
+    private PooledConnection connection;
 
-    public JdbcDao(Connection connection) {
+    public JdbcDao(PooledConnection connection) {
         this.connection = connection;
     }
 
@@ -41,7 +41,7 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
             t.setId(resultSet.getInt(1));
             statement.close();
         } catch (SQLException e) {
-            log.error("saving entity:{} was failed",t,e);
+            log.error(" ");
             throw new JdbcDaoException();
         }
         return t;
@@ -74,7 +74,7 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
             ResultSet resultSet = statement.executeQuery();
             model = createEntityFromResultSet(resultSet);
         } catch (SQLException e) {
-            log.error("Could not find entity with id = {}  {}", id, e);
+            log.error("");
             throw new JdbcDaoException();
         }
         return model;

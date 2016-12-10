@@ -1,8 +1,7 @@
 package zd.dao;
 
+import zd.cp.PooledConnection;
 import zd.dao.jdbc.JdbcDaoFactory;
-
-import java.sql.Connection;
 
 /**
  * Zhannur Diyas
@@ -14,6 +13,6 @@ public abstract class DaoFactory {
         return new JdbcDaoFactory();
     }
 
-    public abstract BookDao getJdbcBookDao(Connection connection);
+    public abstract BookDao getJdbcBookDao(PooledConnection connection);
 
 }

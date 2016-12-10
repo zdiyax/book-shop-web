@@ -24,7 +24,7 @@ public class ConnectionPool {
 
     private static ConnectionPool instance;
 
-    private static BlockingQueue<Connection> connections;
+    private static BlockingQueue<PooledConnection> connections;
 
     private String driverName;
     private String url;
@@ -32,10 +32,14 @@ public class ConnectionPool {
     private String password;
     private int poolSize;
     public ConnectionPool() {
-        loadProperties();
-        connections = new ArrayBlockingQueue<Connection>(poolSize);
         try {
-            Connection connection = DriverManager.getConnection(url, username, password);
+            loadProperties();
+        } catch (ConnectionPoolException e) {
+            log.error(" ", e);
+        }
+        connections = new ArrayBlockingQueue<PooledConnection>(poolSize);
+        try {
+            PooledConnection connection = (PooledConnection) DriverManager.getConnection(url, username, password);
             for (int i = 0; i < poolSize; i++) {
                 connections.add(connection);
             }
@@ -44,7 +48,7 @@ public class ConnectionPool {
         }
     }
 
-    private void loadProperties() {
+    private void loadProperties() throws ConnectionPoolException {
         Properties properties = new Properties();
         InputStream inputStream = ConnectionPool.class.getClassLoader().getResourceAsStream(PROPERTY_FILE_NAME);
         try {
@@ -61,6 +65,10 @@ public class ConnectionPool {
         this.password = properties.getProperty("jdbc.password");
         //TODO: invalid pool size exception handling
         this.poolSize = Integer.parseInt(properties.getProperty("jdbc.poolsize"));
+        if (poolSize < 5 || poolSize > 10) {
+            log.error("Invalid pool size, should be between 5 and 10");
+            throw new ConnectionPoolException();
+        }
         log.info("Properties set");
     }
 
@@ -68,10 +76,10 @@ public class ConnectionPool {
         Connection connection = null;
         try {
             if (connections.peek() == null) {
-                connections = new ArrayBlockingQueue<Connection>(poolSize*2);
+                connections = new ArrayBlockingQueue<PooledConnection>(poolSize*2);
                 connection = DriverManager.getConnection(url, username, password);
                 for (int i = 0; i < poolSize*2; i++) {
-                    connections.add(connection);
+                    connections.add((PooledConnection) connection);
                 }
             }
             connection = connections.take();
@@ -103,14 +111,13 @@ public class ConnectionPool {
         connections.clear();
     }
 
-    public void returnConnection(Connection connection) {
-        connections.add(connection);
-    }
-
-    public static BlockingQueue<Connection> getConnections() {
+    static BlockingQueue<PooledConnection> getConnections() {
         return connections;
     }
 
+    void returnConnection(PooledConnection connection) {
+        connections.add(connection);
+    }
     private static class InstanceHolder {
         final static ConnectionPool instance = new ConnectionPool();
     }

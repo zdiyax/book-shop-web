@@ -1,4 +1,4 @@
-package zd.model;
+package zd.exception;
 
 /**
  * Zhannur Diyas
