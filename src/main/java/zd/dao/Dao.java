@@ -1,6 +1,7 @@
 package zd.dao;
 
 import zd.exception.JdbcDaoException;
+import zd.model.Model;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * Generic Dao interface
  *
  */
-public interface Dao <T> {
+public interface Dao <T extends Model> {
     T insert(T t) throws JdbcDaoException;
     List<T> getAll() throws JdbcDaoException;
     T getById(int id) throws JdbcDaoException;

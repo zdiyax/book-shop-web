@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import zd.cp.PooledConnection;
 import zd.dao.Dao;
 import zd.exception.JdbcDaoException;
+import zd.exception.PropertyManagerException;
 import zd.model.Model;
 
 import java.sql.PreparedStatement;
@@ -20,6 +21,7 @@ import java.util.List;
 public abstract class JdbcDao<T extends Model> implements Dao<T> {
 
     private static final Logger log = LoggerFactory.getLogger(JdbcDao.class);
+    private static final String QUERIES = "sql.properties";
 
     private PooledConnection connection;
 
@@ -56,7 +58,7 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
             statement = connection.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-
+                /// ???
             }
             statement.close();
         } catch (SQLException e) {
@@ -98,12 +100,11 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
 
 
 
-    protected abstract String getDeleteQuery();
-    protected abstract void setPsFields(PreparedStatement ps,T entity) throws JdbcDaoException;
-    protected abstract String getInsertQuery();
-    protected abstract String getUpdateQuery();
-    protected abstract String getSelectByIdQuery(int id);
     protected abstract T createEntityFromResultSet(ResultSet rs) throws SQLException, JdbcDaoException;
-    protected abstract String getSelectAllQuery();
+    protected abstract
+
+    protected abstract String getInsertQuery() throws PropertyManagerException;
+    protected abstract String getDeleteQuery() throws PropertyManagerException;
+    protected abstract String getUpdateQuery() throws PropertyManagerException;
 
 }
