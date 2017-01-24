@@ -1,4 +1,4 @@
-<!--TODO: Professional LOGBACK configuration-->
+<!--TODO: Professional LOGBACK configuration !!!!!!!!!!!!!-->
 <configuration>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!-- encoders are assigned the type

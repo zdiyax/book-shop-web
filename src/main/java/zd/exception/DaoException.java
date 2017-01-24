@@ -1,9 +1,5 @@
 package zd.exception;
 
-/**
- * Zhannur Diyas
- * 12/1/2016 | 5:30 AM
- */
 public class DaoException extends Exception {
 
     public DaoException() {

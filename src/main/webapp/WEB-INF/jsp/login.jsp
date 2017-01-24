@@ -1,18 +1,8 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Asus
-  Date: 12/1/2016
-  Time: 8:34 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<jsp:include page="/WEB-INF/temp/header.jsp" />
 <html>
 <head>
-    <title>Book Shop</title>
+    <title>Login</title>
 </head>
 <body>
 <form action="${pageContext.request.contextPath}/do/?action=login" method="post">
@@ -25,6 +15,4 @@
     <br>
 </form>
 </body>
-
-<jsp:include page="/WEB-INF/temp/footer.jsp"/>
 </html>

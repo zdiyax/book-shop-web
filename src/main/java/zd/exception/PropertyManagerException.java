@@ -1,9 +1,5 @@
 package zd.exception;
 
-/**
- * Zhannur Diyas
- * 12/15/2016 | 10:59 AM
- */
 public class PropertyManagerException extends Exception {
     public PropertyManagerException(String message) {
         super(message);

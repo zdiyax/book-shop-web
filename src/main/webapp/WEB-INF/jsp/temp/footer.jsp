@@ -6,10 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" href="WEB-INF/temp/footer.css">
+<link rel="stylesheet" type="text/css" href="/css/footer.css" >
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-
 <html>
 
 <head>
@@ -31,12 +30,12 @@
 
     <div class="footer-left">
 
-        <h3>Book<span>shop</span></h3>
+        <h3>Book<span>Geek</span></h3>
 
         <p class="footer-links">
-            <a href="index.jsp">Home</a>
+            <a href="../index.jsp">Home</a>
             ·
-            <a href="/WEB-INF/jsp/catalog.jsp">Catalog</a>
+            <a href="../catalog.jsp">Catalog</a>
             ·
             <a href="/WEB-INF/jsp/about.jsp">About</a>
         </p>
@@ -58,7 +57,7 @@
 
         <div>
             <i class="fa fa-envelope"></i>
-            <p><a href="mailto:support@company.com">support@bookshop.kz</a></p>
+            <p><a href="mailto:support@bookgeek.kz">support@bookgeek.kz</a></p>
         </div>
 
     </div>
@@ -67,15 +66,13 @@
 
         <p class="footer-company-about">
             <span>About the company</span>
-            Books for fucking everyone! Enjoy your best deals!
+            Books for everyone! Enjoy your best deals!
         </p>
-
+<%--remove footer icons boxes--%>
         <div class="footer-icons">
-
             <a href="#"><i class="fa fa-facebook"></i></a>
             <a href="https://vk.com/tatikara"><i class="fa fa-vk"></i></a>
             <a href="https://github.com/zhannur-diyas"><i class="fa fa-github"></i></a>
-
         </div>
 
     </div>

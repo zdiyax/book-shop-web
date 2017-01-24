@@ -3,10 +3,6 @@ package zd.filter;
 import javax.servlet.*;
 import java.io.IOException;
 
-/**
- * Zhannur Diyas
- * 12/10/2016 | 12:43 AM
- */
 public class EncodingFilter implements Filter {
 
     private static final String ENCODING = "encoding";

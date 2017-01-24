@@ -8,10 +8,6 @@ import zd.exception.ConnectionPoolException;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-/**
- * Zhannur Diyas
- * 12/10/2016 | 12:35 AM
- */
 public class MainListener implements ServletContextListener {
 
     private static final Logger log = LoggerFactory.getLogger(MainListener.class);

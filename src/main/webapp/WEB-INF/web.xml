@@ -11,7 +11,8 @@
         <session-timeout>30</session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
+        <welcome-file>/WEB-INF/jsp/about.jsp</welcome-file>
     </welcome-file-list>
     <filter>
         <filter-name>EncodingFilter</filter-name>

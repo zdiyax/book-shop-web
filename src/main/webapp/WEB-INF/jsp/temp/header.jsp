@@ -1,12 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Asus
-  Date: 12/1/2016
-  Time: 9:36 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" href="/WEB-INF/css/header.css">
+
+<link rel="stylesheet" type="text/css" href="/css/header.css" />
 
 <html>
 
@@ -25,12 +19,13 @@
 
     <div class="header-limiter">
 
-        <h1><a href="index.jsp">Book<span>shop</span></a></h1>
+        <h1><a href="">Book<span>Geek</span></a></h1>
 
         <nav>
-            <a href="index.jsp">Home</a>
-            <a href="../WEB-INF/jsp/catalog.jsp">Catalog</a>
-            <a href="../WEB-INF/jsp/about.jsp">About</a>
+            <a href="${pageContext.request.contextPath}/WEB-INF/jsp/index.jsp">Home</a>
+            <a href="/WEB-INF/jsp/catalog.jsp">Catalog</a>
+            <a href="/WEB-INF/jsp/about.jsp">About</a>
+            <a href="">Login</a>
         </nav>
 
     </div>

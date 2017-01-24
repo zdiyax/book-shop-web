@@ -1,6 +1,7 @@
 package zd.model.user;
 
 import lombok.Data;
+import zd.model.Model;
 import zd.model.Order;
 
 import java.util.List;
@@ -10,11 +11,17 @@ import java.util.List;
  * 11/25/2016 | 4:06 PM
  */
 @Data
-public class User {
+public class User extends Model {
     private Role role = Role.CUSTOMER;
     private String username;
     private String password;
     private UserInfo userInfo;
     private ShippingAddress shippingAddressList;
     private List<Order> orders;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
 }

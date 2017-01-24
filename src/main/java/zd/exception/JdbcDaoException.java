@@ -1,10 +1,6 @@
 package zd.exception;
 
-/**
- * Zhannur Diyas
- * 11/27/2016 | 1:17 PM
- */
-public class JdbcDaoException extends Exception {
+public class JdbcDaoException extends DaoException {
 
     public JdbcDaoException() {
     }

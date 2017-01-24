@@ -1,9 +1,5 @@
 package zd.exception;
 
-/**
- * Zhannur Diyas
- * 12/1/2016 | 11:42 PM
- */
 public class ValidatorException extends Exception {
     public ValidatorException() {
     }

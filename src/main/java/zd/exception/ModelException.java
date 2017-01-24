@@ -1,10 +1,5 @@
 package zd.exception;
 
-/**
- * Zhannur Diyas
- * 11/25/2016 | 9:17 PM
- */
-
 public class ModelException extends Exception {
 
     public ModelException(String message) {

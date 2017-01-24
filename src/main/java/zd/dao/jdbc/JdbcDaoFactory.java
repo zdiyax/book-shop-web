@@ -1,19 +1,16 @@
 package zd.dao.jdbc;
 
 import zd.cp.PooledConnection;
+import zd.dao.BookDao;
 import zd.dao.DaoFactory;
 
-/**
- * Zhannur Diyas
- * 11/26/2016 | 1:01 AM
- */
 public class JdbcDaoFactory extends DaoFactory {
 
+    private static PooledConnection connection;
 
     @Override
-    public JdbcBookDao getJdbcBookDao(PooledConnection connection) {
+    public BookDao getBookDao() {
         return new JdbcBookDao(connection);
     }
-
 }
 

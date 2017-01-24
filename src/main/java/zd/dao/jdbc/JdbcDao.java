@@ -4,19 +4,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import zd.cp.PooledConnection;
 import zd.dao.Dao;
+import zd.exception.DaoException;
 import zd.exception.JdbcDaoException;
-import zd.exception.PropertyManagerException;
 import zd.model.Model;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Zhannur Diyas
- * 11/27/2016 | 1:16 PM
+ * Generic JDBC DAO abstract class for all Model subclasses
+ * JDBC implementation
+ * @param <T> - for all Model subclasses
  */
 public abstract class JdbcDao<T extends Model> implements Dao<T> {
 
@@ -25,48 +25,30 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
 
     private PooledConnection connection;
 
-    public JdbcDao(PooledConnection connection) {
+    JdbcDao(PooledConnection connection) {
         this.connection = connection;
     }
-
 
     @Override
     public T insert(T t) throws JdbcDaoException {
         String query = getInsertQuery();
         PreparedStatement statement;
-        try {
-            statement = connection.prepareStatement(query);
-            setPsFields(statement,t);
-            statement.executeUpdate();
-            ResultSet resultSet = statement.getGeneratedKeys();
-            resultSet.next();
-            t.setId(resultSet.getInt(1));
-            statement.close();
-        } catch (SQLException e) {
-            log.error(" ");
-            throw new JdbcDaoException();
+        if (t.getId() == null) {
+            try {
+                statement = connection.prepareStatement(query);
+                setPsFields(statement, t);
+                statement.executeUpdate();
+                ResultSet resultSet = statement.getGeneratedKeys();
+                resultSet.next();
+                t.setId(resultSet.getInt(1));
+            } catch (SQLException e) {
+                throw new JdbcDaoException(e);
+            }
         }
         return t;
     }
 
-    @Override
-    public List<T> getAll() {
-        String query = getSelectAllQuery();
-        PreparedStatement statement;
-        List<T> ts = new ArrayList<T>();
-        try {
-            statement = connection.prepareStatement(query);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                /// ???
-            }
-            statement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
+    protected abstract void setPsFields(PreparedStatement statement, T t) throws JdbcDaoException;
 
     @Override
     public T getById(int id) throws JdbcDaoException {
@@ -74,17 +56,11 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
         try {
             PreparedStatement statement = connection.prepareStatement(getSelectByIdQuery(id));
             ResultSet resultSet = statement.executeQuery();
-            model = createEntityFromResultSet(resultSet);
+            model = createEntityFromRs(resultSet);
         } catch (SQLException e) {
-            log.error("");
-            throw new JdbcDaoException();
+            throw new JdbcDaoException(e);
         }
         return model;
-    }
-
-    @Override
-    public void update(T t) {
-
     }
 
     @Override
@@ -94,17 +70,35 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
 
     @Override
     public void deleteById(int id) throws JdbcDaoException {
-
+        String query = getSelectByIdQuery(id);
+        T model = null;
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                model = createEntityFromRs(rs);
+            }
+        } catch (SQLException e) {
+            throw new JdbcDaoException(e);
+        }
     }
 
+    //TODO: REALIZOVAT'
+    @Override
+    public List<T> getAllByParam(String query) throws DaoException {
+        return null;
+    }
 
+    protected abstract T createEntityFromRs(ResultSet rs) throws SQLException, JdbcDaoException;
 
+    protected abstract String getInsertQuery();
 
-    protected abstract T createEntityFromResultSet(ResultSet rs) throws SQLException, JdbcDaoException;
-    protected abstract
+    protected abstract String getDeleteQuery();
 
-    protected abstract String getInsertQuery() throws PropertyManagerException;
-    protected abstract String getDeleteQuery() throws PropertyManagerException;
-    protected abstract String getUpdateQuery() throws PropertyManagerException;
+    protected abstract String getUpdateQuery();
+
+    protected abstract String getSelectByIdQuery(int id);
+
+    protected abstract String getSelectAllQuery();
 
 }

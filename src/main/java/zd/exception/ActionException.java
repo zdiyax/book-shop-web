@@ -1,9 +1,5 @@
 package zd.exception;
 
-/**
- * Zhannur Diyas
- * 12/10/2016 | 12:33 AM
- */
 public class ActionException extends Exception {
     public ActionException() {
     }

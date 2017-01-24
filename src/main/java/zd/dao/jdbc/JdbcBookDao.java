@@ -11,23 +11,35 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Zhannur Diyas
- * 11/26/2016 | 10:33 AM
- */
 public class JdbcBookDao extends JdbcDao<Book> implements BookDao {
 
     private static final Logger log = LoggerFactory.getLogger(JdbcBookDao.class);
 
     private PooledConnection connection;
 
-    public JdbcBookDao(PooledConnection connection) {
+    JdbcBookDao(PooledConnection connection) {
         super(connection);
     }
 
     @Override
-    protected String getDeleteQuery() {
-        return null;
+    protected Book createEntityFromRs(ResultSet resultSet) throws SQLException, JdbcDaoException {
+
+        try {
+            Book book = new Book();
+            log.debug("Book is starting to assemble: {}", book);
+            book.setIsbn(resultSet.getString("isbn"));
+            book.setLanguage(resultSet.getString("language"));
+            book.setTitle(resultSet.getString("title"));
+            book.setAuthor(resultSet.getString("author"));
+            book.setDomain(resultSet.getString("domain"));
+            book.setPublisher(resultSet.getString("publisher"));
+            book.setDescription(resultSet.getString("description"));
+            book.setPrice(resultSet.getBigDecimal("price"));
+            return book;
+        } catch (SQLException e) {
+            log.error("Failed to create an entity from result set");
+            throw new JdbcDaoException();
+        }
     }
 
     @Override
@@ -45,31 +57,22 @@ public class JdbcBookDao extends JdbcDao<Book> implements BookDao {
         return null;
     }
 
+    /*
+    TODO: Change SQL Dialect from MySQL to PostgreSQL
+     */
     @Override
     protected String getSelectByIdQuery(int id) {
         return "select * from books where (id = " + id + ");";
     }
 
     @Override
-    protected Book createEntityFromResultSet(ResultSet resultSet) throws SQLException, JdbcDaoException {
-
-        try {
-            Book book = new Book();
-            book.setIsbn(resultSet.getString("isbn"));
-            book.setLanguage(resultSet.getString("language"));
-            book.setTitle(resultSet.getString("title"));
-            book.setPrice(Integer.parseInt(resultSet.getString("author")));
-            book.setDescription(resultSet.getString("description"));
-            book.setAuthor("adsd");
-            book.setPublisher("sadsd");
-            System.out.println(book);
-            return book;
-        } catch (SQLException e) {
-            log.error("Failed to create an entity from result set");
-            throw new JdbcDaoException();
-        }
-    }
     protected String getSelectAllQuery() {
         return null;
     }
+
+    @Override
+    protected String getDeleteQuery() {
+        return null;
+    }
+
 }

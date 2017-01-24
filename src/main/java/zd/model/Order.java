@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import zd.exception.ModelException;
 import zd.model.user.ShippingAddress;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
@@ -14,14 +15,14 @@ import java.util.List;
  * 11/25/2016 | 4:04 PM
  */
 @Data
-public class Order {
+public class Order extends Model {
     private final Logger log = LoggerFactory.getLogger(Order.class);
 
     private OrderStatus status;
     private List<Book> books;
     private Date dateOrdered;
     private ShippingAddress shippingAddress;
-    private double orderTotal;
+    private BigDecimal orderTotal;
 
     public void setOrderTotal(double orderTotal) throws ModelException {
         if (orderTotal <= 0) {
@@ -29,6 +30,5 @@ public class Order {
             throw new ModelException("Non-positive orderTotal entered");
         }
     }
-
 }
 

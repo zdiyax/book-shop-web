@@ -6,8 +6,8 @@ import java.util.Properties;
 import java.util.concurrent.Executor;
 
 /**
- * Zhannur Diyas
- * 12/7/2016 | 9:50 AM
+ * Class to wrap default Connection class.
+ * Difference: returns connection back to the ConnectionPool when closed.
  */
 public class PooledConnection implements Connection {
 
@@ -15,11 +15,10 @@ public class PooledConnection implements Connection {
 
     private void returnConnection() {
         ConnectionPool.getInstance().returnConnection((PooledConnection) this.connection);
-        ConnectionPool.getConnections().add((PooledConnection) this.connection);
     }
 
     @Override
-    public void close() throws SQLException {
+    public void close() {
         returnConnection();
     }
 
