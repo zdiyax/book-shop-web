@@ -3,7 +3,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="temp/header.jsp"/>
-
+<link rel="stylesheet" type="text/css" href="/css/default.css" />
 <fmt:setBundle basename="lang/"/>
 
 <html>
@@ -11,16 +11,14 @@
     <title>BookGeek - Progressive Book Store!</title>
 </head>
 <body>
-<div align="center">
-<form action="${pageContext.request.contextPath}/do/?action=login" method="post">
-    <label><b><fmt:message key="index.login"/></b></label><br>
-    <input type="text" name="login"> <br><br>
-    <label><b><fmt:message key="index.password"/></b></label><br>
-    <input type="password" name="password"><br><br>
-    <button type="submit"><fmt:message key="index.login.button"/></button>
-    <br>
-</form>
+<div class="welcome">
+    <h1>Welcome to BookGeek - Progressive Book Store!</h1>
+    <p>
+        We enjoy bringing the best service to our customers!
+        Please, proceed to Catalog page to browse our goods.
+    </p>
 </div>
+
 </body>
 
 <jsp:include page="temp/footer.jsp"/>

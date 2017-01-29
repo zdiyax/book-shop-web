@@ -1,0 +1,9 @@
+.welcome {
+    padding-left: 50px;
+    font-family: "Berlin Sans FB", sans-serif;
+    font-size: inherit;
+}
+
+html, body {
+    overflow: hidden;
+}

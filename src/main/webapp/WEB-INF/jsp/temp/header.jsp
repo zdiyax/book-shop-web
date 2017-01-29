@@ -24,10 +24,10 @@
         <h1><a href="">Book<span>Geek</span></a></h1>
 
         <nav>
-            <a href="${prefix}/do/action?show-home-page">Home</a>
-            <a href="${prefix}/do/action?show-catalog-page">Catalog</a>
-            <a href="${prefix}/do/action?show-about-page">About</a>
-            <a href="${prefix}/do/action?show-login-page">Login</a>
+            <a href="${prefix}/do/?action=show-home-page">Home</a>
+            <a href="${prefix}/do/?action=show-catalog-page">Catalog</a>
+            <a href="${prefix}/do/?action=show-about-page">About</a>
+            <a href="${prefix}/do/?action=show-login-page">Login</a>
         </nav>
 
     </div>

@@ -1,5 +1,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:include page="temp/header.jsp"/>
+<jsp:include page="temp/footer.jsp"/>
+<link rel="stylesheet" type="text/css" href="/css/default.css" />
 <html>
 <head>
     <title>Login</title>

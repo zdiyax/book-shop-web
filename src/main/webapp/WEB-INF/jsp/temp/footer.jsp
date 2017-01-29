@@ -27,11 +27,11 @@
         <h3>Book<span>Geek</span></h3>
 
         <p class="footer-links">
-            <a href="${prefix}/do/action?show-home-page">Home</a>
+            <a href="${prefix}/do/?action=show-home-page">Home</a>
             ·
-            <a href="${prefix}/do/action?show-catalog-page">Catalog</a>
+            <a href="${prefix}/do/?action=show-catalog-page">Catalog</a>
             ·
-            <a href="${prefix}/do/action?show-about-page">About</a>
+            <a href="${prefix}/do/?action=show-about-page">About</a>
         </p>
 
         <p class="footer-company-name">Bookshop &copy; 2017</p>
