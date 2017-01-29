@@ -4,15 +4,12 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0" id="Book-Geek">
     <display-name>BookGeek Store</display-name>
-    <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
+
     <welcome-file-list>
         <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
-        <welcome-file>/WEB-INF/jsp/about.jsp</welcome-file>
     </welcome-file-list>
     <filter>
         <filter-name>EncodingFilter</filter-name>
@@ -24,7 +21,7 @@
     </filter>
     <filter>
         <filter-name>LocaleFilter</filter-name>
-        <filter-class>zd.filter.Filter</filter-class>
+        <filter-class>zd.filter.LocaleFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>LocaleFilter</filter-name>

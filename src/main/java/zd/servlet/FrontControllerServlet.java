@@ -23,11 +23,20 @@ public class FrontControllerServlet extends HttpServlet {
     private ActionFactory actionFactory;
 
     @Override
+    public void init() throws ServletException {
+        actionFactory = new ActionFactory();
+        try {
+            actionFactory.loadActions();
+        } catch (ActionFactoryException e) {
+            log.error("Action Factory error in controller occurred", e);
+        }
+    }
+
+    @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         checkErrorCode(req, resp);
         String actionName = getActionName(req);
         try {
-
             Action action = actionFactory.getAction(actionName);
             String execute = action.execute(req, resp);
             proceedTo(execute, req, resp);
@@ -46,16 +55,6 @@ public class FrontControllerServlet extends HttpServlet {
 
     private String getActionName(HttpServletRequest req) {
         return req.getParameter(ACTION);
-    }
-
-    @Override
-    public void init() throws ServletException {
-            actionFactory = new ActionFactory();
-            try {
-                actionFactory.loadActions();
-            } catch (ActionFactoryException e) {
-                log.error("Action Factory error in controller occurred", e);
-            }
     }
 
     private void checkErrorCode(HttpServletRequest req, HttpServletResponse resp) {

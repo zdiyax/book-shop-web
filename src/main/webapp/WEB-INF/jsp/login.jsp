@@ -6,7 +6,7 @@
 </head>
 <body>
 <form action="${pageContext.request.contextPath}/do/?action=login" method="post">
-    <p><fmt:message key="login "/></p>
+    <p><fmt:message key="login"/></p>
     <label><b><fmt:message key="register.login"/></b></label><br>
     <input type="text" name="login"> <br><br>
     <label><b><fmt:message key="register.password"/></b></label><br>

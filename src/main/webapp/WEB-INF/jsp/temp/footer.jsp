@@ -16,7 +16,6 @@
 </head>
 
 <body>
-<!-- Content -->
 
 </body>
 
@@ -63,7 +62,6 @@
             <span>About the company</span>
             Books for everyone! Enjoy your best deals!
         </p>
-        <%--remove footer icons boxes--%>
         <div class="footer-icons">
             <a href="#"><i class="fa fa-facebook"></i></a>
             <a href="https://vk.com/tatikara"><i class="fa fa-vk"></i></a>
