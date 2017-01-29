@@ -42,13 +42,13 @@ public class ConnectionPool {
     }
 
     /**
-     * Method fills the connection pool with connections using DriverManager and property file
+     * Method fills the connection pool with connections using DriverManager
      */
     private void fill() {
         try {
-            PooledConnection connection = (PooledConnection) DriverManager.getConnection(url, username, password);
+            Connection connection = DriverManager.getConnection(url, username, password);
             for (int i = 0; i < poolSize; i++) {
-                connections.add(connection);
+                connections.offer((PooledConnection) connection);
             }
         } catch (SQLException e) {
             log.error("Couldn't load connections in connection pool " + e);

@@ -1,97 +1,94 @@
 CREATE TABLE "book" (
-	"bookId" serial NOT NULL,
+	"bookId" serial PRIMARY KEY NOT NULL,
 	"isbn" varchar(17) NOT NULL UNIQUE,
-	"languageId" varchar(17) NOT NULL UNIQUE,
+	"language" varchar(17) NOT NULL UNIQUE REFERENCES language(languageName),
 	"title" varchar(32) NOT NULL,
-	"authorId" integer NOT NULL,
-	"domainId" integer NOT NULL,
-	"publisherId" integer NOT NULL,
+	"author" varchar(32) NOT NULL REFERENCES author(authorName),
+	"domain" varchar(17) NOT NULL REFERENCES domain(domainName),
+	"publisher" varchar(17) NOT NULL REFERENCES publisher(publisherName),
 	"description" varchar(255),
-	"price" FLOAT NOT NULL,
-	CONSTRAINT book_pk PRIMARY KEY ("bookId")
+	"price" FLOAT NOT NULL
 ) WITH (
-OIDS=FALSE
+  OIDS=FALSE
 );
 
 
 
 CREATE TABLE "language" (
-	"languageId" serial NOT NULL,
-	"language" varchar(20) NOT NULL UNIQUE,
-	CONSTRAINT language_pk PRIMARY KEY ("languageId")
+	"languageId" serial PRIMARY KEY NOT NULL,
+	"languageName" varchar(17) NOT NULL UNIQUE
 ) WITH (
-OIDS=FALSE
+  OIDS=FALSE
 );
 
 
 
 CREATE TABLE "author" (
-	"authorId" serial NOT NULL,
-	"authorName" varchar(32) NOT NULL,
-	CONSTRAINT author_pk PRIMARY KEY ("authorId")
+	"authorId" serial PRIMARY KEY NOT NULL,
+	"authorName" varchar(32) NOT NULL
 ) WITH (
-OIDS=FALSE
+  OIDS=FALSE
 );
 
 
 
 CREATE TABLE "domain" (
-	"domainId" serial NOT NULL,
-	"domain" varchar(32) NOT NULL,
-	CONSTRAINT domain_pk PRIMARY KEY ("domainId")
+	"domainId" serial PRIMARY KEY NOT NULL,
+	"domainName" varchar(32) NOT NULL
 ) WITH (
-OIDS=FALSE
+  OIDS=FALSE
 );
 
 
 
 CREATE TABLE "publisher" (
-	"publisherId" serial NOT NULL,
-	"publisher" varchar(32) NOT NULL,
-	CONSTRAINT publisher_pk PRIMARY KEY ("publisherId")
+	"publisherId" serial PRIMARY KEY NOT NULL,
+	"publisherName" varchar(32) NOT NULL
 ) WITH (
-OIDS=FALSE
+  OIDS=FALSE
 );
 
 
 
 CREATE TABLE "order" (
-	"orderId" serial NOT NULL,
-	"orderStatusId" integer NOT NULL,
+	"orderId" serial PRIMARY KEY NOT NULL,
+	"orderStatus" varchar(17) NOT NULL REFERENCES orderStatus(orderStatusName),
 	"dateOrdered" DATE NOT NULL,
-	"shippingAddressId" integer NOT NULL,
-	"totalPrice" FLOAT NOT NULL,
-	CONSTRAINT order_pk PRIMARY KEY ("orderId")
+	"shippingAddressId" integer NOT NULL REFERENCES shippingAddress(shippingAddressId),
+	"totalPrice" FLOAT NOT NULL
 ) WITH (
-OIDS=FALSE
+  OIDS=FALSE
 );
 
-
+CREATE TABLE "orderStatus" (
+  "orderStatusId" serial PRIMARY KEY,
+  "orderStatusName" varchar(17)
+) WITH (
+  OIDS = FALSE
+;
 
 CREATE TABLE "user" (
-	"userId" serial NOT NULL,
+	"userId" serial PRIMARY KEY NOT NULL,
 	"username" varchar(16) NOT NULL UNIQUE,
 	"password" varchar(32) NOT NULL,
-	"userInfoId" integer NOT NULL,
-	"shippingAddressId" integer NOT NULL,
-	"orderId" integer NOT NULL,
-	CONSTRAINT user_pk PRIMARY KEY ("userId")
+	"userInfo" integer NOT NULL REFERENCES userInfo(userInfoId),
+	"shippingAddress" integer NOT NULL REFERENCES shippingAddress(shippingAddressId),
+	"orderId" integer NOT NULL
 ) WITH (
-OIDS=FALSE
+  OIDS=FALSE
 );
 
 
 
 CREATE TABLE "userInfo" (
-	"userInfoId" serial NOT NULL,
+	"userInfoId" serial PRIMARY KEY NOT NULL,
 	"name" varchar(32) NOT NULL,
 	"surname" varchar(32) NOT NULL,
 	"birthdate" DATE NOT NULL,
-	"genderId" integer NOT NULL,
-	"email" varchar(32) NOT NULL,
-	CONSTRAINT userInfo_pk PRIMARY KEY ("userInfoId")
+	"gender" varchar(17) NOT NULL REFERENCES gender(gender),
+	"email" varchar(32) NOT NULL
 ) WITH (
-OIDS=FALSE
+  OIDS=FALSE
 );
 
 
@@ -100,19 +97,19 @@ CREATE TABLE "gender" (
 	"genderId" integer NOT NULL,
 	"gender" varchar(16) NOT NULL
 ) WITH (
-OIDS=FALSE
+  OIDS=FALSE
 );
 
 
 
 CREATE TABLE "shippingAddress" (
-	"shippingAddressId" integer NOT NULL,
+	"shippingAddressId" integer NOT NULL PRIMARY KEY,
 	"name" varchar(32) NOT NULL,
 	"country" varchar(32) NOT NULL,
 	"city" varchar(32) NOT NULL,
 	"street" varchar(32) NOT NULL,
-	"telephoneNumber" varchar(32) NOT NULL,
-	CONSTRAINT shippingAddress_pk PRIMARY KEY ("shippingAddressId")
+	"telephoneNumber" varchar(32) NOT NULL
 ) WITH (
-OIDS=FALSE
+  OIDS=FALSE
 );
+
