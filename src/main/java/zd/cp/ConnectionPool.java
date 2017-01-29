@@ -105,7 +105,7 @@ public class ConnectionPool {
         return connection;
     }
 
-    public static ConnectionPool getInstance() {
+    static ConnectionPool getInstance() {
         return InstanceHolder.instance;
     }
 

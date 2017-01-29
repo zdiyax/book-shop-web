@@ -8,29 +8,28 @@ import java.util.List;
 
 @Data
 public class ShoppingCart {
-    private List<Book> productList;
+    private List<Book> bookList;
     private BigDecimal sum;
 
     public Order order() {
         Order order = new Order();
-
         return order;
     }
 
     public ShoppingCart() {
-        productList = new ArrayList<>();
+        bookList = new ArrayList<>();
     }
 
     public void add(Book book) {
-        productList.add(book);
+        bookList.add(book);
     }
 
     public void remove(Book book) {
-        productList.remove(book);
+        bookList.remove(book);
     }
 
     public void updateSum() {
-        for (Book book : productList) {
+        for (Book book : bookList) {
             sum.add(book.getPrice());
         }
     }

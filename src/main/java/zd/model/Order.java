@@ -10,10 +10,6 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
-/**
- * Zhannur Diyas
- * 11/25/2016 | 4:04 PM
- */
 @Data
 public class Order extends Model {
     private final Logger log = LoggerFactory.getLogger(Order.class);

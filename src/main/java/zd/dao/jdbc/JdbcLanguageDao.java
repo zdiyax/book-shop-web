@@ -56,7 +56,7 @@ public class JdbcLanguageDao extends JdbcDao<Language> implements LanguageDao {
     }
 
     @Override
-    public List<Language> getAllByParam(String query) throws JdbcDaoException {
+    public List<Language> getAllByQuery(String query) throws JdbcDaoException {
         return null;
     }
 }

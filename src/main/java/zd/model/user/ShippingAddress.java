@@ -1,9 +1,8 @@
 package zd.model.user;
 
-/**
- * Zhannur Diyas
- * 11/25/2016 | 4:13 PM
- */
+import lombok.Data;
+
+@Data
 public class ShippingAddress {
     private String shippingName;
     private String country;

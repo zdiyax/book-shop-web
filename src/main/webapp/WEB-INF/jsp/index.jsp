@@ -8,15 +8,17 @@
     <title>BookGeek - Progressive Book Store!</title>
 </head>
 <body>
+<div align="center">
 <form action="${pageContext.request.contextPath}/do/?action=login" method="post">
-    <p><fmt:message key="login.message"/></p>
-    <label><b><fmt:message key="Lasdasdasd"/></b></label><br>
+    <p><fmt:message key="index.login" var="Login please"/></p>
+    <label><b><fmt:message key="index.login" var="Login"/></b></label><br>
     <input type="text" name="login"> <br><br>
-    <label><b><fmt:message key="Log in"/></b></label><br>
+    <label><b><fmt:message key="index.password" var="Password"/></b></label><br>
     <input type="password" name="password" value="" ><br><br>
-    <button type="submit"><fmt:message key="login.button.submit"/></button>
+    <button type="submit"><fmt:message var="Submit" key="index.login.button"/></button>
     <br>
 </form>
+</div>
 </body>
 
 <jsp:include page="temp/footer.jsp"/>

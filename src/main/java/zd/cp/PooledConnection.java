@@ -13,6 +13,9 @@ public class PooledConnection implements Connection {
 
     private Connection connection;
 
+    /**
+     * Simple method directly returns a connection to CP
+     */
     private void returnConnection() {
         ConnectionPool.getInstance().returnConnection((PooledConnection) this.connection);
     }

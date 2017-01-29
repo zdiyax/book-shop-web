@@ -1,12 +1,11 @@
 package zd.model.user;
 
+import lombok.Data;
+
 import java.util.Date;
 
-/**
- * Zhannur Diyas
- * 11/25/2016 | 4:13 PM
- */
-class UserInfo {
+@Data
+public class UserInfo {
     private String name;
     private String surname;
     private Date dateOfBirth;

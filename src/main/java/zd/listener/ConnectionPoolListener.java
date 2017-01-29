@@ -7,10 +7,12 @@ import zd.exception.ConnectionPoolException;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
-public class MainListener implements ServletContextListener {
+@WebListener
+public class ConnectionPoolListener implements ServletContextListener {
 
-    private static final Logger log = LoggerFactory.getLogger(MainListener.class);
+    private static final Logger log = LoggerFactory.getLogger(ConnectionPoolListener.class);
     private ConnectionPool pool;
 
     @Override

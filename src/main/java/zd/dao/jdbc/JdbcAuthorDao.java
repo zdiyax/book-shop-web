@@ -16,7 +16,7 @@ public class JdbcAuthorDao extends JdbcDao<Author> implements AuthorDao {
     }
 
     @Override
-    public List<Author> getAllByParam(String query) throws JdbcDaoException {
+    public List<Author> getAllByQuery(String query) throws JdbcDaoException {
         throw new UnsupportedOperationException();
     }
 

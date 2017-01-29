@@ -6,10 +6,6 @@ import zd.model.Order;
 
 import java.util.List;
 
-/**
- * Zhannur Diyas
- * 11/25/2016 | 4:06 PM
- */
 @Data
 public class User extends Model {
     private Role role = Role.CUSTOMER;

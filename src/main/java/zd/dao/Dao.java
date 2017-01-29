@@ -13,7 +13,7 @@ import java.util.List;
 public interface Dao <T extends Model> {
     T insert(T t) throws DaoException;
     T getById(int id) throws JdbcDaoException;
-    List<T> getAllByParam(String query) throws DaoException;
+    List<T> getAllByQuery(String query) throws DaoException;
     void delete(T t) throws DaoException;
     void deleteById(int id) throws DaoException;
 }

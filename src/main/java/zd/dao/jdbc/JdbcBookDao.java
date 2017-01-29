@@ -14,7 +14,6 @@ import java.sql.SQLException;
 public class JdbcBookDao extends JdbcDao<Book> implements BookDao {
 
     private static final Logger log = LoggerFactory.getLogger(JdbcBookDao.class);
-
     private PooledConnection connection;
 
     JdbcBookDao(PooledConnection connection) {
@@ -23,10 +22,10 @@ public class JdbcBookDao extends JdbcDao<Book> implements BookDao {
 
     @Override
     protected Book createEntityFromRs(ResultSet resultSet) throws SQLException, JdbcDaoException {
-
         try {
             Book book = new Book();
             log.debug("Book is starting to assemble: {}", book);
+            book.setId(Integer.parseInt(resultSet.getString("id")));
             book.setIsbn(resultSet.getString("isbn"));
             book.setLanguage(resultSet.getString("language"));
             book.setTitle(resultSet.getString("title"));
@@ -38,7 +37,7 @@ public class JdbcBookDao extends JdbcDao<Book> implements BookDao {
             return book;
         } catch (SQLException e) {
             log.error("Failed to create an entity from result set");
-            throw new JdbcDaoException();
+            throw new JdbcDaoException(e);
         }
     }
 

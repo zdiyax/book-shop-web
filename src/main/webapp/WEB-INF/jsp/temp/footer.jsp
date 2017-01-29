@@ -1,14 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Asus
-  Date: 12/1/2016
-  Time: 9:48 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" type="text/css" href="/css/footer.css" >
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+<c:set var="prefix" value="${pageContext.request.contextPath}"/>
 <html>
 
 <head>
@@ -33,11 +28,11 @@
         <h3>Book<span>Geek</span></h3>
 
         <p class="footer-links">
-            <a href="../index.jsp">Home</a>
+            <a href="${prefix}/do/action?show-home-page">Home</a>
             ·
-            <a href="../catalog.jsp">Catalog</a>
+            <a href="${prefix}/do/action?show-catalog-page">Catalog</a>
             ·
-            <a href="/WEB-INF/jsp/about.jsp">About</a>
+            <a href="${prefix}/do/action?show-about-page">About</a>
         </p>
 
         <p class="footer-company-name">Bookshop &copy; 2017</p>
@@ -68,7 +63,7 @@
             <span>About the company</span>
             Books for everyone! Enjoy your best deals!
         </p>
-<%--remove footer icons boxes--%>
+        <%--remove footer icons boxes--%>
         <div class="footer-icons">
             <a href="#"><i class="fa fa-facebook"></i></a>
             <a href="https://vk.com/tatikara"><i class="fa fa-vk"></i></a>
@@ -81,4 +76,3 @@
 
 
 </html>
-

@@ -16,7 +16,7 @@ public class JdbcOrderDao extends JdbcDao<Order> implements OrderDao {
     }
 
     @Override
-    public List<Order> getAllByParam(String query) throws JdbcDaoException {
+    public List<Order> getAllByQuery(String query) throws JdbcDaoException {
         return null;
     }
 

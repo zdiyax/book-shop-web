@@ -85,7 +85,7 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
 
     //TODO: REALIZOVAT'
     @Override
-    public List<T> getAllByParam(String query) throws DaoException {
+    public List<T> getAllByQuery(String query) throws DaoException {
         return null;
     }
 

@@ -52,7 +52,7 @@ public class JdbcUserDao extends JdbcDao<User> implements UserDao {
     }
 
     @Override
-    public List<User> getAllByParam(String query) throws JdbcDaoException {
+    public List<User> getAllByQuery(String query) throws JdbcDaoException {
         return null;
     }
 }

@@ -4,10 +4,6 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
-/**
- * Zhannur Diyas
- * 11/25/2016 | 4:04 PM
- */
 @Data
 public class Book extends Model {
     private String isbn;
