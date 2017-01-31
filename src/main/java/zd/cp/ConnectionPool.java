@@ -31,18 +31,23 @@ public class ConnectionPool {
     private String username;
     private String password;
     private int poolSize;
+    //debugging purposes only
+    private int connectionCount;
 
     /**
      * Method fills the connection pool with connections using DriverManager
      */
-    public void fill() throws ConnectionPoolException {
-        loadProperties();
+    private void fill() throws ConnectionPoolException {
         connections = new ArrayBlockingQueue<Connection>(poolSize);
         try {
-            Connection connection = DriverManager.getConnection(url, username, password);
             for (int i = 0; i < poolSize; i++) {
-                connections.offer(connection);
+                Connection connection = DriverManager.getConnection(url, username, password);
+                if (connection != null) {
+                    connections.offer(connection);
+                    connectionCount++;
+                }
             }
+            log.debug("Total number of connections in CP: {}", connectionCount);
         } catch (SQLException e) {
             log.error("Couldn't load connections in connection pool |" + e);
             throw new ConnectionPoolException(e);
@@ -53,7 +58,7 @@ public class ConnectionPool {
      * Method loads properties from property file using PropertyManager
      * @throws ConnectionPoolException - if properties failed to load in
      */
-    private void loadProperties() throws ConnectionPoolException {
+    public void configure() throws ConnectionPoolException {
         try {
             PropertyManager propertyManager = new PropertyManager("db.properties");
             Properties properties = propertyManager.getProperties();
@@ -77,6 +82,7 @@ public class ConnectionPool {
         } catch (PropertyManagerException e) {
             throw new ConnectionPoolException(e);
         }
+        fill();
 
     }
 
@@ -85,27 +91,32 @@ public class ConnectionPool {
      * @return - PooledConnection from ConnectionPool
      * @throws ConnectionPoolException - if
      */
-    public Connection getConnection() throws ConnectionPoolException {
+    public Connection getConnection() throws ConnectionPoolException, InterruptedException {
         Connection connection = null;
         try {
             if (connections.peek() == null) {
                 connections = new ArrayBlockingQueue<Connection>(poolSize*2);
                 connection = DriverManager.getConnection(url, username, password);
                 for (int i = 0; i < poolSize*2; i++) {
-                    connections.add(connection);
+                    connections.offer(connection);
                 }
+            } else {
+                connection = connections.take();
             }
-            connection = connections.take();
+            log.debug("Connection received: {}", connection);
         } catch (InterruptedException e) {
             log.debug("Connection error occurred. Thread interrupted.");
             throw new ConnectionPoolException();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        if (connection == null) {
+            throw new ConnectionPoolException("CONNECTION == NULL");
+        }
         return connection;
     }
 
-    static ConnectionPool getInstance() {
+    public static ConnectionPool getInstance() {
         return InstanceHolder.instance;
     }
 

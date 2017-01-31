@@ -23,8 +23,8 @@ public class UserService extends AbstractService {
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
-        if (foundUser == null) throw new UserNotFoundException("mesaage");
-        final String correctHash = foundUser.getPassword();
+        if (foundUser == null) throw new UserNotFoundException("message");
+
 
         return foundUser;
     }

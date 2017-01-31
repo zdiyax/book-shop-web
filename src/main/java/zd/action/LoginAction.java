@@ -13,7 +13,7 @@ public class LoginAction implements Action {
 
     private static final Logger log = LoggerFactory.getLogger(LoginAction.class);
     private static final String REDIRECT_LOGIN_FORM = "redirect:/do/?action=show-login-page";
-    private static final String REDIRECT_LOGIN_SUCCESS = "redirect:/do/?action=show-login-success";
+    private static final String REDIRECT_LOGIN_SUCCESS = "redirect:/do/?action=show-login-success-page";
     private static final String LOGIN_BUTTON = "loginButton";
     private static final String LOGIN = "login";
     private static final String PASSWORD = "password";
@@ -26,7 +26,6 @@ public class LoginAction implements Action {
         String login = req.getParameter(LOGIN);
         req.getSession().setAttribute(LOGIN, login);
         String password = req.getParameter(PASSWORD);
-        String locale = (String) req.getSession().getAttribute(LOCALE);
 
         User user = new User(login, password);
         UserService userService = new UserService();

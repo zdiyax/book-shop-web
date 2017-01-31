@@ -20,4 +20,7 @@ public class User extends Model {
         this.password = password;
     }
 
+    public User() {
+
+    }
 }

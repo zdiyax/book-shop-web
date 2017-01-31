@@ -5,24 +5,28 @@ import zd.dao.BookDao;
 import zd.dao.DaoFactory;
 import zd.dao.OrderDao;
 import zd.dao.UserDao;
-import zd.exception.ConnectionPoolException;
 import zd.exception.JdbcDaoException;
 
 import java.sql.Connection;
 
 public class JdbcDaoFactory extends DaoFactory {
 
-    private static Connection connection;
-    private static ConnectionPool pool;
+    private Connection connection;
+    private static ConnectionPool pool = ConnectionPool.getInstance();
 
 
     public JdbcDaoFactory() throws JdbcDaoException {
+
         try {
             this.connection = pool.getConnection();
-        } catch (ConnectionPoolException e) {
+        } catch (Exception e) {
             throw new JdbcDaoException(e);
         }
 
+    }
+
+    public static void setPool(ConnectionPool pool) {
+        JdbcDaoFactory.pool = pool;
     }
 
     @Override

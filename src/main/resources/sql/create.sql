@@ -1,14 +1,14 @@
 CREATE TABLE "book" (
-	"bookId" serial NOT NULL,
-	"isbn" varchar(17) NOT NULL UNIQUE,
-	"languageId" varchar(17) NOT NULL UNIQUE,
-	"title" varchar(32) NOT NULL,
-	"author" varchar(32) NOT NULL,
-	"domain" varchar(32) NOT NULL,
-	"publisher" varchar(32) NOT NULL,
-	"description" varchar(255),
-	"price" FLOAT NOT NULL,
-	CONSTRAINT book_pk PRIMARY KEY ("bookId")
+  "bookId" serial NOT NULL,
+  "isbn" varchar(17) NOT NULL UNIQUE,
+  "languageId" varchar(17) NOT NULL UNIQUE,
+  "title" varchar(32) NOT NULL,
+  "author" varchar(32) NOT NULL,
+  "domain" varchar(32) NOT NULL,
+  "publisher" varchar(32) NOT NULL,
+  "description" varchar(255),
+  "price" FLOAT NOT NULL,
+  CONSTRAINT book_pk PRIMARY KEY ("bookId")
 ) WITH (
 OIDS=FALSE
 );
@@ -16,9 +16,9 @@ OIDS=FALSE
 
 
 CREATE TABLE "language" (
-	"languageId" serial NOT NULL,
-	"languageName" varchar(20) NOT NULL UNIQUE,
-	CONSTRAINT language_pk PRIMARY KEY ("languageId")
+  "languageId" serial NOT NULL,
+  "languageName" varchar(20) NOT NULL UNIQUE,
+  CONSTRAINT language_pk PRIMARY KEY ("languageId")
 ) WITH (
 OIDS=FALSE
 );
@@ -26,9 +26,9 @@ OIDS=FALSE
 
 
 CREATE TABLE "author" (
-	"authorId" serial NOT NULL,
-	"authorName" varchar(32) NOT NULL,
-	CONSTRAINT author_pk PRIMARY KEY ("authorId")
+  "authorId" serial NOT NULL,
+  "authorName" varchar(32) NOT NULL UNIQUE,
+  CONSTRAINT author_pk PRIMARY KEY ("authorId")
 ) WITH (
 OIDS=FALSE
 );
@@ -36,9 +36,9 @@ OIDS=FALSE
 
 
 CREATE TABLE "domain" (
-	"domainId" serial NOT NULL,
-	"domainName" varchar(32) NOT NULL,
-	CONSTRAINT domain_pk PRIMARY KEY ("domainId")
+  "domainId" serial NOT NULL,
+  "domainName" varchar(32) NOT NULL UNIQUE,
+  CONSTRAINT domain_pk PRIMARY KEY ("domainId")
 ) WITH (
 OIDS=FALSE
 );
@@ -46,9 +46,9 @@ OIDS=FALSE
 
 
 CREATE TABLE "publisher" (
-	"publisherId" serial NOT NULL,
-	"publisherName" varchar(32) NOT NULL,
-	CONSTRAINT publisher_pk PRIMARY KEY ("publisherId")
+  "publisherId" serial NOT NULL,
+  "publisherName" varchar(32) NOT NULL UNIQUE,
+  CONSTRAINT publisher_pk PRIMARY KEY ("publisherId")
 ) WITH (
 OIDS=FALSE
 );
@@ -56,17 +56,17 @@ OIDS=FALSE
 
 
 CREATE TABLE "order" (
-	"orderId" serial NOT NULL,
-	"orderStatusId" integer NOT NULL,
-	"dateOrdered" DATE NOT NULL,
-	"shippingAddressId" integer NOT NULL,
-	"bookOrdered1" integer,
-	"bookOrdered2" integer,
-	"bookOrdered3" integer,
-	"bookOrdered4" integer,
-	"bookOrdered5" integer,
-	"totalPrice" FLOAT NOT NULL,
-	CONSTRAINT order_pk PRIMARY KEY ("orderId")
+  "orderId" serial NOT NULL,
+  "orderStatusId" integer NOT NULL,
+  "dateOrdered" DATE NOT NULL,
+  "shippingAddressId" integer NOT NULL,
+  "bookOrdered1" integer,
+  "bookOrdered2" integer,
+  "bookOrdered3" integer,
+  "bookOrdered4" integer,
+  "bookOrdered5" integer,
+  "totalPrice" FLOAT NOT NULL,
+  CONSTRAINT order_pk PRIMARY KEY ("orderId")
 ) WITH (
 OIDS=FALSE
 );
@@ -74,13 +74,13 @@ OIDS=FALSE
 
 
 CREATE TABLE "user" (
-	"userId" serial NOT NULL,
-	"username" varchar(16) NOT NULL UNIQUE,
-	"password" varchar(32) NOT NULL,
-	"userInfoId" integer,
-	"shippingAddressId" integer,
-	"orderId" integer NOT NULL,
-	CONSTRAINT user_pk PRIMARY KEY ("userId")
+  "userId" serial NOT NULL,
+  "username" varchar(16) NOT NULL UNIQUE,
+  "password" varchar(32) NOT NULL,
+  "userInfoId" integer,
+  "shippingAddressId" integer,
+  "orderId" integer,
+  CONSTRAINT user_pk PRIMARY KEY ("userId")
 ) WITH (
 OIDS=FALSE
 );
@@ -88,13 +88,13 @@ OIDS=FALSE
 
 
 CREATE TABLE "userInfo" (
-	"userInfoId" serial NOT NULL,
-	"name" varchar(32) NOT NULL,
-	"surname" varchar(32) NOT NULL,
-	"birthdate" DATE NOT NULL,
-	"gender" varchar(16) NOT NULL,
-	"email" varchar(32) NOT NULL,
-	CONSTRAINT userInfo_pk PRIMARY KEY ("userInfoId")
+  "userInfoId" serial NOT NULL,
+  "name" varchar(32) NOT NULL,
+  "surname" varchar(32) NOT NULL,
+  "birthdate" DATE NOT NULL,
+  "gender" varchar(16) NOT NULL,
+  "email" varchar(32) NOT NULL,
+  CONSTRAINT userInfo_pk PRIMARY KEY ("userInfoId")
 ) WITH (
 OIDS=FALSE
 );
@@ -102,9 +102,9 @@ OIDS=FALSE
 
 
 CREATE TABLE "gender" (
-	"genderId" serial NOT NULL,
-	"genderName" varchar(16) NOT NULL,
-	CONSTRAINT gender_pk PRIMARY KEY ("genderId")
+  "genderId" serial NOT NULL,
+  "genderName" varchar(16) NOT NULL UNIQUE,
+  CONSTRAINT gender_pk PRIMARY KEY ("genderId")
 ) WITH (
 OIDS=FALSE
 );
@@ -112,13 +112,13 @@ OIDS=FALSE
 
 
 CREATE TABLE "shippingAddress" (
-	"shippingAddressId" integer NOT NULL,
-	"name" varchar(32) NOT NULL,
-	"country" varchar(32) NOT NULL,
-	"city" varchar(32) NOT NULL,
-	"street" varchar(32) NOT NULL,
-	"telephoneNumber" varchar(32) NOT NULL,
-	CONSTRAINT shippingAddress_pk PRIMARY KEY ("shippingAddressId")
+  "shippingAddressId" integer NOT NULL,
+  "name" varchar(32) NOT NULL,
+  "country" varchar(32) NOT NULL,
+  "city" varchar(32) NOT NULL,
+  "street" varchar(32) NOT NULL,
+  "telephoneNumber" varchar(32) NOT NULL,
+  CONSTRAINT shippingAddress_pk PRIMARY KEY ("shippingAddressId")
 ) WITH (
 OIDS=FALSE
 );
@@ -126,10 +126,10 @@ OIDS=FALSE
 
 
 CREATE TABLE "bookOrdered" (
-	"bookOrderedId" serial NOT NULL,
-	"bookId" serial NOT NULL,
-	"quantity" integer NOT NULL DEFAULT '1',
-	CONSTRAINT bookOrdered_pk PRIMARY KEY ("bookOrderedId")
+  "bookOrderedId" serial NOT NULL,
+  "bookId" serial NOT NULL,
+  "quantity" integer NOT NULL DEFAULT '1',
+  CONSTRAINT bookOrdered_pk PRIMARY KEY ("bookOrderedId")
 ) WITH (
 OIDS=FALSE
 );

@@ -56,6 +56,7 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
         try {
             PreparedStatement statement = connection.prepareStatement(getSelectByIdQuery(id));
             ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
             model = createEntityFromRs(resultSet);
         } catch (SQLException e) {
             throw new JdbcDaoException(e);

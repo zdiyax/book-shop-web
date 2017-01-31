@@ -22,8 +22,16 @@ public class JdbcUserDao extends JdbcDao<User> implements UserDao {
     }
 
     @Override
-    protected User createEntityFromRs(ResultSet rs) throws SQLException, JdbcDaoException {
-        return null;
+    protected User createEntityFromRs(ResultSet resultSet) throws SQLException, JdbcDaoException {
+        try {
+            User user = new User();
+            user.setId(resultSet.getInt(1));
+            user.setUsername(resultSet.getString("username"));
+            user.setPassword(resultSet.getString("password"));
+            return user;
+        } catch (SQLException e) {
+            throw new JdbcDaoException(e);
+        }
     }
 
     @Override
@@ -43,7 +51,7 @@ public class JdbcUserDao extends JdbcDao<User> implements UserDao {
 
     @Override
     protected String getSelectByIdQuery(int id) {
-        return null;
+        return "SELECT * FROM newschema.\"user\" WHERE (\"userid\" = " + id + ");";
     }
 
     @Override
