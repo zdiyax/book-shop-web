@@ -1,10 +1,10 @@
 package zd.dao.jdbc;
 
-import zd.cp.PooledConnection;
 import zd.dao.UserDao;
 import zd.exception.JdbcDaoException;
 import zd.model.user.User;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class JdbcUserDao extends JdbcDao<User> implements UserDao {
 
-    JdbcUserDao(PooledConnection connection) {
+    JdbcUserDao(Connection connection) {
         super(connection);
     }
 

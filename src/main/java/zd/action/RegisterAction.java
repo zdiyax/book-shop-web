@@ -1,6 +1,8 @@
 package zd.action;
 
 import zd.dao.DaoFactory;
+import zd.exception.ActionException;
+import zd.exception.DaoException;
 import zd.model.user.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +12,12 @@ import java.util.Map;
 
 public class RegisterAction implements Action {
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
-        DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory();
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
+        try {
+            DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory();
+        } catch (DaoException e) {
+            throw new ActionException(e);
+        }
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 

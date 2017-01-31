@@ -1,17 +1,17 @@
 package zd.dao.jdbc;
 
-import zd.cp.PooledConnection;
 import zd.dao.OrderDao;
 import zd.exception.JdbcDaoException;
 import zd.model.Order;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 public class JdbcOrderDao extends JdbcDao<Order> implements OrderDao {
-    JdbcOrderDao(PooledConnection connection) {
+    JdbcOrderDao(Connection connection) {
         super(connection);
     }
 

@@ -15,7 +15,7 @@
     <label><b><fmt:message key="index.password"/></b></label><br>
     <input type="password" name="password" value="" ><br><br>
     <button type="submit"><fmt:message key="index.login.button"/></button>
-    <p><fmt:message key="login.register.proceedto"/></p>
+    <p><fmt:message key="login.register.proceedto"/><a href="${pageContext.request.contextPath}/do/?action=show-register-page">here</a></p>
     <br>
 </form>
 </body>

@@ -2,12 +2,12 @@ package zd.dao.jdbc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import zd.cp.PooledConnection;
 import zd.dao.Dao;
 import zd.exception.DaoException;
 import zd.exception.JdbcDaoException;
 import zd.model.Model;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,9 +23,9 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
     private static final Logger log = LoggerFactory.getLogger(JdbcDao.class);
     private static final String QUERIES = "sql.properties";
 
-    private PooledConnection connection;
+    private Connection connection;
 
-    JdbcDao(PooledConnection connection) {
+    JdbcDao(Connection connection) {
         this.connection = connection;
     }
 

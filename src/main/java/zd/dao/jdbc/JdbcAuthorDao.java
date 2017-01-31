@@ -1,17 +1,17 @@
 package zd.dao.jdbc;
 
-import zd.cp.PooledConnection;
 import zd.dao.AuthorDao;
 import zd.exception.JdbcDaoException;
 import zd.model.Author;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 public class JdbcAuthorDao extends JdbcDao<Author> implements AuthorDao {
-    JdbcAuthorDao(PooledConnection connection) {
+    JdbcAuthorDao(Connection connection) {
         super(connection);
     }
 

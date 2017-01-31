@@ -2,11 +2,11 @@ package zd.dao.jdbc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import zd.cp.PooledConnection;
 import zd.dao.BookDao;
 import zd.exception.JdbcDaoException;
 import zd.model.Book;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,9 +14,9 @@ import java.sql.SQLException;
 public class JdbcBookDao extends JdbcDao<Book> implements BookDao {
 
     private static final Logger log = LoggerFactory.getLogger(JdbcBookDao.class);
-    private PooledConnection connection;
+    private Connection connection;
 
-    JdbcBookDao(PooledConnection connection) {
+    JdbcBookDao(Connection connection) {
         super(connection);
     }
 

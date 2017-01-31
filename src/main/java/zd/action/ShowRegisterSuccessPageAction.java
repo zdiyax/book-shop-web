@@ -1,0 +1,17 @@
+package zd.action;
+
+import zd.exception.ActionException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Zhannur Diyas
+ * 2/1/2017 | 1:50 AM
+ */
+public class ShowRegisterSuccessPageAction implements Action {
+    @Override
+    public String execute(HttpServletRequest req, HttpServletResponse res) throws ActionException {
+        return null;
+    }
+}

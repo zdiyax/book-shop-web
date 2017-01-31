@@ -1,115 +1,162 @@
 CREATE TABLE "book" (
-	"bookId" serial PRIMARY KEY NOT NULL,
+	"bookId" serial NOT NULL,
 	"isbn" varchar(17) NOT NULL UNIQUE,
-	"language" varchar(17) NOT NULL UNIQUE REFERENCES language(languageName),
+	"languageId" varchar(17) NOT NULL UNIQUE,
 	"title" varchar(32) NOT NULL,
-	"author" varchar(32) NOT NULL REFERENCES author(authorName),
-	"domain" varchar(17) NOT NULL REFERENCES domain(domainName),
-	"publisher" varchar(17) NOT NULL REFERENCES publisher(publisherName),
+	"author" varchar(32) NOT NULL,
+	"domain" varchar(32) NOT NULL,
+	"publisher" varchar(32) NOT NULL,
 	"description" varchar(255),
-	"price" FLOAT NOT NULL
+	"price" FLOAT NOT NULL,
+	CONSTRAINT book_pk PRIMARY KEY ("bookId")
 ) WITH (
-  OIDS=FALSE
+OIDS=FALSE
 );
 
 
 
 CREATE TABLE "language" (
-	"languageId" serial PRIMARY KEY NOT NULL,
-	"languageName" varchar(17) NOT NULL UNIQUE
+	"languageId" serial NOT NULL,
+	"languageName" varchar(20) NOT NULL UNIQUE,
+	CONSTRAINT language_pk PRIMARY KEY ("languageId")
 ) WITH (
-  OIDS=FALSE
+OIDS=FALSE
 );
 
 
 
 CREATE TABLE "author" (
-	"authorId" serial PRIMARY KEY NOT NULL,
-	"authorName" varchar(32) NOT NULL
+	"authorId" serial NOT NULL,
+	"authorName" varchar(32) NOT NULL,
+	CONSTRAINT author_pk PRIMARY KEY ("authorId")
 ) WITH (
-  OIDS=FALSE
+OIDS=FALSE
 );
 
 
 
 CREATE TABLE "domain" (
-	"domainId" serial PRIMARY KEY NOT NULL,
-	"domainName" varchar(32) NOT NULL
+	"domainId" serial NOT NULL,
+	"domainName" varchar(32) NOT NULL,
+	CONSTRAINT domain_pk PRIMARY KEY ("domainId")
 ) WITH (
-  OIDS=FALSE
+OIDS=FALSE
 );
 
 
 
 CREATE TABLE "publisher" (
-	"publisherId" serial PRIMARY KEY NOT NULL,
-	"publisherName" varchar(32) NOT NULL
+	"publisherId" serial NOT NULL,
+	"publisherName" varchar(32) NOT NULL,
+	CONSTRAINT publisher_pk PRIMARY KEY ("publisherId")
 ) WITH (
-  OIDS=FALSE
+OIDS=FALSE
 );
 
 
 
 CREATE TABLE "order" (
-	"orderId" serial PRIMARY KEY NOT NULL,
-	"orderStatus" varchar(17) NOT NULL REFERENCES orderStatus(orderStatusName),
+	"orderId" serial NOT NULL,
+	"orderStatusId" integer NOT NULL,
 	"dateOrdered" DATE NOT NULL,
-	"shippingAddressId" integer NOT NULL REFERENCES shippingAddress(shippingAddressId),
-	"totalPrice" FLOAT NOT NULLa
+	"shippingAddressId" integer NOT NULL,
+	"bookOrdered1" integer,
+	"bookOrdered2" integer,
+	"bookOrdered3" integer,
+	"bookOrdered4" integer,
+	"bookOrdered5" integer,
+	"totalPrice" FLOAT NOT NULL,
+	CONSTRAINT order_pk PRIMARY KEY ("orderId")
 ) WITH (
-  OIDS=FALSE
+OIDS=FALSE
 );
 
-CREATE TABLE "orderStatus" (
-  "orderStatusId" serial PRIMARY KEY,
-  "orderStatusName" varchar(17)
-) WITH (
-  OIDS = FALSE
-;
+
 
 CREATE TABLE "user" (
-	"userId" serial PRIMARY KEY NOT NULL,
+	"userId" serial NOT NULL,
 	"username" varchar(16) NOT NULL UNIQUE,
 	"password" varchar(32) NOT NULL,
-	"userInfo" integer NOT NULL REFERENCES userInfo(userInfoId),
-	"shippingAddress" integer NOT NULL REFERENCES shippingAddress(shippingAddressId),
-	"orderId" integer NOT NULL
+	"userInfoId" integer,
+	"shippingAddressId" integer,
+	"orderId" integer NOT NULL,
+	CONSTRAINT user_pk PRIMARY KEY ("userId")
 ) WITH (
-  OIDS=FALSE
+OIDS=FALSE
 );
 
 
 
 CREATE TABLE "userInfo" (
-	"userInfoId" serial PRIMARY KEY NOT NULL,
+	"userInfoId" serial NOT NULL,
 	"name" varchar(32) NOT NULL,
 	"surname" varchar(32) NOT NULL,
 	"birthdate" DATE NOT NULL,
-	"gender" varchar(17) NOT NULL REFERENCES gender(gender),
-	"email" varchar(32) NOT NULL
+	"gender" varchar(16) NOT NULL,
+	"email" varchar(32) NOT NULL,
+	CONSTRAINT userInfo_pk PRIMARY KEY ("userInfoId")
 ) WITH (
-  OIDS=FALSE
+OIDS=FALSE
 );
 
 
 
 CREATE TABLE "gender" (
-	"genderId" integer NOT NULL,
-	"gender" varchar(16) NOT NULL
+	"genderId" serial NOT NULL,
+	"genderName" varchar(16) NOT NULL,
+	CONSTRAINT gender_pk PRIMARY KEY ("genderId")
 ) WITH (
-  OIDS=FALSE
+OIDS=FALSE
 );
 
 
 
 CREATE TABLE "shippingAddress" (
-	"shippingAddressId" integer NOT NULL PRIMARY KEY,
+	"shippingAddressId" integer NOT NULL,
 	"name" varchar(32) NOT NULL,
 	"country" varchar(32) NOT NULL,
 	"city" varchar(32) NOT NULL,
 	"street" varchar(32) NOT NULL,
-	"telephoneNumber" varchar(32) NOT NULL
+	"telephoneNumber" varchar(32) NOT NULL,
+	CONSTRAINT shippingAddress_pk PRIMARY KEY ("shippingAddressId")
 ) WITH (
-  OIDS=FALSE
+OIDS=FALSE
 );
 
+
+
+CREATE TABLE "bookOrdered" (
+	"bookOrderedId" serial NOT NULL,
+	"bookId" serial NOT NULL,
+	"quantity" integer NOT NULL DEFAULT '1',
+	CONSTRAINT bookOrdered_pk PRIMARY KEY ("bookOrderedId")
+) WITH (
+OIDS=FALSE
+);
+
+
+
+ALTER TABLE "book" ADD CONSTRAINT "book_fk0" FOREIGN KEY ("languageId") REFERENCES "language"("languageName");
+ALTER TABLE "book" ADD CONSTRAINT "book_fk1" FOREIGN KEY ("author") REFERENCES "author"("authorName");
+ALTER TABLE "book" ADD CONSTRAINT "book_fk2" FOREIGN KEY ("domain") REFERENCES "domain"("domainName");
+ALTER TABLE "book" ADD CONSTRAINT "book_fk3" FOREIGN KEY ("publisher") REFERENCES "publisher"("publisherName");
+
+
+
+
+
+ALTER TABLE "order" ADD CONSTRAINT "order_fk0" FOREIGN KEY ("shippingAddressId") REFERENCES "shippingAddress"("shippingAddressId");
+ALTER TABLE "order" ADD CONSTRAINT "order_fk1" FOREIGN KEY ("bookOrdered1") REFERENCES "bookOrdered"("bookOrderedId");
+ALTER TABLE "order" ADD CONSTRAINT "order_fk2" FOREIGN KEY ("bookOrdered2") REFERENCES "bookOrdered"("bookOrderedId");
+ALTER TABLE "order" ADD CONSTRAINT "order_fk3" FOREIGN KEY ("bookOrdered3") REFERENCES "bookOrdered"("bookOrderedId");
+ALTER TABLE "order" ADD CONSTRAINT "order_fk4" FOREIGN KEY ("bookOrdered4") REFERENCES "bookOrdered"("bookOrderedId");
+ALTER TABLE "order" ADD CONSTRAINT "order_fk5" FOREIGN KEY ("bookOrdered5") REFERENCES "bookOrdered"("bookOrderedId");
+
+ALTER TABLE "user" ADD CONSTRAINT "user_fk0" FOREIGN KEY ("userInfoId") REFERENCES "userInfo"("userInfoId");
+ALTER TABLE "user" ADD CONSTRAINT "user_fk1" FOREIGN KEY ("shippingAddressId") REFERENCES "shippingAddress"("shippingAddressId");
+
+ALTER TABLE "userInfo" ADD CONSTRAINT "userInfo_fk0" FOREIGN KEY ("gender") REFERENCES "gender"("genderName");
+
+
+
+ALTER TABLE "bookOrdered" ADD CONSTRAINT "bookOrdered_fk0" FOREIGN KEY ("bookId") REFERENCES "book"("bookId");

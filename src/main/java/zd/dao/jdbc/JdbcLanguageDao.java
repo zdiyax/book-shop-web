@@ -1,10 +1,10 @@
 package zd.dao.jdbc;
 
-import zd.cp.PooledConnection;
 import zd.dao.LanguageDao;
 import zd.exception.JdbcDaoException;
 import zd.model.Language;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class JdbcLanguageDao extends JdbcDao<Language> implements LanguageDao {
 
-    JdbcLanguageDao(PooledConnection connection) {
+    JdbcLanguageDao(Connection connection) {
         super(connection);
     }
 

@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="temp/header.jsp"/>
 <link rel="stylesheet" type="text/css" href="/css/default.css" />
-<fmt:setBundle basename="lang/"/>
+<fmt:setBundle basename="lang"/>
 
 <html>
 <head>
