@@ -55,7 +55,7 @@ CREATE TABLE "order" (
 	"orderStatus" varchar(17) NOT NULL REFERENCES orderStatus(orderStatusName),
 	"dateOrdered" DATE NOT NULL,
 	"shippingAddressId" integer NOT NULL REFERENCES shippingAddress(shippingAddressId),
-	"totalPrice" FLOAT NOT NULL
+	"totalPrice" FLOAT NOT NULLa
 ) WITH (
   OIDS=FALSE
 );

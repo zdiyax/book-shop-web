@@ -80,11 +80,5 @@
             <version>9.4.0.v20161208</version>
         </dependency>
         <!--No use of this too-->
-        <dependency>
-            <groupId>net.sourceforge.jwebunit</groupId>
-            <artifactId>jwebunit-htmlunit-plugin</artifactId>
-            <version>3.3</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 </project>
