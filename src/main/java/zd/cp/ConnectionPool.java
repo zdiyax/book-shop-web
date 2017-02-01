@@ -31,8 +31,6 @@ public class ConnectionPool {
     private String username;
     private String password;
     private int poolSize;
-    //debugging purposes only
-    private int connectionCount;
 
     /**
      * Method fills the connection pool with connections using DriverManager
@@ -44,10 +42,8 @@ public class ConnectionPool {
                 Connection connection = DriverManager.getConnection(url, username, password);
                 if (connection != null) {
                     connections.offer(connection);
-                    connectionCount++;
                 }
             }
-            log.debug("Total number of connections in CP: {}", connectionCount);
         } catch (SQLException e) {
             log.error("Couldn't load connections in connection pool |" + e);
             throw new ConnectionPoolException(e);

@@ -17,8 +17,6 @@ public class TestCP {
         DaoFactory jdbcDaoFactory= DaoFactory.createJdbcDaoFactory();
         JdbcDaoFactory.setPool(connectionPool);
         UserDao userDao = jdbcDaoFactory.getUserDao();
-        User user = userDao.getById(1);
 
-        System.out.println(user.getUsername());
     }
 }
