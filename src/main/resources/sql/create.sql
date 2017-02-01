@@ -1,5 +1,5 @@
 CREATE TABLE "book" (
-  "bookId" serial NOT NULL,
+  "bookId" SERIAL NOT NULL,
   "isbn" varchar(17) NOT NULL UNIQUE,
   "languageId" varchar(17) NOT NULL UNIQUE,
   "title" varchar(32) NOT NULL,
@@ -13,8 +13,6 @@ CREATE TABLE "book" (
 OIDS=FALSE
 );
 
-
-
 CREATE TABLE "language" (
   "languageId" serial NOT NULL,
   "languageName" varchar(20) NOT NULL UNIQUE,
@@ -22,8 +20,6 @@ CREATE TABLE "language" (
 ) WITH (
 OIDS=FALSE
 );
-
-
 
 CREATE TABLE "author" (
   "authorId" serial NOT NULL,
@@ -33,8 +29,6 @@ CREATE TABLE "author" (
 OIDS=FALSE
 );
 
-
-
 CREATE TABLE "domain" (
   "domainId" serial NOT NULL,
   "domainName" varchar(32) NOT NULL UNIQUE,
@@ -43,8 +37,6 @@ CREATE TABLE "domain" (
 OIDS=FALSE
 );
 
-
-
 CREATE TABLE "publisher" (
   "publisherId" serial NOT NULL,
   "publisherName" varchar(32) NOT NULL UNIQUE,
@@ -52,8 +44,6 @@ CREATE TABLE "publisher" (
 ) WITH (
 OIDS=FALSE
 );
-
-
 
 CREATE TABLE "order" (
   "orderId" serial NOT NULL,
@@ -71,8 +61,6 @@ CREATE TABLE "order" (
 OIDS=FALSE
 );
 
-
-
 CREATE TABLE "user" (
   "userId" serial NOT NULL,
   "username" varchar(16) NOT NULL UNIQUE,
@@ -85,8 +73,6 @@ CREATE TABLE "user" (
 OIDS=FALSE
 );
 
-
-
 CREATE TABLE "userInfo" (
   "userInfoId" serial NOT NULL,
   "name" varchar(32) NOT NULL,
@@ -98,8 +84,6 @@ CREATE TABLE "userInfo" (
 ) WITH (
 OIDS=FALSE
 );
-
-
 
 CREATE TABLE "gender" (
   "genderId" serial NOT NULL,

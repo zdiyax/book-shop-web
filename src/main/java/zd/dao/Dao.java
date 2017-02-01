@@ -1,7 +1,6 @@
 package zd.dao;
 
 import zd.exception.DaoException;
-import zd.exception.JdbcDaoException;
 import zd.model.Model;
 
 import java.util.List;
@@ -11,9 +10,9 @@ import java.util.List;
  * @param <T> - for all Model subclasses
  */
 public interface Dao <T extends Model> {
-    T insert(T t) throws DaoException;
-    T getById(int id) throws JdbcDaoException;
-    List<T> getAllByQuery(String query) throws DaoException;
-    void delete(T t) throws DaoException;
-    void deleteById(int id) throws DaoException;
+    T insert(T entity, List<Object> parameters, String key) throws DaoException;
+    T update (T entity, List<Object> parameters, String key) throws DaoException;
+    List<T> getAllByParameters(T entity, List<Object> parameters, String key) throws DaoException;
+    T getByParameters(T entity, List<Object> parameters, String key) throws DaoException;
+    void delete(T entity, String key) throws DaoException;
 }

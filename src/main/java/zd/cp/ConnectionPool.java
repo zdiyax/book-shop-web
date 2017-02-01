@@ -147,9 +147,6 @@ public class ConnectionPool {
         connections.add(connection);
     }
     private static class InstanceHolder {
-        /*
-        TODO: Explain why this way of creating a singleton is better than just "private ConnectionPool cp;"
-         */
         final static ConnectionPool instance = new ConnectionPool();
     }
 }

@@ -1,57 +1,31 @@
 package zd.dao.jdbc;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zd.dao.AuthorDao;
-import zd.exception.JdbcDaoException;
 import zd.model.Author;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+
+import static zd.util.ConstantHolder.INDEX_1;
+import static zd.util.ConstantHolder.INDEX_2;
 
 public class JdbcAuthorDao extends JdbcDao<Author> implements AuthorDao {
+
+    private static final Logger log = LoggerFactory.getLogger(JdbcAuthorDao.class);
+
     JdbcAuthorDao(Connection connection) {
         super(connection);
     }
 
     @Override
-    public List<Author> getAllByQuery(String query) throws JdbcDaoException {
-        throw new UnsupportedOperationException();
+    Author createEntityFromRs(ResultSet rs) throws SQLException {
+        Author author = new Author();
+        author.setId(rs.getInt(INDEX_1));
+        author.setName(rs.getString(INDEX_2));
+        return author;
     }
 
-    @Override
-    protected void setPsFields(PreparedStatement statement, Author author) throws JdbcDaoException {
-
-    }
-
-    @Override
-    protected Author createEntityFromRs(ResultSet rs) throws SQLException, JdbcDaoException {
-        return null;
-    }
-
-    @Override
-    protected String getInsertQuery() {
-        return null;
-    }
-
-    @Override
-    protected String getDeleteQuery() {
-        return null;
-    }
-
-    @Override
-    protected String getUpdateQuery() {
-        return null;
-    }
-
-    @Override
-    protected String getSelectByIdQuery(int id) {
-        return null;
-    }
-
-    @Override
-    protected String getSelectAllQuery() {
-        return null;
-    }
 }

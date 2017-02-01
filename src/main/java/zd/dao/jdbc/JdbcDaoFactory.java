@@ -1,10 +1,7 @@
 package zd.dao.jdbc;
 
 import zd.cp.ConnectionPool;
-import zd.dao.BookDao;
-import zd.dao.DaoFactory;
-import zd.dao.OrderDao;
-import zd.dao.UserDao;
+import zd.dao.*;
 import zd.exception.JdbcDaoException;
 
 import java.sql.Connection;
@@ -42,6 +39,26 @@ public class JdbcDaoFactory extends DaoFactory {
     @Override
     public OrderDao getOrderDao() {
         return new JdbcOrderDao(connection);
+    }
+
+    @Override
+    public AuthorDao getAuthorDao() {
+        return new JdbcAuthorDao(connection);
+    }
+
+    @Override
+    public LanguageDao getLanguageDao() {
+        return new JdbcLanguageDao(connection);
+    }
+
+    @Override
+    public ShippingAddressDao getShippingAddressDao() {
+        return new JdbcShippingAddressDao(connection);
+    }
+
+    @Override
+    public UserInfoDao getUserInfoDao() {
+        return new JdbcUserInfoDao(connection);
     }
 }
 

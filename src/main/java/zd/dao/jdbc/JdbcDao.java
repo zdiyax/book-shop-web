@@ -3,7 +3,6 @@ package zd.dao.jdbc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import zd.dao.Dao;
-import zd.exception.DaoException;
 import zd.exception.JdbcDaoException;
 import zd.model.Model;
 
@@ -16,13 +15,14 @@ import java.util.List;
 /**
  * Generic JDBC DAO abstract class for all Model subclasses
  * JDBC implementation
+ *
  * @param <T> - for all Model subclasses
  */
 public abstract class JdbcDao<T extends Model> implements Dao<T> {
 
     private static final Logger log = LoggerFactory.getLogger(JdbcDao.class);
-    private static final String QUERIES = "sql.properties";
-
+    private static final String QUERY_PROPERTY_FILE = "query.properties";
+    private String query;
     private Connection connection;
 
     JdbcDao(Connection connection) {
@@ -30,76 +30,45 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
     }
 
     @Override
-    public T insert(T t) throws JdbcDaoException {
-        String query = getInsertQuery();
-        PreparedStatement statement;
-        if (t.getId() == null) {
-            try {
-                statement = connection.prepareStatement(query);
-                setPsFields(statement, t);
-                statement.executeUpdate();
-                ResultSet resultSet = statement.getGeneratedKeys();
-                resultSet.next();
-                t.setId(resultSet.getInt(1));
-            } catch (SQLException e) {
-                throw new JdbcDaoException(e);
-            }
-        }
-        return t;
-    }
-
-    protected abstract void setPsFields(PreparedStatement statement, T t) throws JdbcDaoException;
-
-    @Override
-    public T getById(int id) throws JdbcDaoException {
-        T model = null;
-        try {
-            PreparedStatement statement = connection.prepareStatement(getSelectByIdQuery(id));
-            ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            model = createEntityFromRs(resultSet);
-        } catch (SQLException e) {
-            throw new JdbcDaoException(e);
-        }
-        return model;
-    }
-
-    @Override
-    public void delete(T t) throws JdbcDaoException {
-        deleteById(t.getId());
-    }
-
-    @Override
-    public void deleteById(int id) throws JdbcDaoException {
-        String query = getSelectByIdQuery(id);
-        T model = null;
-        try {
-            PreparedStatement ps = connection.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                model = createEntityFromRs(rs);
-            }
-        } catch (SQLException e) {
-            throw new JdbcDaoException(e);
-        }
-    }
-
-    //TODO: REALIZOVAT'
-    @Override
-    public List<T> getAllByQuery(String query) throws DaoException {
+    public T insert(T entity, List<Object> parameters, String key) throws JdbcDaoException {
         return null;
     }
 
-    protected abstract T createEntityFromRs(ResultSet rs) throws SQLException, JdbcDaoException;
+    @Override
+    public T update(T entity, List<Object> parameters, String key) throws JdbcDaoException {
+        return null;
+    }
 
-    protected abstract String getInsertQuery();
+    @Override
+    public List<T> getAllByParameters(T entity, List<Object> parameters, String key) throws JdbcDaoException {
+        return null;
+    }
 
-    protected abstract String getDeleteQuery();
+    @Override
+    public T getByParameters(T entity, List<Object> parameters, String key) throws JdbcDaoException {
+        return null;
+    }
 
-    protected abstract String getUpdateQuery();
+    @Override
+    public void delete(T entity, String key) throws JdbcDaoException {
 
-    protected abstract String getSelectByIdQuery(int id);
+    }
 
-    protected abstract String getSelectAllQuery();
+    private void setParametersToPs(List<Object> parameters, PreparedStatement ps) throws SQLException {
+        int count = 1;
+        for (Object parameter : parameters) {
+            ps.setObject(count, parameter);
+            count++;
+        }
+        parameters.clear();
+    }
 
+    void setId(T entity, PreparedStatement ps) throws SQLException {
+        ResultSet generatedId = ps.getGeneratedKeys();
+        generatedId.next();
+        int id = generatedId.getInt(1);
+        entity.setId(id);
+    }
+
+    abstract T createEntityFromRs(ResultSet rs) throws SQLException;
 }
