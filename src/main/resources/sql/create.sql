@@ -64,7 +64,7 @@ OIDS=FALSE
 CREATE TABLE "user" (
   "userId" serial NOT NULL,
   "username" varchar(16) NOT NULL UNIQUE,
-  "password" varchar(32) NOT NULL,
+  "password" varchar(64) NOT NULL,
   "userInfoId" integer,
   "shippingAddressId" integer,
   "orderId" integer,

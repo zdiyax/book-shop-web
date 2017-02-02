@@ -17,7 +17,7 @@ public class JdbcLanguageDao extends JdbcDao<Language> implements LanguageDao {
     }
 
     @Override
-    Language createEntityFromRs(ResultSet rs) throws SQLException {
+    Language createEntityFromRs(ResultSet rs, Language entity) throws SQLException {
         Language language = new Language();
         language.setId(rs.getInt(INDEX_1));
         language.setName(rs.getString(INDEX_2));

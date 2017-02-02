@@ -18,7 +18,6 @@ public class RegisterAction implements Action {
         try {
             DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory();
             UserDao userDAO = daoFactory.getUserDao();
-            userDAO.insert(user);
         } catch (DaoException e) {
             throw new ActionException(e);
         }

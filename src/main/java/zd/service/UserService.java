@@ -19,13 +19,13 @@ public class UserService extends AbstractService {
         try {
             DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory();
             UserDao userDao = daoFactory.getUserDao();
-            foundUser = userDao.getById(user.getId());
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
-        if (foundUser == null) throw new UserNotFoundException("message");
+        return null;
+    }
 
+    public User register(User user) throws ServiceException {
 
-        return foundUser;
     }
 }

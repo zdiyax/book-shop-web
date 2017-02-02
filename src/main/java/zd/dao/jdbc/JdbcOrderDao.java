@@ -13,7 +13,7 @@ public class JdbcOrderDao extends JdbcDao<Order> implements OrderDao {
     }
 
     @Override
-    Order createEntityFromRs(ResultSet rs) throws SQLException {
+    Order createEntityFromRs(ResultSet rs, Order entity) throws SQLException {
         return null;
     }
 

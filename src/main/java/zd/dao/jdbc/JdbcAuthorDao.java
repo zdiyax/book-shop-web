@@ -21,7 +21,7 @@ public class JdbcAuthorDao extends JdbcDao<Author> implements AuthorDao {
     }
 
     @Override
-    Author createEntityFromRs(ResultSet rs) throws SQLException {
+    Author createEntityFromRs(ResultSet rs, Author entity) throws SQLException {
         Author author = new Author();
         author.setId(rs.getInt(INDEX_1));
         author.setName(rs.getString(INDEX_2));

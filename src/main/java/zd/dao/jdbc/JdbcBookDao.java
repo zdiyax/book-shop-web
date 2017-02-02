@@ -18,7 +18,7 @@ public class JdbcBookDao extends JdbcDao<Book> implements BookDao {
     }
 
     @Override
-    protected Book createEntityFromRs(ResultSet resultSet) throws SQLException {
+    protected Book createEntityFromRs(ResultSet resultSet, Book entity) throws SQLException {
             Book book = new Book();
             book.setId(Integer.parseInt(resultSet.getString("id")));
             book.setIsbn(resultSet.getString("isbn"));

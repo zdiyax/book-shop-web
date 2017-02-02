@@ -3,7 +3,6 @@ package zd.cp;
 import zd.dao.DaoFactory;
 import zd.dao.UserDao;
 import zd.dao.jdbc.JdbcDaoFactory;
-import zd.model.user.User;
 
 /**
  * Zhannur Diyas
@@ -17,6 +16,5 @@ public class TestCP {
         DaoFactory jdbcDaoFactory= DaoFactory.createJdbcDaoFactory();
         JdbcDaoFactory.setPool(connectionPool);
         UserDao userDao = jdbcDaoFactory.getUserDao();
-
     }
 }

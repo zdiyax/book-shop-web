@@ -18,7 +18,7 @@ public class JdbcUserInfoDao extends JdbcDao<UserInfo> implements UserInfoDao {
     }
 
     @Override
-    UserInfo createEntityFromRs(ResultSet rs) throws SQLException {
+    UserInfo createEntityFromRs(ResultSet rs, UserInfo entity) throws SQLException {
         return null;
     }
 }

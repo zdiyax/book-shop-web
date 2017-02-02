@@ -18,7 +18,7 @@ public class JdbcShippingAddressDao extends JdbcDao<ShippingAddress> implements 
     }
 
     @Override
-    ShippingAddress createEntityFromRs(ResultSet rs) throws SQLException {
+    ShippingAddress createEntityFromRs(ResultSet rs, ShippingAddress entity) throws SQLException {
         return null;
     }
 }

@@ -16,7 +16,7 @@ public class JdbcUserDao extends JdbcDao<User> implements UserDao {
     }
 
     @Override
-    protected User createEntityFromRs(ResultSet resultSet) throws SQLException {
+    protected User createEntityFromRs(ResultSet resultSet, User entity) throws SQLException {
         User user = new User();
         user.setId(resultSet.getInt(INDEX_1));
         user.setUsername(resultSet.getString("username"));

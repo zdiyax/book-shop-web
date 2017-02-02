@@ -29,7 +29,6 @@ public class BookService extends AbstractService {
         try {
             DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory();
             BookDao bookDao = daoFactory.getBookDao();
-            bookList = bookDao.getAllByParameters(query);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
