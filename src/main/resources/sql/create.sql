@@ -1,5 +1,5 @@
 CREATE TABLE "book" (
-  "bookId" SERIAL NOT NULL,
+  "bookId" serial NOT NULL,
   "isbn" varchar(17) NOT NULL UNIQUE,
   "languageId" varchar(17) NOT NULL UNIQUE,
   "title" varchar(32) NOT NULL,
@@ -13,6 +13,8 @@ CREATE TABLE "book" (
 OIDS=FALSE
 );
 
+
+
 CREATE TABLE "language" (
   "languageId" serial NOT NULL,
   "languageName" varchar(20) NOT NULL UNIQUE,
@@ -20,6 +22,8 @@ CREATE TABLE "language" (
 ) WITH (
 OIDS=FALSE
 );
+
+
 
 CREATE TABLE "author" (
   "authorId" serial NOT NULL,
@@ -29,6 +33,8 @@ CREATE TABLE "author" (
 OIDS=FALSE
 );
 
+
+
 CREATE TABLE "domain" (
   "domainId" serial NOT NULL,
   "domainName" varchar(32) NOT NULL UNIQUE,
@@ -37,6 +43,8 @@ CREATE TABLE "domain" (
 OIDS=FALSE
 );
 
+
+
 CREATE TABLE "publisher" (
   "publisherId" serial NOT NULL,
   "publisherName" varchar(32) NOT NULL UNIQUE,
@@ -44,6 +52,8 @@ CREATE TABLE "publisher" (
 ) WITH (
 OIDS=FALSE
 );
+
+
 
 CREATE TABLE "order" (
   "orderId" serial NOT NULL,
@@ -61,6 +71,8 @@ CREATE TABLE "order" (
 OIDS=FALSE
 );
 
+
+
 CREATE TABLE "user" (
   "userId" serial NOT NULL,
   "username" varchar(16) NOT NULL UNIQUE,
@@ -68,10 +80,13 @@ CREATE TABLE "user" (
   "userInfoId" integer,
   "shippingAddressId" integer,
   "orderId" integer,
+  "userRoleId" integer NOT NULL DEFAULT '1',
   CONSTRAINT user_pk PRIMARY KEY ("userId")
 ) WITH (
 OIDS=FALSE
 );
+
+
 
 CREATE TABLE "userInfo" (
   "userInfoId" serial NOT NULL,
@@ -85,6 +100,8 @@ CREATE TABLE "userInfo" (
 OIDS=FALSE
 );
 
+
+
 CREATE TABLE "gender" (
   "genderId" serial NOT NULL,
   "genderName" varchar(16) NOT NULL UNIQUE,
@@ -96,7 +113,7 @@ OIDS=FALSE
 
 
 CREATE TABLE "shippingAddress" (
-  "shippingAddressId" integer NOT NULL,
+  "shippingAddressId" serial NOT NULL,
   "name" varchar(32) NOT NULL,
   "country" varchar(32) NOT NULL,
   "city" varchar(32) NOT NULL,
@@ -114,6 +131,16 @@ CREATE TABLE "bookOrdered" (
   "bookId" serial NOT NULL,
   "quantity" integer NOT NULL DEFAULT '1',
   CONSTRAINT bookOrdered_pk PRIMARY KEY ("bookOrderedId")
+) WITH (
+OIDS=FALSE
+);
+
+
+
+CREATE TABLE "userRole" (
+  "userRoleId" serial NOT NULL,
+  "userRoleName" VARCHAR(16) NOT NULL UNIQUE,
+  CONSTRAINT userRole_pk PRIMARY KEY ("userRoleId")
 ) WITH (
 OIDS=FALSE
 );
@@ -138,9 +165,11 @@ ALTER TABLE "order" ADD CONSTRAINT "order_fk5" FOREIGN KEY ("bookOrdered5") REFE
 
 ALTER TABLE "user" ADD CONSTRAINT "user_fk0" FOREIGN KEY ("userInfoId") REFERENCES "userInfo"("userInfoId");
 ALTER TABLE "user" ADD CONSTRAINT "user_fk1" FOREIGN KEY ("shippingAddressId") REFERENCES "shippingAddress"("shippingAddressId");
+ALTER TABLE "user" ADD CONSTRAINT "user_fk2" FOREIGN KEY ("userRoleId") REFERENCES "userRole"("userRoleId");
 
 ALTER TABLE "userInfo" ADD CONSTRAINT "userInfo_fk0" FOREIGN KEY ("gender") REFERENCES "gender"("genderName");
 
 
 
 ALTER TABLE "bookOrdered" ADD CONSTRAINT "bookOrdered_fk0" FOREIGN KEY ("bookId") REFERENCES "book"("bookId");
+

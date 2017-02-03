@@ -22,7 +22,7 @@ import java.util.List;
 public abstract class JdbcDao<T extends Model> implements Dao<T> {
 
     private static final Logger log = LoggerFactory.getLogger(JdbcDao.class);
-    private static final String QUERY_PROPERTY_FILE = "queries.properties";
+    private static final String QUERY_PROPERTY_FILE = "sql.properties";
     private static final String UNIQUE_VIOLATION_CODE = "23505";
     private String query;
     private Connection connection;
@@ -55,7 +55,7 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
         try (PreparedStatement ps = connection.prepareStatement(query)) {
             setParametersToPs(parameters, ps);
             int result = ps.executeUpdate();
-            //if ResultSet return 0 (no fields was updated) throw exception about it
+            //if ResultSet return 0 (no fields were updated) throw exception about it
             if (result == 0) {
                 log.error("Couldn't update the entity: {}", entity.getClass().getSimpleName());
                 throw new JdbcDaoException();

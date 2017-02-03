@@ -3,6 +3,7 @@
 
 <link rel="stylesheet" type="text/css" href="/css/header.css" />
 <c:set var="prefix" value="${pageContext.request.contextPath}"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
 
 <html>
 
@@ -27,7 +28,7 @@
             <a href="${prefix}/do/?action=show-home-page">Home</a>
             <a href="${prefix}/do/?action=show-catalog-page">Catalog</a>
             <a href="${prefix}/do/?action=show-about-page">About</a>
-            <a href="${prefix}/do/?action=show-login-page">Login</a>
+            <a href="${prefix}/do/?action=show-profile-page">Profile</a>
         </nav>
 
     </div>

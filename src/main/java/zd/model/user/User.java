@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 public class User extends Model {
-    private Role role = Role.CUSTOMER;
+    private Role role;
     private String username;
     private String password;
     private UserInfo userInfo;

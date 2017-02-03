@@ -4,6 +4,9 @@ public class ServiceException extends Exception {
     public ServiceException(JdbcDaoException e) {
     }
 
+    public ServiceException() {
+    }
+
     public ServiceException(String message) {
         super(message);
     }

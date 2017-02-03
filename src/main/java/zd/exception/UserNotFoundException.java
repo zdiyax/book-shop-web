@@ -6,19 +6,4 @@ package zd.exception;
  */
 public class UserNotFoundException extends ServiceException {
 
-    public UserNotFoundException(JdbcDaoException e) {
-        super(e);
-    }
-
-    public UserNotFoundException(String message) {
-        super(message);
-    }
-
-    public UserNotFoundException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public UserNotFoundException(Exception e) {
-        super(e);
-    }
 }

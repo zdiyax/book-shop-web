@@ -14,11 +14,8 @@ public class LoginAction implements Action {
     private static final Logger log = LoggerFactory.getLogger(LoginAction.class);
     private static final String REDIRECT_LOGIN_FORM = "redirect:/do/?action=show-login-page";
     private static final String REDIRECT_LOGIN_SUCCESS = "redirect:/do/?action=show-login-success-page";
-    private static final String LOGIN_BUTTON = "loginButton";
     private static final String LOGIN = "login";
     private static final String PASSWORD = "password";
-    private static final String LOCALE = "locale";
-    private static final String ERROR_MESSAGES_POSTFIX = "ErrorMessages";
     private static final String USER = "user";
 
     @Override
@@ -33,7 +30,6 @@ public class LoginAction implements Action {
         try {
             foundUser = userService.login(user);
         } catch (ServiceException e) {
-            req.getSession().setAttribute(LOGIN_BUTTON + ERROR_MESSAGES_POSTFIX, e.getMessage());
             return REDIRECT_LOGIN_FORM;
         }
 

@@ -3,8 +3,9 @@ package zd.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
 
-public class PasswordHasher {
+public class PasswordHelper {
     private static final String MD_5_ALGORITHM = "MD5";
 
     public static String hash(String password) throws PasswordHasherAlgorithmException {
@@ -19,6 +20,7 @@ public class PasswordHasher {
             throw new PasswordHasherAlgorithmException("Requested password hashing algorithm is not available",  e);
         }
         StringBuilder sb = new StringBuilder();
+        // Hash algorithm example from Mkyong
         for (byte aByteData : byteData) {
             sb.append(Integer.toString((aByteData & 0xff) + 0x100, 16).substring(1));
         }
@@ -29,5 +31,9 @@ public class PasswordHasher {
         PasswordHasherAlgorithmException(String message, Throwable cause) {
             super(message, cause);
         }
+    }
+
+    public static boolean verifyPassword(String passwordToVerify, String passFromDB) throws PasswordHasherAlgorithmException {
+        return Objects.equals(hash(passwordToVerify), passFromDB);
     }
 }
