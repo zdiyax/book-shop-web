@@ -29,7 +29,7 @@ A step by step series of examples that tell you have to get a development env ru
     * `dump.sql` - dumping tables with data
     * `drop.sql` - dropping tables and schema
 
-4. Database [schema](http://dbdesigner.net/designer/schema/61369) is located in the root directory
+4. Database [schema](http://dbdesigner.net/designer/schema/61369) 
 ## Running the tests
 
 Project contains some jUnit-tests to check the following features:
