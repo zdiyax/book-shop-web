@@ -65,7 +65,7 @@
         <div class="footer-icons">
             <a href="#"><i class="fa fa-facebook"></i></a>
             <a href="https://vk.com/tatikara"><i class="fa fa-vk"></i></a>
-            <a href="https://github.com/zhannur-diyas"><i class="fa fa-github"></i></a>
+            <a href="https://github.com/zdiyax"><i class="fa fa-github"></i></a>
         </div>
 
     </div>

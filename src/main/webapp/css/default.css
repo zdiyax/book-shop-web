@@ -7,3 +7,28 @@
 html, body {
     overflow: hidden;
 }
+
+.placeholder {
+    font-size: 11px;
+    color: #8f9296;
+}
+
+.login-form {
+    font-family: roboto, serif;
+    padding: 30px;
+    border: hidden;
+    display: inline-block;
+    box-sizing: border-box;
+    background-color: #292C2F;
+    padding-left: 50px;
+}
+
+button {
+    background-color: #2947AF;
+    color: white;
+    padding: 7px 10px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 150px;
+}

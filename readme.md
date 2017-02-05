@@ -30,6 +30,7 @@ A step by step series of examples that tell you have to get a development env ru
     * `drop.sql` - dropping tables and schema
 
 4. Database [schema](http://dbdesigner.net/designer/schema/61369) 
+
 ## Running the tests
 
 Project contains some jUnit-tests to check the following features:
@@ -53,5 +54,5 @@ Apache Tomcat ver. 8.5.8 was used to deploy the project. Use whatever you prefer
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/zdiyax/book-shop-web/blob/master/LICENSE.md) file for details
 
