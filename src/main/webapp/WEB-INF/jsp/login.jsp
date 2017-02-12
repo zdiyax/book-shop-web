@@ -14,10 +14,10 @@
 <form action="${pageContext.request.contextPath}/do/?action=login" method="post">
     <label><b><fmt:message key="index.login"/></b></label><br>
     <p class="placeholder"><fmt:message key="index.login.small"/></p>
-    <input type="text" name="login" autofocus> <br><br>
+    <input type="text" name="login" autofocus minlength="3" maxlength="16"> <br><br>
     <label><b><fmt:message key="index.password"/></b></label><br>
     <p class="placeholder"><fmt:message key="index.password.small"/></p>
-    <input type="password" name="password"><br><br>
+    <input type="password" name="password" minlength="6" maxlength="16"><br><br>
     <button type="submit"><fmt:message key="index.login.button"/></button>
     <p><fmt:message key="login.register.proceedto"/><a href="${pageContext.request.contextPath}/do/?action=show-register-page">here</a></p>
     <br>

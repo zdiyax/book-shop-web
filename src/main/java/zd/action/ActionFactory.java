@@ -4,6 +4,9 @@ import zd.exception.ActionFactoryException;
 import zd.exception.PropertyManagerException;
 import zd.util.PropertyManager;
 
+/**
+ * Implementation of Factory Design Pattern
+ */
 public class ActionFactory {
 
     private static final String ACTION_PROPERTY_FILE_NAME = "action.properties";

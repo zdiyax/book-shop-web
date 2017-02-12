@@ -28,5 +28,7 @@ public final class ConstantHolder {
     public static final int INDEX_9 = 9;
     public static final int INDEX_10 = 10;
 
+    public static final String USERNAME_PATTERN = "^[a-z0-9_-]{3,15}$";
+
 
 }

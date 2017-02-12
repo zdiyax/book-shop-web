@@ -3,6 +3,7 @@
 <jsp:include page="temp/header.jsp"/>
 <jsp:include page="temp/footer.jsp"/>
 <link rel="stylesheet" type="text/css" href="/css/default.css" />
+<fmt:setBundle basename="lang"/>
 <html>
 <head>
     <title>Login Success!</title>

@@ -38,4 +38,8 @@ public class BookService extends AbstractService {
     private void addBookToCart() throws ServiceException {
 
     }
+
+    public void addBook() throws ServiceException {
+
+    }
 }

@@ -1,6 +1,6 @@
 .welcome {
     padding-left: 50px;
-    font-family: "Berlin Sans FB", sans-serif;
+    font-family: roboto, serif;
     font-size: inherit;
 }
 
@@ -15,12 +15,7 @@ html, body {
 
 .login-form {
     font-family: roboto, serif;
-    padding: 30px;
-    border: hidden;
-    display: inline-block;
-    box-sizing: border-box;
-    background-color: #292C2F;
-    padding-left: 50px;
+    padding: 30px 30px 30px 50px;
 }
 
 button {
@@ -32,3 +27,4 @@ button {
     cursor: pointer;
     width: 150px;
 }
+

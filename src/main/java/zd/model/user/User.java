@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 public class User extends Model {
     private Role role;
+    private Locale locale;
     private String username;
     private String password;
     private UserInfo userInfo;
