@@ -10,12 +10,7 @@
 </head>
 <body>
 <div align="center">
-    <h2>About the company</h2>
-    <p>BookGeek - is young, still actively developing team. </p>
-    <p>Our team is committed to provide the first class service to our customers and makes every
-        effort to ensure that customers are always satisfied with purchases and would certainly recommend us to their
-        friends and acquaintances.
-    </p>
+
 </div>
 </body>
 </html>

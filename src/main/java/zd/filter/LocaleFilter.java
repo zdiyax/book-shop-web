@@ -24,8 +24,7 @@ public class LocaleFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
 
-        String locale = null;
-        locale = DEFAULT_LOCALE;
+        String locale = DEFAULT_LOCALE;
         resp.addCookie(new Cookie(LOCALE, locale));
         Locale.setDefault(Locale.forLanguageTag(locale));
 

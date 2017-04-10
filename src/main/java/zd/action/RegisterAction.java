@@ -14,6 +14,7 @@ import java.util.List;
 public class RegisterAction implements Action {
     private static final String REGISTER_USER_KEY = "insert.user";
     private static final String REDIRECT_DO_ACTION_SHOW_REGISTER_SUCCESS = "redirect:/do/?action=show-register-success";
+    private static final String USER = "user";
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
@@ -30,7 +31,7 @@ public class RegisterAction implements Action {
         } catch (DaoException e) {
             throw new ActionException(e);
         }
-        request.getSession().setAttribute("user", user);
+        request.getSession().setAttribute(USER, user);
         return REDIRECT_DO_ACTION_SHOW_REGISTER_SUCCESS;
     }
 }

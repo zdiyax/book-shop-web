@@ -21,7 +21,6 @@ public class LoginAction implements Action {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) {
         String login = req.getParameter(LOGIN);
-        req.getSession().setAttribute(LOGIN, login);
         String password = req.getParameter(PASSWORD);
 
         User user = new User(login, password);
@@ -38,4 +37,3 @@ public class LoginAction implements Action {
         return REDIRECT_LOGIN_SUCCESS;
     }
 }
-
