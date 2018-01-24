@@ -1,17 +1,42 @@
 package zd.model;
 
-import lombok.Data;
-
 import java.math.BigDecimal;
 
-@Data
 public class Book extends Model {
     private String isbn;
-    private String language;
     private String title;
-    private String author;
-    private String domain;
-    private String publisher;
     private String description;
     private BigDecimal price;
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 }

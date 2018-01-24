@@ -1,23 +1,20 @@
 package zd.model;
 
-import lombok.Data;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
 public class ShoppingCart {
     private List<Book> bookList;
     private BigDecimal sum;
 
+    public ShoppingCart() {
+        bookList = new ArrayList<>();
+    }
+
     public Order order() {
         Order order = new Order();
         return order;
-    }
-
-    public ShoppingCart() {
-        bookList = new ArrayList<>();
     }
 
     public void add(Book book) {

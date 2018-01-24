@@ -18,12 +18,5 @@ public abstract class DaoFactory {
 
     public abstract OrderDao getOrderDao();
 
-    public abstract AuthorDao getAuthorDao();
-
-    public abstract LanguageDao getLanguageDao();
-
-    public abstract ShippingAddressDao getShippingAddressDao();
-
-    public abstract UserInfoDao getUserInfoDao();
 
 }
