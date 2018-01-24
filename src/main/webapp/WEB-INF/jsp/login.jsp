@@ -1,29 +1,32 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="temp/header.jsp"/>
-<jsp:include page="temp/footer.jsp"/>
 <fmt:setBundle basename="lang"/>
-<link rel="stylesheet" type="text/css" href="/css/default.css" />
-<link rel="stylesheet" type="text/css" href="/css/login-form.css" />
-<html>
-<head>
-    <title>Login</title>
-</head>
-<body>
-<div class="login-form">
-<form action="${pageContext.request.contextPath}/do/?action=login" method="post">
-    <label><b><fmt:message key="index.login"/></b></label><br>
-    <p class="placeholder"><fmt:message key="index.login.small"/></p>
-    <input type="text" name="login" autofocus minlength="3" maxlength="16"> <br><br>
-    <label><b><fmt:message key="index.password"/></b></label><br>
-    <p class="placeholder"><fmt:message key="index.password.small"/></p>
-    <input type="password" name="password" minlength="6" maxlength="16"><br><br>
-    <button type="submit"><fmt:message key="index.login.button"/></button>
-    <p><fmt:message key="login.register.proceedto"/><a href="${pageContext.request.contextPath}/do/?action=show-register-page">here</a></p>
-    <br>
-</form>
-</div>
+<c:set var="prefix" value="${pageContext.request.contextPath}"/>
 
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/inputform.css"/>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Signin Template for Bootstrap</title>
+</head>
+
+<body class="text-center">
+<form class="signin">
+    <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="username" class="sr-only">Username</label>
+    <input type="text" id="username" class="form-control" placeholder="Email address" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">Not registered yet? Click here</p>
+</form>
 </body>
 
 </html>
