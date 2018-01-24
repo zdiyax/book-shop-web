@@ -32,25 +32,6 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
-        <!--????-->
-        <dependency>
-            <groupId>org.easymock</groupId>
-            <artifactId>easymock</artifactId>
-            <version>3.4</version>
-            <scope>test</scope>
-        </dependency>
-        <!--LOMBOK-->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.10</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.0.60</version>
-        </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -73,12 +54,5 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-        <!--No use of Jetty-->
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-server</artifactId>
-            <version>9.4.0.v20161208</version>
-        </dependency>
-        <!--No use of this too-->
     </dependencies>
 </project>

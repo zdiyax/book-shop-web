@@ -41,24 +41,5 @@ public class JdbcDaoFactory extends DaoFactory {
         return new JdbcOrderDao(connection);
     }
 
-    @Override
-    public AuthorDao getAuthorDao() {
-        return new JdbcAuthorDao(connection);
-    }
-
-    @Override
-    public LanguageDao getLanguageDao() {
-        return new JdbcLanguageDao(connection);
-    }
-
-    @Override
-    public ShippingAddressDao getShippingAddressDao() {
-        return new JdbcShippingAddressDao(connection);
-    }
-
-    @Override
-    public UserInfoDao getUserInfoDao() {
-        return new JdbcUserInfoDao(connection);
-    }
 }
 

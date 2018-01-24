@@ -18,7 +18,6 @@ public class ActionFactory {
         } catch (PropertyManagerException e) {
             throw new ActionFactoryException(e);
         }
-
     }
 
     public Action getAction(String actionName) throws ActionFactoryException {
