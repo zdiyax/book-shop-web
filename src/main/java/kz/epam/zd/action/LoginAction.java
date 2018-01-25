@@ -3,17 +3,14 @@ package kz.epam.zd.action;
 import kz.epam.zd.exception.ServiceException;
 import kz.epam.zd.service.UserService;
 import kz.epam.zd.model.user.User;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import static kz.epam.zd.util.ConstantHolder.*;
 
 public class LoginAction implements Action {
 
     private static final String REDIRECT_LOGIN_FORM = "redirect:/do/?action=show-login-page";
     private static final String REDIRECT_LOGIN_SUCCESS = "redirect:/do/?action=show-login-success-page";
-    private static final String LOGIN = "login";
-    private static final String PASSWORD = "password";
-    private static final String USER = "user";
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) {

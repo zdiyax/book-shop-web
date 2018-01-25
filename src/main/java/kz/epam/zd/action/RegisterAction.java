@@ -5,16 +5,15 @@ import kz.epam.zd.exception.DaoException;
 import kz.epam.zd.dao.DaoFactory;
 import kz.epam.zd.dao.UserDao;
 import kz.epam.zd.model.user.User;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
+import static kz.epam.zd.util.ConstantHolder.USER;
 
 public class RegisterAction implements Action {
     private static final String REGISTER_USER_KEY = "insert.user";
-    private static final String REDIRECT_DO_ACTION_SHOW_REGISTER_SUCCESS = "redirect:/do/?action=show-register-success";
-    private static final String USER = "user";
+    private static final String REDIRECT_REGISTER_SUCCESS = "redirect:/do/?action=show-register-success";
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
@@ -32,6 +31,6 @@ public class RegisterAction implements Action {
             throw new ActionException(e);
         }
         request.getSession().setAttribute(USER, user);
-        return REDIRECT_DO_ACTION_SHOW_REGISTER_SUCCESS;
+        return REDIRECT_REGISTER_SUCCESS;
     }
 }

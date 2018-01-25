@@ -11,10 +11,6 @@ import kz.epam.zd.util.PasswordHelper;
 
 import java.util.ArrayList;
 
-/**
- * Zhannur Diyas
- * 1/24/2017 | 9:54 AM
- */
 public class UserService extends AbstractService {
 
     private static final String GET_USER_BY_USERNAME = "get.user.by.username";

@@ -6,12 +6,19 @@ package kz.epam.zd.util;
  */
 public final class ConstantHolder {
     public static final String REDIRECT_PREFIX = "redirect:";
-    public static final String WELCOME_PAGE = "welcome";
     public static final String LOGIN_PAGE = "login";
+    public static final String LOGIN_SUCCESS_PAGE = "login-success";
     public static final String REGISTER_PAGE = "register";
+    public static final String REGISTER_SUCCESS_PAGE = "register-success";
     public static final String ABOUT_PAGE = "about";
     public static final String CATALOG_PAGE = "catalog";
     public static final String HOME_PAGE = "index";
+    public static final String PROFILE_PAGE = "profile";
+
+    public static final String LOGIN = "login";
+    public static final String PASSWORD = "password";
+    public static final String USER = "user";
+    public static final String USERNAME = "username";
 
     public static final String ACTION = "action";
     public static final String WEB_INF_PATH_TO_JSP = "/WEB-INF/jsp/";
