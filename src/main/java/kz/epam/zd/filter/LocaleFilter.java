@@ -20,39 +20,35 @@ public class LocaleFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse resp = (HttpServletResponse) response;
-        HttpSession session = req.getSession();
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain) throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletResponse response = (HttpServletResponse) resp;
+        HttpSession session = request.getSession();
 
         String locale = null;
-        Cookie localCookie = CookieHelper.findParameter(req, LOCALE);
+        Cookie localCookie = CookieHelper.findParameter(request, LOCALE);
         if (localCookie != null) locale = localCookie.getValue();
 
         if (locale == null) {
-            log.debug("Locale not found in cookies, try to find in session.");
+            log.debug("Locale not found in cookie, try to find in session.");
             locale = (String) session.getAttribute(LOCALE);
-            CookieHelper.setCookie(resp, LOCALE, locale);
+            CookieHelper.setCookie(response, LOCALE, locale);
         }
-
         if (locale == null) {
             locale = DEFAULT_LOCALE;
-            CookieHelper.setCookie(resp, LOCALE, locale);
-            log.debug("Locale not found in session, set default locale to \"{}\"", locale);
+            CookieHelper.setCookie(response, LOCALE, locale);
+            log.debug("Locale not found in session, set default locale \"{}\"", locale);
         }
-
         Locale currentLocale = new Locale(locale);
         Config.set(session, Config.FMT_LOCALE, currentLocale);
         session.setAttribute(LOCALE, locale);
-        chain.doFilter(req, resp);
+        filterChain.doFilter(request, response);
     }
 
     @Override
     public void destroy() {
-
     }
 }

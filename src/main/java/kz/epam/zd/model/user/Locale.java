@@ -15,4 +15,8 @@ public class Locale {
         this.localeName = localeName;
     }
 
+    @Override
+    public String toString() {
+        return localeName;
+    }
 }

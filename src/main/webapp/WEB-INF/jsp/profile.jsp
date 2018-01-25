@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="/WEB-INF/css/jumbotron.css"/>
 <fmt:setBundle basename="lang"/>
 <c:set var="prefix" value="${pageContext.request.contextPath}"/>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

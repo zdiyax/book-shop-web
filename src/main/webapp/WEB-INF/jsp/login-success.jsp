@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/loader.css"/>
 <link rel="stylesheet" href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css">
 
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

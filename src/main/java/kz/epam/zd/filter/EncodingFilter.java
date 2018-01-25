@@ -4,7 +4,6 @@ import javax.servlet.*;
 import java.io.IOException;
 
 public class EncodingFilter implements Filter {
-
     private static final String ENCODING = "encoding";
     private String encoding = "utf-8";
 
@@ -22,6 +21,5 @@ public class EncodingFilter implements Filter {
 
     @Override
     public void destroy() {
-
     }
 }

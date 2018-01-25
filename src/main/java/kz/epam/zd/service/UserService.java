@@ -10,6 +10,7 @@ public class UserService extends AbstractService {
 
     private static final String USER_LOGIN_KEY = "get.user.by.username";
     private static final String USER_REGISTER_KEY = "insert.user";
+    private static final String UPDATE_USER_LOCALE_KEY = "update.user.locale";
 
     public User login(User user) throws ServiceException {
         parameters.add(user.getUsername());
@@ -57,5 +58,19 @@ public class UserService extends AbstractService {
             throw new ServiceException(e);
         }
         return registeredUser;
+    }
+
+    public void updateUserLocale(User user) throws ServiceException {
+        parameters.add(user.getUserRole().toString());
+        parameters.add(user.getUsername());
+        parameters.add((user.getPassword()));
+        parameters.add(user.getLocale().getLocaleName());
+        parameters.add(user.getId());
+        try (DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory()) {
+            UserDao userDao = daoFactory.getUserDao();
+            userDao.update(user, parameters, UPDATE_USER_LOCALE_KEY);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
 }

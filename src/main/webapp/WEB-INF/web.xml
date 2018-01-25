@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0" id="Book-Geek">
-    <display-name>BookGeek Store</display-name>
+    <display-name>book-shop-web</display-name>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
@@ -34,4 +34,11 @@
         <filter-name>EncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <jsp-config>
+        <taglib>
+            <taglib-uri>customtags</taglib-uri>
+            <taglib-location>/WEB-INF/tld/custom.tld</taglib-location>
+        </taglib>
+    </jsp-config>
 </web-app>
