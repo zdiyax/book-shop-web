@@ -53,17 +53,17 @@
                     </li>
                 </c:if>
                 <li class="nav-item">
-                    <a class="nav-link" href="${prefix}/do/?action=change-locale=ru">RU</a>
+                    <a class="nav-link" href="${prefix}/do/?action=lang&locale=en">EN</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${prefix}/do/?action=change-locale=en">EN</a>
+                    <a class="nav-link" href="${prefix}/do/?action=lang&locale=ru">RU</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a style="text-decoration: none"
-                                                                                      href="${prefix}/do/?action=show-login-page">
-                    <fmt:message key="signin.message"/></a></button>
+                <a href="/do/?action=show-login-page" style="text-decoration: none;"> <fmt:message
+                        key="signin.message"/></a>
             </form>
+
         </div>
     </nav>
 </div>

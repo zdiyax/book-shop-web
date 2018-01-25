@@ -1,5 +1,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <fmt:setBundle basename="lang"/>
 <c:set var="prefix" value="${pageContext.request.contextPath}"/>
@@ -9,27 +10,22 @@
 
 
 <html>
-<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>Register</title>
 </head>
-
-<body class="text-center">
-<form class="signin" action="/do/?action=register">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="username" class="sr-only">Username</label>
-    <input type="text" id="username" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="confirmPassword" class="form-control" placeholder="ConfirmPassword" required>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-</form>
-</body>
-
+    <body class="text-center">
+    <form class="signin" action="/do/?action=register" method="post">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <label class="sr-only">Username</label>
+        <input type="text" name="username" class="form-control" placeholder="username" required autofocus>
+        <label class="sr-only">Password</label>
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
+        <label class="sr-only">Password</label>
+        <input type="password" name="confirm_password" class="form-control" placeholder="ConfirmPassword" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    </form>
+    </body>
 </html>

@@ -13,7 +13,6 @@ import static kz.epam.zd.util.ConstantHolder.*;
 public class ChangeLocaleAction implements Action {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) throws ActionException {
-
         String userLocale = req.getParameter(LOCALE);
         try {
             LocaleUpdater.changeUserLocale(req, userLocale);
@@ -22,8 +21,7 @@ public class ChangeLocaleAction implements Action {
         }
         CookieHelper.setCookie(res, LOCALE, userLocale);
         String referrer = req.getHeader(REFERRER);
-
-        return REDIRECT_PREFIX + referrer;
+        return "redirect:/do/?action=show-home-page";
     }
 }
 

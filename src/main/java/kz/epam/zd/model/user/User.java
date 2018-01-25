@@ -12,10 +12,11 @@ public class User extends Model {
     private String password;
     private List<Order> orders;
 
-    public User(String username, String password, Locale locale) {
+    public User(String username, String password, Locale locale, UserRole userRole) {
         this.username = username;
         this.password = password;
         this.locale = locale;
+        this.userRole = userRole;
     }
 
     public User() {

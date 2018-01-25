@@ -11,10 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import static kz.epam.zd.util.ConstantHolder.LOCALE;
 import static kz.epam.zd.util.ConstantHolder.USER;
 
-/**
- * Utility for change and update user locale if user change interface language
- */
-
 public class LocaleUpdater {
 
     private LocaleUpdater() {

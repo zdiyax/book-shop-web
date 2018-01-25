@@ -2,7 +2,9 @@ package kz.epam.zd.action;
 
 import kz.epam.zd.exception.ServiceException;
 import kz.epam.zd.model.user.Locale;
+import kz.epam.zd.model.user.RoleType;
 import kz.epam.zd.model.user.User;
+import kz.epam.zd.model.user.UserRole;
 import kz.epam.zd.service.UserService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +22,12 @@ public class LoginAction implements Action {
         String password = req.getParameter(PASSWORD);
         String locale = (String) req.getSession().getAttribute(LOCALE);
 
-        final User user = new User(login, password, new Locale(locale));
+        /* Form validation here!*/
+
+
+        /*                      */
+
+        final User user = new User(login, password, new Locale(locale), new UserRole(RoleType.CUSTOMER));
         UserService userService = new UserService();
         User foundUser;
         try {

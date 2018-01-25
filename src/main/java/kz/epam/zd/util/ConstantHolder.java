@@ -1,9 +1,5 @@
 package kz.epam.zd.util;
 
-/**
- * Zhannur Diyas
- * 1/29/2017 | 2:10 PM
- */
 public final class ConstantHolder {
     public static final String REDIRECT_PREFIX = "redirect:";
     public static final String LOGIN_PAGE = "login";
