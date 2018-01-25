@@ -5,6 +5,7 @@ import kz.epam.zd.exception.PropertyManagerException;
 import kz.epam.zd.util.PropertyManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -31,6 +32,14 @@ public class ConnectionPool {
     private String password;
     private int poolSize;
 
+    public static ConnectionPool getInstance() {
+        return InstanceHolder.instance;
+    }
+
+    static BlockingQueue<Connection> getConnections() {
+        return connections;
+    }
+
     /**
      * Method fills the connection pool with connections using DriverManager
      */
@@ -51,6 +60,7 @@ public class ConnectionPool {
 
     /**
      * Method loads properties from property file using PropertyManager
+     *
      * @throws ConnectionPoolException - if properties failed to load in
      */
     public void configure() throws ConnectionPoolException {
@@ -83,6 +93,7 @@ public class ConnectionPool {
 
     /**
      * Method for retrieving connection from ConnectionPool
+     *
      * @return - PooledConnection from ConnectionPool
      * @throws ConnectionPoolException - if
      */
@@ -90,9 +101,9 @@ public class ConnectionPool {
         Connection connection = null;
         try {
             if (connections.peek() == null) {
-                connections = new ArrayBlockingQueue<Connection>(poolSize*2);
+                connections = new ArrayBlockingQueue<Connection>(poolSize * 2);
                 connection = DriverManager.getConnection(url, username, password);
-                for (int i = 0; i < poolSize*2; i++) {
+                for (int i = 0; i < poolSize * 2; i++) {
                     connections.offer(connection);
                 }
             } else {
@@ -111,12 +122,9 @@ public class ConnectionPool {
         return connection;
     }
 
-    public static ConnectionPool getInstance() {
-        return InstanceHolder.instance;
-    }
-
     /**
      * Method for closing the ConnectionPool
+     *
      * @throws ConnectionPoolException - if CP cannot be closed at the moment
      */
     public synchronized void close() throws ConnectionPoolException {
@@ -134,12 +142,13 @@ public class ConnectionPool {
         connections.clear();
     }
 
-    static BlockingQueue<Connection> getConnections() {
-        return connections;
-    }
-
-    void returnConnection(Connection connection) {
-        connections.add(connection);
+    public void returnConnection(Connection connection) throws ConnectionPoolException {
+        try {
+            if (connection.isValid(1))
+            connections.offer(connection);
+        } catch (SQLException e) {
+            throw new ConnectionPoolException(e);
+        }
     }
 
 

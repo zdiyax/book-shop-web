@@ -17,4 +17,8 @@ public class ServiceException extends Exception {
 
     public ServiceException(Exception e) {
     }
+
+    public ServiceException(Throwable cause) {
+        super(cause);
+    }
 }

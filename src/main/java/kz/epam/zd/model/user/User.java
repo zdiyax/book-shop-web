@@ -6,27 +6,28 @@ import kz.epam.zd.model.Order;
 import java.util.List;
 
 public class User extends Model {
-    private Role role;
+    private UserRole userRole;
     private Locale locale;
     private String username;
     private String password;
     private List<Order> orders;
 
-    public User(String username, String password) {
+    public User(String username, String password, Locale locale) {
         this.username = username;
         this.password = password;
+        this.locale = locale;
     }
 
     public User() {
 
     }
 
-    public Role getRole() {
-        return role;
+    public UserRole getUserRole() {
+        return userRole;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 
     public Locale getLocale() {

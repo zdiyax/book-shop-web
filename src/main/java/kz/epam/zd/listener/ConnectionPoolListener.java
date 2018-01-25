@@ -1,9 +1,10 @@
 package kz.epam.zd.listener;
 
+import kz.epam.zd.cp.ConnectionPool;
+import kz.epam.zd.dao.jdbc.JdbcDaoFactory;
 import kz.epam.zd.exception.ConnectionPoolException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import kz.epam.zd.cp.ConnectionPool;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -14,6 +15,10 @@ public class ConnectionPoolListener implements ServletContextListener {
 
     private static final Logger log = LoggerFactory.getLogger(ConnectionPoolListener.class);
     private static ConnectionPool pool;
+
+    public static ConnectionPool getPool() {
+        return pool;
+    }
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -27,6 +32,7 @@ public class ConnectionPoolListener implements ServletContextListener {
             } catch (ConnectionPoolException e1) {
                 log.error("Listener failed to start: " + e1);
             }
+            JdbcDaoFactory.setPool(pool);
             log.error("Initializing a CP failed, error in fill() method." + e);
         }
     }
@@ -38,9 +44,5 @@ public class ConnectionPoolListener implements ServletContextListener {
         } catch (ConnectionPoolException e) {
             log.error("Couldn't close connection pool", e);
         }
-    }
-
-    public static ConnectionPool getPool() {
-        return pool;
     }
 }

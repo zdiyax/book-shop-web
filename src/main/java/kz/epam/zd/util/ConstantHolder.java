@@ -19,6 +19,8 @@ public final class ConstantHolder {
     public static final String PASSWORD = "password";
     public static final String USER = "user";
     public static final String USERNAME = "username";
+    public static final String LOCALE = "locale";
+    public static final String FORM_ERRORS = "formErrors";
 
     public static final String ACTION = "action";
     public static final String WEB_INF_PATH_TO_JSP = "/WEB-INF/jsp/";

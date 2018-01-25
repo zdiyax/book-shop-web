@@ -12,7 +12,7 @@
 <%@attribute name="footer" fragment="true" %>
 
 <c:set var="prefix" value="${pageContext.request.contextPath}"/>
-<c:set var="role" value="${sessionScope.user.role}"/>
+<c:set var="roleType" value="${sessionScope.user.roleType}"/>
 <c:set var="USER" value="USER"/>
 <c:set var="MANAGER" value="MANAGER"/>
 <html>

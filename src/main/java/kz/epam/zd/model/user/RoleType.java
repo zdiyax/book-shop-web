@@ -1,5 +1,5 @@
 package kz.epam.zd.model.user;
 
-enum Role {
+enum RoleType {
     OPERATOR, CUSTOMER;
 }

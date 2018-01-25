@@ -2,11 +2,12 @@ package kz.epam.zd.dao;
 
 import kz.epam.zd.dao.jdbc.JdbcDaoFactory;
 import kz.epam.zd.exception.DaoException;
+import kz.epam.zd.exception.JdbcDaoException;
 
 /**
  * DAO Factory pattern realization
  */
-public abstract class DaoFactory {
+public abstract class DaoFactory implements AutoCloseable {
 
     public static JdbcDaoFactory createJdbcDaoFactory() throws DaoException {
         return new JdbcDaoFactory();
@@ -18,5 +19,9 @@ public abstract class DaoFactory {
 
     public abstract OrderDao getOrderDao();
 
+    @Override
+    public void close() throws JdbcDaoException {
+
+    }
 
 }

@@ -11,7 +11,7 @@
         <tag-class>kz.epam.zd.tag.HelloTag</tag-class>
         <body-content>empty</body-content>
         <attribute>
-            <name>role</name>
+            <name>roleType</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
