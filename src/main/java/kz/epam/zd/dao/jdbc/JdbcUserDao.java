@@ -1,12 +1,16 @@
 package kz.epam.zd.dao.jdbc;
 
-import kz.epam.zd.model.user.User;
-import kz.epam.zd.util.ConstantHolder;
 import kz.epam.zd.dao.UserDao;
+import kz.epam.zd.model.user.Locale;
+import kz.epam.zd.model.user.RoleType;
+import kz.epam.zd.model.user.User;
+import kz.epam.zd.model.user.UserRole;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import static kz.epam.zd.util.ConstantHolder.*;
 
 public class JdbcUserDao extends JdbcDao<User> implements UserDao {
 
@@ -17,9 +21,11 @@ public class JdbcUserDao extends JdbcDao<User> implements UserDao {
     @Override
     protected User createEntityFromRs(ResultSet resultSet, User entity) throws SQLException {
         User user = new User();
-        user.setId(resultSet.getInt(ConstantHolder.INDEX_1));
-        user.setUsername(resultSet.getString("username"));
-        user.setPassword(resultSet.getString("password"));
+        user.setId(resultSet.getInt(INDEX_1));
+        user.setLocale(new Locale(resultSet.getString(INDEX_2)));
+        user.setUsername(resultSet.getString(INDEX_3));
+        user.setPassword(resultSet.getString(INDEX_4));
+        user.setUserRole(new UserRole(RoleType.valueOf(resultSet.getString(INDEX_6))));
         return user;
     }
 

@@ -11,8 +11,6 @@ import java.sql.SQLException;
 
 public class JdbcBookDao extends JdbcDao<Book> implements BookDao {
 
-    private static final Logger log = LoggerFactory.getLogger(JdbcBookDao.class);
-
     JdbcBookDao(Connection connection) {
         super(connection);
     }
