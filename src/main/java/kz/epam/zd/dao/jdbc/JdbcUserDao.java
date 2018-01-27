@@ -22,10 +22,10 @@ public class JdbcUserDao extends JdbcDao<User> implements UserDao {
     protected User createEntityFromRs(ResultSet resultSet, User entity) throws SQLException {
         User user = new User();
         user.setId(resultSet.getInt(INDEX_1));
-        user.setLocale(new Locale(resultSet.getString(INDEX_2)));
-        user.setUsername(resultSet.getString(INDEX_3));
-        user.setPassword(resultSet.getString(INDEX_4));
-        user.setUserRole(new UserRole(RoleType.valueOf(resultSet.getString(INDEX_6))));
+        user.setUsername(resultSet.getString(INDEX_2));
+        user.setPassword(resultSet.getString(INDEX_3));
+        user.setUserRole(new UserRole(RoleType.valueOf(resultSet.getString(INDEX_4))));
+        user.setLocale(new Locale(resultSet.getString(INDEX_5)));
         return user;
     }
 

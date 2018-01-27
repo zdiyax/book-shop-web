@@ -5,9 +5,11 @@ import kz.epam.zd.dao.UserDao;
 import kz.epam.zd.exception.*;
 import kz.epam.zd.model.user.User;
 import kz.epam.zd.util.PasswordHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UserService extends AbstractService {
-
+    private static final Logger log = LoggerFactory.getLogger(UserService.class);
     private static final String USER_LOGIN_KEY = "get.user.by.username";
     private static final String USER_REGISTER_KEY = "insert.user";
     private static final String UPDATE_USER_LOCALE_KEY = "update.user.locale";
@@ -20,13 +22,16 @@ public class UserService extends AbstractService {
             UserDao userDao = daoFactory.getUserDao();
             foundUser = userDao.getByParameters(user, parameters, USER_LOGIN_KEY);
         } catch (DaoException e) {
+            System.out.println(e.getMessage());
             throw new ServiceException(e);
         }
         if (foundUser == null) {
+            log.debug("User not found | Username = {}", user.getUsername());
             throw new UserNotFoundException();
         }
         try {
             if (!PasswordHelper.verifyPassword(testPassword, foundUser.getPassword())) {
+                log.debug("Wrong password entered | Username = {}", user.getUsername());
                 throw new WrongPasswordException();
             }
         } catch (PasswordHelper.PasswordHashAlgorithmException e) {

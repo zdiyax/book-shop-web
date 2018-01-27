@@ -12,7 +12,7 @@
 <%@attribute name="footer" fragment="true" %>
 
 <c:set var="prefix" value="${pageContext.request.contextPath}"/>
-<c:set var="roleType" value="${sessionScope.user.roleType}"/>
+<%--<c:set var="roleType" value="${sessionScope.user.userRole}"/>--%>
 <c:set var="USER" value="USER"/>
 <c:set var="MANAGER" value="MANAGER"/>
 <html>
@@ -46,7 +46,7 @@
                             key="about.message"/></a>
                 </li>
 
-                <c:if test="${not empty sessionScope.user.login}">
+                <c:if test="${not empty sessionScope.user.username}">
                     <li class="nav-item">
                         <a class="nav-link" href="${prefix}/do/?action=show-profile-page"><fmt:message
                                 key="profile.message"/> </a>

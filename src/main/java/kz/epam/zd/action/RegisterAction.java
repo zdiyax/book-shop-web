@@ -32,6 +32,7 @@ public class RegisterAction implements Action {
         User user = new User(username, password, locale, userRole);
         UserService userService = new UserService();
 
+        // TODO: Глотается exception
         try {
             userService.register(user);
         } catch (ServiceException e) {

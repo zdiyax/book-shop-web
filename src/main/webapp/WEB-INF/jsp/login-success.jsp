@@ -21,6 +21,7 @@
 
 <body class="text-center">
 <h1 class="h3 mb-3 font-weight-normal">Login Success! Redirecting...</h1>
+<%--TODO: center loading animation--%>
 <div class="cssload-container">
     <div class="cssload-speeding-wheel"></div>
 </div>
