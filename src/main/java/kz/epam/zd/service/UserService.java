@@ -76,4 +76,14 @@ public class UserService extends AbstractService {
             throw new ServiceException(e);
         }
     }
+
+    public User updatePersonalInfo(User user) throws ServiceException {
+        try (DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory()) {
+            daoFactory.beginTransaction();
+
+
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
 }

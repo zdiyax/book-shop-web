@@ -11,7 +11,7 @@ OIDS = FALSE
 
 CREATE TABLE "order" (
   "order_id"        SERIAL  NOT NULL,
-  "user_id"         INTEGER NOT NULL ,
+  "user_id"         INTEGER NOT NULL,
   "order_status_id" INTEGER NOT NULL,
   "date_ordered"    DATE    NOT NULL,
   "total_price"     FLOAT   NOT NULL,
@@ -22,26 +22,16 @@ OIDS = FALSE
 
 
 CREATE TABLE "user" (
-  "user_id"      SERIAL      NOT NULL,
-  "locale_id"    INTEGER     NOT NULL,
-  "username"     VARCHAR(16) NOT NULL UNIQUE,
-  "password"     VARCHAR(64) NOT NULL,
-  "user_info_id" INTEGER,
-  "user_role_id" INTEGER     NOT NULL DEFAULT '1',
+  "user_id"          SERIAL      NOT NULL,
+  "locale_id"        INTEGER     NOT NULL,
+  "username"         VARCHAR(16) NOT NULL UNIQUE,
+  "password"         VARCHAR(64) NOT NULL,
+  "full_name"        VARCHAR(32),
+  "email"            VARCHAR(32),
+  "address"          VARCHAR(64),
+  "telephone_number" VARCHAR(16),
+  "user_role_id"     INTEGER     NOT NULL DEFAULT '1',
   CONSTRAINT user_pk PRIMARY KEY ("user_id")
-) WITH (
-OIDS = FALSE
-);
-
-
-CREATE TABLE "user_info" (
-  "user_info_id" SERIAL      NOT NULL,
-  "name"         VARCHAR(32) NOT NULL,
-  "surname"      VARCHAR(32) NOT NULL,
-  "birthdate"    DATE        NOT NULL,
-  "gender"       VARCHAR(16) NOT NULL,
-  "email"        VARCHAR(32) NOT NULL,
-  CONSTRAINT userInfo_pk PRIMARY KEY ("user_info_id")
 ) WITH (
 OIDS = FALSE
 );
@@ -100,12 +90,7 @@ ALTER TABLE "order"
 ALTER TABLE "user"
   ADD CONSTRAINT "user_fk0" FOREIGN KEY ("locale_id") REFERENCES "locale" ("locale_id");
 ALTER TABLE "user"
-  ADD CONSTRAINT "user_fk1" FOREIGN KEY ("user_info_id") REFERENCES "user_info" ("user_info_id");
-ALTER TABLE "user"
   ADD CONSTRAINT "user_fk3" FOREIGN KEY ("user_role_id") REFERENCES "user_role" ("user_role_id");
-
-ALTER TABLE "user_info"
-  ADD CONSTRAINT "user_info_fk0" FOREIGN KEY ("gender") REFERENCES "gender" ("gender_name");
 
 
 ALTER TABLE "order_items"

@@ -1,5 +1,6 @@
 body
 {
+    margin-top: 50px;
     background-color: #1b1b1b;
     padding-top: 2rem;
 }
@@ -27,13 +28,12 @@ body
 }
 .form-signup input[type="text"],.form-signup input[type="password"] { border: 1px solid rgb(50, 118, 177); }
 .fullscreen_bg {
-    position: fixed;
+    position: relative;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     background-size: cover;
     background-position: 50% 50%;
-    background-image: url('http://blog.transfer-iphone-recovery.com/images/photo-with-blur-background.jpg');
     background-repeat:repeat;
 }

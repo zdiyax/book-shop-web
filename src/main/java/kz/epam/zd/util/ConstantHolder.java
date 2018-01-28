@@ -35,6 +35,11 @@ public final class ConstantHolder {
     public static final int INDEX_9 = 9;
     public static final int INDEX_10 = 10;
 
+    public static final String FULL_NAME = "fullName";
+    public static final String EMAIL = "email";
+    public static final String ADDRESS = "address";
+    public static final String TELEPHONE_NUMBER = "telephoneNumber";
+
     public static final String USERNAME_PATTERN = "^[a-z0-9_-]{3,15}$";
 
 

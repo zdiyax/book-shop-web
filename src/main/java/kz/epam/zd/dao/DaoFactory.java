@@ -24,4 +24,11 @@ public abstract class DaoFactory implements AutoCloseable {
 
     }
 
+    public abstract void beginTransaction() throws JdbcDaoException;
+
+    public abstract void rollback() throws JdbcDaoException;
+
+    public abstract void commit() throws JdbcDaoException;
+
+
 }

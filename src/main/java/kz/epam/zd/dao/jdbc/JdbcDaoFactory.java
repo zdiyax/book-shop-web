@@ -59,5 +59,43 @@ public class JdbcDaoFactory extends DaoFactory {
             throw new JdbcDaoException(e);
         }
     }
+
+    @Override
+    public void beginTransaction() throws JdbcDaoException {
+        try {
+            if ((!connection.isClosed()) && (connection.getAutoCommit())) {
+                connection.setAutoCommit(false);
+                log.debug("Transaction opened");
+            }
+        } catch (SQLException e) {
+            throw new JdbcDaoException(e);
+        }
+    }
+
+    @Override
+    public void rollback() throws JdbcDaoException {
+        try {
+            if ((!connection.isClosed()) && (!connection.getAutoCommit())) {
+                connection.rollback();
+                connection.setAutoCommit(true);
+                log.debug("Transaction rollback");
+            }
+        } catch (SQLException e) {
+            throw new JdbcDaoException(e);
+        }
+    }
+
+    @Override
+    public void commit() throws JdbcDaoException {
+        try {
+            if ((!connection.isClosed()) && (!connection.getAutoCommit())) {
+                connection.commit();
+                log.debug("Transaction commit.");
+                connection.setAutoCommit(true);
+            }
+        } catch (SQLException e) {
+            throw new JdbcDaoException(e);
+        }
+    }
 }
 

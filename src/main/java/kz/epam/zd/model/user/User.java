@@ -11,6 +11,10 @@ public class User extends Model {
     private String username;
     private String password;
     private List<Order> orders;
+    private String fullName;
+    private String email;
+    private String address;
+    private String telephoneNumber;
 
     public User(String username, String password, Locale locale, UserRole userRole) {
         this.username = username;
@@ -19,8 +23,52 @@ public class User extends Model {
         this.userRole = userRole;
     }
 
+    public User(UserRole userRole, Locale locale, String username, String password, List<Order> orders, String fullName, String email, String address, String telephoneNumber) {
+        this.userRole = userRole;
+        this.locale = locale;
+        this.username = username;
+        this.password = password;
+        this.orders = orders;
+        this.fullName = fullName;
+        this.email = email;
+        this.address = address;
+        this.telephoneNumber = telephoneNumber;
+    }
+
     public User() {
 
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
     }
 
     public UserRole getUserRole() {
