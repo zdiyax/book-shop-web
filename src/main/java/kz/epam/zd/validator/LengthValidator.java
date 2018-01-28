@@ -1,8 +1,5 @@
 package kz.epam.zd.validator;
 
-/**
- * Validator for length of values entered in form's fields
- */
 public class LengthValidator extends ParentValidator implements Validator {
 
     private Integer minLength;

@@ -1,11 +1,11 @@
 package kz.epam.zd.servlet;
 
+import kz.epam.zd.action.Action;
+import kz.epam.zd.action.ActionFactory;
 import kz.epam.zd.exception.ActionException;
 import kz.epam.zd.exception.ActionFactoryException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import kz.epam.zd.action.Action;
-import kz.epam.zd.action.ActionFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,14 +16,14 @@ import java.io.IOException;
 
 import static kz.epam.zd.util.ConstantHolder.*;
 
-@WebServlet(name = "FrontControllerServlet", urlPatterns="/do/*")
+@WebServlet(name = "FrontControllerServlet", urlPatterns = "/do/*")
 public class FrontControllerServlet extends HttpServlet {
 
     private static final Logger log = LoggerFactory.getLogger(FrontControllerServlet.class);
     private ActionFactory actionFactory;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         actionFactory = new ActionFactory();
         try {
             actionFactory.loadActions();

@@ -18,9 +18,7 @@ public class JdbcDaoFactory extends DaoFactory {
     private static ConnectionPool pool = ConnectionPool.getInstance();
     private Connection connection;
 
-
     public JdbcDaoFactory() throws JdbcDaoException {
-
         try {
             this.connection = pool.getConnection();
         } catch (Exception e) {
@@ -51,7 +49,7 @@ public class JdbcDaoFactory extends DaoFactory {
     @Override
     public void close() throws JdbcDaoException {
         try {
-            if (connection.isClosed() || connection.isValid(1))
+            if (connection.isClosed() || !connection.isValid(1))
                 log.debug("Connection is closed or invalid and won't be added to the pool");
             else {
                 pool.returnConnection(connection);

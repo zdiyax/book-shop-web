@@ -4,10 +4,6 @@ import kz.epam.zd.exception.PropertyManagerException;
 import kz.epam.zd.exception.ValidatorException;
 import kz.epam.zd.util.PropertyManager;
 
-/**
- * Validator for size of uploading file
- */
-
 public class FileSizeValidator extends ParentValidator implements Validator {
 
     private static final String FORM_PROPERTY_FILE_NAME = "forms.properties";

@@ -15,13 +15,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="refresh" content="2; url=/do/?action=show-login-page">
-    <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Register Success!</title>
+    <title><fmt:message key="register.success.title"/></title>
 </head>
 
 <body class="text-center">
-<h1 class="h3 mb-3 font-weight-normal">Register Success! Redirecting...</h1>
+<h1 class="h3 mb-3 font-weight-normal"><fmt:message key="register.success.message" /></h1>
 <div class="cssload-container">
     <div class="cssload-speeding-wheel"></div>
 </div>

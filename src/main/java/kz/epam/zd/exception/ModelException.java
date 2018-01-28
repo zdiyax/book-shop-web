@@ -6,11 +6,4 @@ public class ModelException extends Exception {
         super(message);
     }
 
-    public ModelException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public ModelException(Throwable cause) {
-        super(cause);
-    }
 }

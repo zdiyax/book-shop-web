@@ -1,24 +1,27 @@
 package kz.epam.zd.exception;
 
 public class ServiceException extends Exception {
-    public ServiceException(JdbcDaoException e) {
+    private String message;
+
+    public ServiceException(String message, Exception e) {
+        super(e);
+        this.message = message;
+
+    }
+
+    public ServiceException(Exception e) {
+        this.message = e.getMessage();
+    }
+
+    public ServiceException(String message) {
+        this.message = message;
     }
 
     public ServiceException() {
     }
 
-    public ServiceException(String message) {
-        super(message);
-    }
-
-    public ServiceException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public ServiceException(Exception e) {
-    }
-
-    public ServiceException(Throwable cause) {
-        super(cause);
+    @Override
+    public String getMessage() {
+        return message;
     }
 }

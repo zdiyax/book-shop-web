@@ -59,11 +59,18 @@
                     <a class="nav-link" href="${prefix}/do/?action=lang&locale=ru">RU</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <a href="/do/?action=show-login-page" style="text-decoration: none;"> <fmt:message
-                        key="signin.message"/></a>
-            </form>
-
+            <c:if test="${empty sessionScope.user}">
+                <form class="form-inline my-2 my-lg-0">
+                    <a href="/do/?action=show-login-page" style="text-decoration: none;"> <fmt:message
+                            key="signin.message"/></a>
+                </form>
+            </c:if>
+            <c:if test="${not empty sessionScope.user}">
+                <form class="form-inline my-2 my-lg-0">
+                    <a href="/do/?action=logout" style="text-decoration: none;"> <fmt:message
+                            key="logout.message"/></a>
+                </form>
+            </c:if>
         </div>
     </nav>
 </div>
@@ -93,7 +100,4 @@
         integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
         crossorigin="anonymous"></script>
 <script src="../../dist/js/bootstrap.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-
 </html>

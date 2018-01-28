@@ -14,7 +14,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 /**
- * Custom connection pool implementation using Singleton DP
+ * Custom connection pool implementation
  */
 public class ConnectionPool {
     private static final Logger log = LoggerFactory.getLogger(ConnectionPool.class);
@@ -65,7 +65,7 @@ public class ConnectionPool {
      */
     public void configure() throws ConnectionPoolException {
         try {
-            PropertyManager propertyManager = new PropertyManager("db.properties");
+            PropertyManager propertyManager = new PropertyManager(PROPERTY_FILE_NAME);
             Properties properties = propertyManager.getProperties();
             log.debug("Properties value: {}", properties);
 
@@ -79,7 +79,7 @@ public class ConnectionPool {
             this.username = properties.getProperty(JDBC_USERNAME_PROPERTY);
             this.password = properties.getProperty(JDBC_PASSWORD_PROPERTY);
             this.poolSize = Integer.parseInt(properties.getProperty(JDBC_POOLSIZE_PROPERTY));
-            if (poolSize < 5 || poolSize > 10) {
+            if (poolSize < 5 || poolSize > 20) {
                 log.error("Invalid pool size in the property file, should be between 5 and 10");
                 throw new ConnectionPoolException();
             }
@@ -97,7 +97,7 @@ public class ConnectionPool {
      * @return - PooledConnection from ConnectionPool
      * @throws ConnectionPoolException - if
      */
-    public Connection getConnection() throws ConnectionPoolException, InterruptedException {
+    public Connection getConnection() throws ConnectionPoolException {
         Connection connection = null;
         try {
             if (connections.peek() == null) {
@@ -117,7 +117,7 @@ public class ConnectionPool {
             e.printStackTrace();
         }
         if (connection == null) {
-            throw new ConnectionPoolException("CONNECTION == NULL");
+            throw new ConnectionPoolException("CONNECTION = NULL");
         }
         return connection;
     }
@@ -136,7 +136,7 @@ public class ConnectionPool {
                 }
             } catch (SQLException e) {
                 log.error("Can't close connection to the pool");
-                throw new ConnectionPoolException();
+                throw new ConnectionPoolException(e);
             }
         }
         connections.clear();
@@ -145,7 +145,7 @@ public class ConnectionPool {
     public void returnConnection(Connection connection) throws ConnectionPoolException {
         try {
             if (connection.isValid(1))
-            connections.offer(connection);
+                connections.offer(connection);
         } catch (SQLException e) {
             throw new ConnectionPoolException(e);
         }

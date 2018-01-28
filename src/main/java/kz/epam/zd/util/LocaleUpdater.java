@@ -5,6 +5,8 @@ import kz.epam.zd.exception.ServiceException;
 import kz.epam.zd.model.user.Locale;
 import kz.epam.zd.model.user.User;
 import kz.epam.zd.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,6 +14,7 @@ import static kz.epam.zd.util.ConstantHolder.LOCALE;
 import static kz.epam.zd.util.ConstantHolder.USER;
 
 public class LocaleUpdater {
+    private static final Logger log = LoggerFactory.getLogger(LocaleUpdater.class);
 
     private LocaleUpdater() {
     }
@@ -28,8 +31,7 @@ public class LocaleUpdater {
                 throw new LocaleChangerException(e);
             }
         }
-
         req.getSession().setAttribute(LOCALE, locale);
-
+        log.debug("Locale changed successfully to {}", locale);
     }
 }

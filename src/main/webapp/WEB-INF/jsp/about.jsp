@@ -6,8 +6,9 @@
 <link rel="stylesheet" href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css">
 <fmt:setBundle basename="lang"/>
 <c:set var="prefix" value="${pageContext.request.contextPath}"/>
+<fmt:message key="about.title" var="title"/>
 
-<t:snippet title="main page">
+<t:snippet title="${title}">
     <jsp:body>
         <div class="jumbotron">
             <div class="container">

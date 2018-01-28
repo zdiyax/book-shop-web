@@ -9,10 +9,6 @@ public class HelloTag extends TagSupport {
     private static final String BLANK = "";
     private String login;
 
-    public void setRole(String role) {
-        this.login = role;
-    }
-
     @Override
     public int doStartTag() throws JspException {
         try {

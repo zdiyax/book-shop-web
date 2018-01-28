@@ -10,10 +10,11 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 
+import static kz.epam.zd.util.ConstantHolder.FORM_ERRORS;
+
 public class ValidatorHelper {
 
     private static final Logger logger = LoggerFactory.getLogger(ValidatorHelper.class);
-    public static final String ERROR_MESSAGES_POSTFIX = "ErrorMessages";
 
 
     private ValidatorHelper() {
@@ -33,7 +34,7 @@ public class ValidatorHelper {
         Enumeration<String> attributeNames = request.getSession().getAttributeNames();
         while (attributeNames.hasMoreElements()) {
             String sessionAttribute = attributeNames.nextElement();
-            if (sessionAttribute.endsWith(ERROR_MESSAGES_POSTFIX))
+            if (sessionAttribute.endsWith(FORM_ERRORS))
                 request.getSession().removeAttribute(sessionAttribute);
         }
     }
@@ -41,7 +42,8 @@ public class ValidatorHelper {
     public static void setErrorsToSession(HttpServletRequest req, Map<String, List<String>> fieldErrors) {
 
         for (Map.Entry<String, List<String>> entry : fieldErrors.entrySet()) {
-            req.getSession().setAttribute(entry.getKey() + ERROR_MESSAGES_POSTFIX, entry.getValue());
+            System.out.println(entry.getKey() + " " + entry.getValue());
+            req.getSession().setAttribute(entry.getKey() + FORM_ERRORS, entry.getValue());
             for (String errorMessage : entry.getValue()) {
                 logger.debug("In filed \"{}\" found error message \"{}\"", entry.getKey(), errorMessage);
             }

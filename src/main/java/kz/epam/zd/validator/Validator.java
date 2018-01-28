@@ -2,9 +2,6 @@ package kz.epam.zd.validator;
 
 import kz.epam.zd.exception.ValidatorException;
 
-/**
- * An interface for validators operations
- */
 public interface Validator {
 
     Boolean isValid(String parameter) throws ValidatorException;

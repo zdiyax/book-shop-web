@@ -1,9 +1,9 @@
 package kz.epam.zd.exception;
 
-/**
- * Zhannur Diyas
- * 1/29/2017 | 2:57 PM
- */
 public class UserNotFoundException extends ServiceException {
+    private static final String USER_NOT_FOUND_ERROR_MESSAGE = "user.notfound.error";
 
+    public UserNotFoundException() {
+     super(USER_NOT_FOUND_ERROR_MESSAGE);
+    }
 }

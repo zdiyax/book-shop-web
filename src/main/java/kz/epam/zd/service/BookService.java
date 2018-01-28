@@ -8,10 +8,6 @@ import kz.epam.zd.model.Book;
 
 import java.util.List;
 
-/**
- * Zhannur Diyas
- * 1/15/2017 | 6:50 AM
- */
 public class BookService extends AbstractService {
     private static final String GET_BOOKS_ALL = "get.all.books";
     private static final String GET_BOOKS_BY_DOMAIN = "get.books.by.domain";

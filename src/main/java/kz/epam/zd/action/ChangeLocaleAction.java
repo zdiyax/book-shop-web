@@ -4,6 +4,8 @@ import kz.epam.zd.exception.ActionException;
 import kz.epam.zd.exception.LocaleChangerException;
 import kz.epam.zd.util.CookieHelper;
 import kz.epam.zd.util.LocaleUpdater;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,8 +22,8 @@ public class ChangeLocaleAction implements Action {
             throw new ActionException(e);
         }
         CookieHelper.setCookie(res, LOCALE, userLocale);
-        String referrer = req.getHeader(REFERRER);
-        return "redirect:/do/?action=show-home-page";
+        String referrer = req.getHeader(REFERER);
+        return REDIRECT_PREFIX + referrer;
     }
 }
 

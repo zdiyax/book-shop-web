@@ -8,8 +8,9 @@
       integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 <fmt:setBundle basename="lang"/>
 <c:set var="prefix" value="${pageContext.request.contextPath}"/>
+<fmt:message key="profile.title" var="title"/>
 
-<t:snippet title="main page">
+<t:snippet title="${title}">
     <jsp:body>
         <div class="jumbotron">
             <div class="container">
@@ -40,7 +41,6 @@
         </div>
     </jsp:body>
 </t:snippet>
-<!-- Main jumbotron for a primary marketing message or call to action -->
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -53,5 +53,3 @@
         integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
         crossorigin="anonymous"></script>
 <script src="../../dist/js/bootstrap.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>

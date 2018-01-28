@@ -2,10 +2,6 @@ package kz.epam.zd.validator;
 
 import kz.epam.zd.exception.ValidatorException;
 
-/**
- * Super class for all Validators
- */
-
 public class ParentValidator implements Validator {
 
     private String message;

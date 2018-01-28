@@ -35,10 +35,9 @@ public class LoginAction implements Action {
             foundUser.setLocale(new Locale(locale));
         } catch (ServiceException e) {
             req.getSession().setAttribute(LOGIN + FORM_ERRORS, e.getMessage());
-            System.out.println(e.getMessage());
             return REDIRECT_LOGIN_FORM;
         }
-        log.debug("Log in successful | User: {}", foundUser.getUsername());
+        log.debug("User logged in | Username = {}", foundUser.getUsername());
         req.getSession().setAttribute(USER, foundUser);
         return REDIRECT_LOGIN_SUCCESS;
     }

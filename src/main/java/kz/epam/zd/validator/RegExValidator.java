@@ -1,10 +1,5 @@
 package kz.epam.zd.validator;
 
-
-/**
- * Validator for fields by define regular expression
- */
-
 public class RegExValidator extends ParentValidator implements Validator {
 
     private String regex;

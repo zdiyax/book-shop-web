@@ -5,7 +5,7 @@
 <c:set var="prefix" value="${pageContext.request.contextPath}"/>
 <fmt:message key="login.username.placeholder" var="usernamePlaceholder"/>
 <fmt:message key="login.password.placeholder" var="passwordPlaceholder"/>
-<c:set var="loginErrorMessage" value="${loginFormMessages}"/>
+<c:set var="loginErrorMessages" value="${loginFormErrors}"/>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/inputform.css"/>
 <link rel="stylesheet" href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css">
@@ -27,8 +27,8 @@
     <label class="sr-only"><fmt:message key="login.password"/></label>
     <input type="password" name="password" class="form-control" placeholder="${passwordPlaceholder}" required
            minlength="6" maxlength="12">
-    <c:if test="${not empty loginErrorMessage}">
-        <div id="errorcolortext"><fmt:message key="${loginFormMessages}"/></div>
+    <c:if test="${not empty loginErrorMessages}">
+        <div id="errorcolortext"><fmt:message key="${loginFormErrors}"/></div>
     </c:if>
     <button class="btn btn-lg btn-primary btn-block" type="submit"><fmt:message key="signin.message"/></button>
     <p></p>

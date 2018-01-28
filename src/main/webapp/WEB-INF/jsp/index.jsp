@@ -9,8 +9,9 @@ x`
       integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 <fmt:setBundle basename="lang"/>
 <c:set var="prefix" value="${pageContext.request.contextPath}"/>
+<fmt:message key="home.title" var="title"/>
 
-<t:snippet title="main page">
+<t:snippet title="${title}">
     <jsp:body>
         <div class="jumbotron">
             <div class="container">

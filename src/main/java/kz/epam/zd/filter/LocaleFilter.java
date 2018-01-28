@@ -33,14 +33,14 @@ public class LocaleFilter implements Filter {
         if (localCookie != null) locale = localCookie.getValue();
 
         if (locale == null) {
-            log.debug("Locale not found in cookie, try to find in session.");
+            log.debug("Locale not found in cookies");
             locale = (String) session.getAttribute(LOCALE);
             CookieHelper.setCookie(response, LOCALE, locale);
         }
         if (locale == null) {
             locale = DEFAULT_LOCALE;
             CookieHelper.setCookie(response, LOCALE, locale);
-            log.debug("Locale not found in session, set default locale \"{}\"", locale);
+            log.debug("Locale not found in session, setting locale to default =  \"{}\"", locale);
         }
         Locale currentLocale = new Locale(locale);
         Config.set(session, Config.FMT_LOCALE, currentLocale);

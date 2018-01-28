@@ -22,7 +22,6 @@ public class UserService extends AbstractService {
             UserDao userDao = daoFactory.getUserDao();
             foundUser = userDao.getByParameters(user, parameters, USER_LOGIN_KEY);
         } catch (DaoException e) {
-            System.out.println(e.getMessage());
             throw new ServiceException(e);
         }
         if (foundUser == null) {
@@ -49,9 +48,6 @@ public class UserService extends AbstractService {
         } catch (PasswordHelper.PasswordHashAlgorithmException e) {
             throw new ServiceException(e);
         }
-        System.out.println(user.getUsername()
-                + user.getPassword() +
-                user.getUserRole() + user.getLocale());
         parameters.add(user.getUserRole().toString());
         parameters.add(user.getUsername());
         parameters.add(user.getPassword());
@@ -61,6 +57,7 @@ public class UserService extends AbstractService {
             UserDao userDao = daoFactory.getUserDao();
             registeredUser = userDao.insert(user, parameters, USER_REGISTER_KEY);
         } catch (NonUniqueFieldException e) {
+            log.debug("User already exists | Username = {}", user.getUsername());
             throw new UserExistsException(e);
         } catch (DaoException e) {
             throw new ServiceException(e);
@@ -69,11 +66,9 @@ public class UserService extends AbstractService {
     }
 
     public void updateUserLocale(User user) throws ServiceException {
-        parameters.add(user.getUserRole().toString());
-        parameters.add(user.getUsername());
-        parameters.add((user.getPassword()));
         parameters.add(user.getLocale().getLocaleName());
-        parameters.add(user.getId());
+        parameters.add(user.getUsername());
+
         try (DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory()) {
             UserDao userDao = daoFactory.getUserDao();
             userDao.update(user, parameters, UPDATE_USER_LOCALE_KEY);

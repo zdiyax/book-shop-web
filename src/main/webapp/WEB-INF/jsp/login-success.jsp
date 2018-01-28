@@ -14,13 +14,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="refresh" content="2; url=/do/?action=show-home-page">
 
-    <link rel="icon" href="../../../../favicon.ico">
-
-    <title>Login Success!</title>
+    <title><fmt:message key="login.success.title"/></title>
 </head>
 
 <body class="text-center">
-<h1 class="h3 mb-3 font-weight-normal">Login Success! Redirecting...</h1>
+<h1 class="h3 mb-3 font-weight-normal"><fmt:message key="login.success.message" /></h1>
 <%--TODO: center loading animation--%>
 <div class="cssload-container">
     <div class="cssload-speeding-wheel"></div>

@@ -16,10 +16,6 @@ public class ConnectionPoolListener implements ServletContextListener {
     private static final Logger log = LoggerFactory.getLogger(ConnectionPoolListener.class);
     private static ConnectionPool pool;
 
-    public static ConnectionPool getPool() {
-        return pool;
-    }
-
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         pool = new ConnectionPool();
