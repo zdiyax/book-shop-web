@@ -27,14 +27,15 @@ public class UpdatePersonalInfoAction implements Action {
         user.setAddress(req.getParameter(ADDRESS));
         user.setTelephoneNumber(req.getParameter(TELEPHONE_NUMBER));
 
-        User updatedUser;
+        User updatedUser = user;
         try {
             updatedUser = userService.updatePersonalInfo(user);
         } catch (ServiceException e) {
             log.debug("Error in UpdatePersonalInfoAction.class occurred");
         }
         req.getSession().setAttribute(USER, updatedUser);
+        String referer = req.getHeader(REFERER);
 
-        return REDIRECT_PREFIX + REFERER;
+        return REDIRECT_PREFIX + referer;
     }
 }

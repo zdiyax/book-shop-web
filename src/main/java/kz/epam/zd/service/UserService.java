@@ -13,6 +13,7 @@ public class UserService extends AbstractService {
     private static final String USER_LOGIN_KEY = "get.user.by.username";
     private static final String USER_REGISTER_KEY = "insert.user";
     private static final String UPDATE_USER_LOCALE_KEY = "update.user.locale";
+    private static final String UPDATE_USER_PERSONALINFO = "update.user.personal.info";
 
     public User login(User user) throws ServiceException {
         parameters.add(user.getUsername());
@@ -78,12 +79,19 @@ public class UserService extends AbstractService {
     }
 
     public User updatePersonalInfo(User user) throws ServiceException {
+        User user1;
         try (DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory()) {
-            daoFactory.beginTransaction();
+            UserDao userDao = daoFactory.getUserDao();
+            parameters.add(user.getFullName());
+            parameters.add(user.getEmail());
+            parameters.add(user.getAddress());
+            parameters.add(user.getTelephoneNumber());
+            parameters.add(user.getUsername());
 
-
+            user1 = userDao.update(user, parameters, UPDATE_USER_PERSONALINFO);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
+        return user1;
     }
 }

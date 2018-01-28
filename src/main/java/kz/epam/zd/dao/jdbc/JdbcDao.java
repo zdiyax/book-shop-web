@@ -50,7 +50,7 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
     }
 
     @Override
-    public void update(T entity, List<Object> parameters, String key) throws JdbcDaoException {
+    public T update(T entity, List<Object> parameters, String key) throws JdbcDaoException {
         query = getSqlQuery(key);
         try (PreparedStatement ps = connection.prepareStatement(query)) {
             setParametersToPs(parameters, ps);
@@ -65,6 +65,7 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
         } catch (SQLException e) {
             throw new JdbcDaoException(e);
         }
+        return entity;
     }
 
     @Override

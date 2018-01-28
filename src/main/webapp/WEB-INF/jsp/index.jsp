@@ -42,7 +42,6 @@ x`
         </div>
     </jsp:body>
 </t:snippet>
-<!-- Main jumbotron for a primary marketing message or call to action -->
 
 <!-- Bootstrap core JavaScript
 ================================================== -->

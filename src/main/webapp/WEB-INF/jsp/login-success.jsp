@@ -6,7 +6,7 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/inputform.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/loader.css"/>
-<link rel="stylesheet" href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css">
 
 <html>
 <head>

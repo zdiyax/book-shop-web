@@ -30,7 +30,7 @@ public class FrontControllerServlet extends HttpServlet {
         try {
             actionFactory.loadActions();
         } catch (ActionFactoryException e) {
-            log.error("Action Factory error in controller occurred", e);
+            log.error("ActionFactory failed to initialize", e);
         }
     }
 
@@ -63,7 +63,7 @@ public class FrontControllerServlet extends HttpServlet {
     private void checkErrorCode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer errorStatusCode = (Integer) request.getAttribute(ERROR_STATUS_CODE_ATTRIBUTE);
         if (errorStatusCode != null) {
-            request.getRequestDispatcher(WEB_INF_PATH_TO_JSP + errorStatusCode + EXT_JSP).forward(request, response);
+            request.getRequestDispatcher(WEB_INF_PATH_TO_JSP  + ERROR + errorStatusCode + EXT_JSP).forward(request, response);
             log.error("Received Error with code {}, will be forwarded to proper error page.", errorStatusCode);
         }
     }
