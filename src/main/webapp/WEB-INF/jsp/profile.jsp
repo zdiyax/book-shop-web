@@ -2,7 +2,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" type="text/css" href="/WEB-INF/css/jumbotron.css"/>x`
+<link rel="stylesheet" type="text/css" href="/WEB-INF/css/jumbotron.css"/>
+<link rel="stylesheet" type="text/css" href="/WEB-INF/css/personalinfo.css"/>
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
       integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -12,33 +13,78 @@
 
 <t:snippet title="${title}">
     <jsp:body>
-        <div class="jumbotron">
+        <div id="fullscreen_bg" class="fullscreen_bg"/>
+        <form class="form-signin">
             <div class="container">
-                <h1 class="display-3">book-shop-web</h1>
-                <p>This is a template for a simple marketing or informational website. It includes a large callout
-                    called a
-                    jumbotron and three supporting pieces of content. Use it as a starting point to create something
-                    more
-                    unique.</p>
-                <p><a class="btn btn-primary btn-lg" href="#" roleType="button"><fmt:message
-                        key="register.button.message"/>&raquo;</a></p>
-            </div>
-        </div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="panel panel-default">
+                            <div class="panel panel-primary">
 
-        <div class="container">
-            <!-- Example row of columns -->
-            <div class="row">
-                <div class="col-md-4">
-                    <h2>Heading</h2>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
-                        mauris
-                        condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
-                        mollis
-                        euismod. Donec sed odio dui. </p>
-                    <p><a class="btn btn-secondary" href="#" roleType="button">View details &raquo;</a></p>
+                                <h3 class="text-center">
+                                    Update my information</h3>
+
+                                <div class="panel-body">
+
+                                    <div class="form-group">
+                                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                            </span>
+                                            <input type="text" class="form-control" placeholder="First Name"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-user"></span></span>
+                                            <input type="text" class="form-control" placeholder="Last Name"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-envelope"></span></span>
+                                            <input type="text" class="form-control" placeholder="Email"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-lock"></span></span>
+                                            <input type="password" class="form-control" placeholder="New Password"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-home"></span></span>
+                                            <input type="text" class="form-control" placeholder="Address"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-calendar"></span></span>
+                                            <input type="text" class="form-control" placeholder="Age"/>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-lg btn-primary btn-block" type="submit">
+                                        Save
+                                    </button>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+        </form>
+
+
     </jsp:body>
 </t:snippet>
 

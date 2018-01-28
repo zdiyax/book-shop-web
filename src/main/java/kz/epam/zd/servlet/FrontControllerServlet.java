@@ -4,6 +4,7 @@ import kz.epam.zd.action.Action;
 import kz.epam.zd.action.ActionFactory;
 import kz.epam.zd.exception.ActionException;
 import kz.epam.zd.exception.ActionFactoryException;
+import kz.epam.zd.util.ValidatorHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,6 +21,7 @@ import static kz.epam.zd.util.ConstantHolder.*;
 public class FrontControllerServlet extends HttpServlet {
 
     private static final Logger log = LoggerFactory.getLogger(FrontControllerServlet.class);
+    private static final String ERROR_STATUS_CODE_ATTRIBUTE = "javax.servlet.error.status_code";
     private ActionFactory actionFactory;
 
     @Override
@@ -33,32 +35,37 @@ public class FrontControllerServlet extends HttpServlet {
     }
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        checkErrorCode(req, resp);
-        String actionName = getActionName(req);
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        checkErrorCode(request, response);
+        String actionName = getActionName(request);
         try {
             Action action = actionFactory.getAction(actionName);
-            String execute = action.execute(req, resp);
-            proceedTo(execute, req, resp);
+            String execute = action.execute(request, response);
+            proceedTo(execute, request, response);
         } catch (ActionException | ActionFactoryException e) {
             log.error("Error in FrontControllerServlet occurred", e);
         }
     }
 
-    private void proceedTo(String execute, HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    private void proceedTo(String execute, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (execute.startsWith(REDIRECT_PREFIX)) {
-            resp.sendRedirect(execute.substring(REDIRECT_PREFIX.length()));
+            response.sendRedirect(execute.substring(REDIRECT_PREFIX.length()));
         } else {
-            req.getRequestDispatcher(WEB_INF_PATH_TO_JSP + execute + EXT_JSP).forward(req, resp);
+            request.getRequestDispatcher(WEB_INF_PATH_TO_JSP + execute + EXT_JSP).forward(request, response);
+            ValidatorHelper.deleteErrorsFromSession(request);
         }
     }
 
-    private String getActionName(HttpServletRequest req) {
-        return req.getParameter(ACTION);
+    private String getActionName(HttpServletRequest request) {
+        return request.getParameter(ACTION);
     }
 
-    private void checkErrorCode(HttpServletRequest req, HttpServletResponse resp) {
-
+    private void checkErrorCode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Integer errorStatusCode = (Integer) request.getAttribute(ERROR_STATUS_CODE_ATTRIBUTE);
+        if (errorStatusCode != null) {
+            request.getRequestDispatcher(WEB_INF_PATH_TO_JSP + errorStatusCode + EXT_JSP).forward(request, response);
+            log.error("Received Error with code {}, will be forwarded to proper error page.", errorStatusCode);
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
