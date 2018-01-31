@@ -20,6 +20,8 @@ public final class ConstantHolder {
     public static final String FORM_ERRORS = "FormErrors";
     public static final String REFERER = "referer";
     public static final String ERROR = "error";
+    public static final String ORDERS = "orders";
+
 
     public static final String ACTION = "action";
     public static final String WEB_INF_PATH_TO_JSP = "/WEB-INF/jsp/";

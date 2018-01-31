@@ -21,7 +21,7 @@ import java.util.*;
 public class FormValidator {
 
     private static final Logger log = LoggerFactory.getLogger(FormValidator.class);
-    private static final String FORM_PROPERTY_FILE_NAME = "forms.properties";
+    private static final String FORM_PROPERTY_FILE_NAME = "validation.properties";
     private static final String PROPERTY_KEY_DOT = ".";
     private static final String REGEX_FOR_NUMBER = "[0-9]*";
     private static final int ZERO_FILE_SIZE = 0;

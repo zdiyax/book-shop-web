@@ -7,7 +7,7 @@
 
 <fmt:setBundle basename="lang"/>
 
-<%@attribute name="title" type="java.lang.String" required="true" %>
+<%@attribute name="title" type="java.lang.String" required="true"%>
 <%@attribute name="header" fragment="true" %>
 <%@attribute name="footer" fragment="true" %>
 
@@ -20,9 +20,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="">
+    <title>${title}</title>
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="/css/footer.css"
-    / type="text/css">
+    <link rel="stylesheet" href="/css/footer.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 </head>
@@ -52,6 +52,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="${prefix}/do/?action=show-profile-page"><fmt:message
                                 key="profile.message"/> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${prefix}/do/?action=show-my-orders-page"><fmt:message
+                                key="orders.message"/> </a>
                     </li>
                 </c:if>
                 <li class="nav-item">
@@ -86,7 +90,7 @@
     <div class="container">
         <hr>
         <footer>
-            <p>&copy; book-shop-web 2017</p>
+            <p>&copy; book-shop-web 2018</p>
         </footer>
     </div>
 </div>

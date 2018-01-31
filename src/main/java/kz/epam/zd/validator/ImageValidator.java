@@ -6,7 +6,7 @@ import kz.epam.zd.util.PropertyManager;
 
 public class ImageValidator extends ParentValidator implements Validator {
 
-    private static final String FORM_PROPERTY_FILE_NAME = "forms.properties";
+    private static final String FORM_PROPERTY_FILE_NAME = "validation.properties";
     private static final String IMAGE_CONTENT_TYPE_KEY = "image.upload.content.type";
 
     @Override

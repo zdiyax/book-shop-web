@@ -1,45 +1,64 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" type="text/css" href="/WEB-INF/css/jumbotron.css"/>
 x`
 <!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-      integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
 <fmt:setBundle basename="lang"/>
 <c:set var="prefix" value="${pageContext.request.contextPath}"/>
 <fmt:message key="catalog.title" var="title"/>
 
+<%--<c:set var="pageCount" value="${pageCount}"/>--%>
+<%--<c:set var="bookCount" value="${bookCount}"/>--%>
+<%--<c:set var="currentPage" value="${currentPage}"/>--%>
+<c:set var="pageCount" value="5"/>
+<c:set var="bookCount" value="30"/>
+<c:set var="currentPage" value="2"/>
+
 <t:snippet title="${title}">
     <jsp:body>
-        <div class="jumbotron">
-            <div class="container">
-                <h1 class="display-3">book-shop-web</h1>
-                <p>This is a template for a simple marketing or informational website. It includes a large callout
-                    called a
-                    jumbotron and three supporting pieces of content. Use it as a starting point to create something
-                    more
-                    unique.</p>
-                <p><a class="btn btn-primary btn-lg" href="#" roleType="button"><fmt:message
-                        key="register.button.message"/>&raquo;</a></p>
-            </div>
-        </div>
 
-        <div class="container">
-            <!-- Example row of columns -->
-            <div class="row">
-                <div class="col-md-4">
-                    <h2>Heading</h2>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
-                        mauris
-                        condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
-                        mollis
-                        euismod. Donec sed odio dui. </p>
-                    <p><a class="btn btn-secondary" href="#" roleType="button">View details &raquo;</a></p>
-                </div>
-            </div>
-        </div>
+        <nav aria-label="...">
+            <ul class="pagination" style="padding-left: 100px; padding-top: 200px;">
+                <c:if test="${pageCount == 1}">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                </c:if>
+                <c:if test="${pageCount != 1}">
+                    <li class="page-item">
+                        <a class="page-link" href="/do/?action=show-catalog-page&page=${currentPage-1}" tabindex="-1">Previous</a>
+                    </li>
+                </c:if>
+                <c:forEach var="i" begin="${currentPage}" end="${currentPage+2}">
+                    <c:choose>
+                        <c:when test="${i == currentPage}">
+                            <li class="page-item active">
+                                <a class="page-link" href="/do/?action=show-catalog-page&page=${i}">${i}</a>
+                            </li>
+                        </c:when> <c:otherwise>
+                        <li class="page-item">
+                            <a class="page-link" href="/do/?action=show-catalog-page&page=${i}">${i}</a>
+                        </li>
+                    </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+
+
+                <c:if test="${pageCount == 1}">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="/do/?action=" tabindex="+1">Next</a>
+                    </li>
+                </c:if>
+                <c:if test="${pageCount != 1}">
+                    <li class="page-item">
+                        <a class="page-link" href="/do/?action=show-catalog-page&page=${currentPage+1}" tabindex="+1">Next</a>
+                    </li>
+                </c:if>
+            </ul>
+        </nav>
     </jsp:body>
 </t:snippet>
 

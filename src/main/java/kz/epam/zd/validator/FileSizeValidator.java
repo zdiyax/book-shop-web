@@ -6,7 +6,7 @@ import kz.epam.zd.util.PropertyManager;
 
 public class FileSizeValidator extends ParentValidator implements Validator {
 
-    private static final String FORM_PROPERTY_FILE_NAME = "forms.properties";
+    private static final String FORM_PROPERTY_FILE_NAME = "validation.properties";
     private static final String MAX_FILE_SIZE_KEY = "max.upload.image.size";
 
     @Override

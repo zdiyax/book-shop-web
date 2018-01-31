@@ -9,38 +9,34 @@ x`
       integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 <fmt:setBundle basename="lang"/>
 <c:set var="prefix" value="${pageContext.request.contextPath}"/>
-<fmt:message key="about.title" var="title"/>
+<fmt:message key="myorders.title" var="title"/>
 
 <t:snippet title="${title}">
     <jsp:body>
-        <div class="jumbotron">
+        <br>
+        <br>
             <div class="container">
-                <h1 class="display-3">book-shop-web</h1>
-                <p>This is a template for a simple marketing or informational website. It includes a large callout
-                    called a
-                    jumbotron and three supporting pieces of content. Use it as a starting point to create something
-                    more
-                    unique.</p>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">price</th>
+                        <th scope="col">status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="order" items="${orders}">
+                        <tr>
+                            <td>${order.id}</td>
+                            <td>${order.totalPrice}</td>
+                            <td>${order.status}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
             </div>
-        </div>
-
-        <div class="container">
-            <!-- Example row of columns -->
-            <div class="row">
-                <div class="col-md-4">
-                    <h2>Heading</h2>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
-                        mauris
-                        condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
-                        mollis
-                        euismod. Donec sed odio dui. </p>
-                    <p><a class="btn btn-secondary" href="#" roleType="button">View details &raquo;</a></p>
-                </div>
-            </div>
-        </div>
     </jsp:body>
 </t:snippet>
-<!-- Main jumbotron for a primary marketing message or call to action -->
 
 <!-- Bootstrap core JavaScript
 ================================================== -->

@@ -36,7 +36,8 @@
                             </span>
                                             <input type="text" class="form-control" name="fullName"
                                                    placeholder="${personalInfoFullNamePlaceholder}"
-                                                   value="${user.fullName}"/>
+                                                   value="${user.fullName}" autocomplete="off" minlength="6"
+                                                   maxlength="32"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -45,7 +46,8 @@
                                                     class="glyphicon glyphicon-home"></span></span>
                                             <input type="text" class="form-control" name="address"
                                                    placeholder="${personalInfoAddressPlaceholder}"
-                                                   value="${user.address}"/>
+                                                   value="${user.address}" autocomplete="off" minlength="6"
+                                                   maxlength="64"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -53,7 +55,8 @@
                                             <span class="input-group-addon"><span
                                                     class="glyphicon glyphicon-envelope"></span></span>
                                             <input type="email" class="form-control" name="email"
-                                                   placeholder="${personalInfoEmailPlaceholder}" value="${user.email}"/>
+                                                   placeholder="${personalInfoEmailPlaceholder}" value="${user.email}"
+                                                   autocomplete="off" minlength="6" maxlength="32"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -62,7 +65,8 @@
                                                     class="glyphicon glyphicon-lock"></span></span>
                                             <input type="tel" class="form-control" name="telephoneNumber"
                                                    placeholder="${personalInfoTelephoneNumberPlaceholder}"
-                                                   value="${user.telephoneNumber}"/>
+                                                   value="${user.telephoneNumber}" autocomplete="off" minlength="6"
+                                                   maxlength="32"/>
                                         </div>
                                     </div>
                                     <button class="btn btn-lg btn-primary btn-block" type="submit">
@@ -74,9 +78,7 @@
                     </div>
                 </div>
             </div>
-
         </form>
-
     </jsp:body>
 </t:snippet>
 

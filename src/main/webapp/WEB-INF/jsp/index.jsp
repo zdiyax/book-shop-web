@@ -21,8 +21,6 @@ x`
                     jumbotron and three supporting pieces of content. Use it as a starting point to create something
                     more
                     unique.</p>
-                <p><a class="btn btn-primary btn-lg" href="#" roleType="button"><fmt:message
-                        key="register.button.message"/>&raquo;</a></p>
             </div>
         </div>
 
