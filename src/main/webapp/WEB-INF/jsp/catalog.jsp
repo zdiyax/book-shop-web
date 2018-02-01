@@ -3,7 +3,6 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" type="text/css" href="/WEB-INF/css/jumbotron.css"/>
-x`
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
 <fmt:setBundle basename="lang"/>
@@ -13,50 +12,132 @@ x`
 <%--<c:set var="pageCount" value="${pageCount}"/>--%>
 <%--<c:set var="bookCount" value="${bookCount}"/>--%>
 <%--<c:set var="currentPage" value="${currentPage}"/>--%>
-<c:set var="pageCount" value="5"/>
-<c:set var="bookCount" value="30"/>
-<c:set var="currentPage" value="2"/>
+<c:set var="pageCount" value="${pageCount}"/>
+<c:set var="bookCount" value="${bookCount}"/>
+<c:set var="currentPage" value="${currentPage}"/>
+<c:set var="books" value="${books}"/>
 
 <t:snippet title="${title}">
     <jsp:body>
-
+        <%--Very ugly way to create a pagination bar--%>
         <nav aria-label="...">
             <ul class="pagination" style="padding-left: 100px; padding-top: 200px;">
-                <c:if test="${pageCount == 1}">
+                <c:if test="${currentPage == 1}">
                     <li class="page-item disabled">
                         <a class="page-link" href="#" tabindex="-1">Previous</a>
                     </li>
                 </c:if>
-                <c:if test="${pageCount != 1}">
+                <c:if test="${currentPage != 1}">
                     <li class="page-item">
-                        <a class="page-link" href="/do/?action=show-catalog-page&page=${currentPage-1}" tabindex="-1">Previous</a>
+                        <a class="page-link" href="/do/?action=show-catalog-page&page=${currentPage-1}"
+                           tabindex="-1">Previous</a>
                     </li>
                 </c:if>
-                <c:forEach var="i" begin="${currentPage}" end="${currentPage+2}">
-                    <c:choose>
-                        <c:when test="${i == currentPage}">
-                            <li class="page-item active">
-                                <a class="page-link" href="/do/?action=show-catalog-page&page=${i}">${i}</a>
-                            </li>
-                        </c:when> <c:otherwise>
-                        <li class="page-item">
-                            <a class="page-link" href="/do/?action=show-catalog-page&page=${i}">${i}</a>
-                        </li>
+                <c:choose>
+                    <c:when test="${currentPage == 1}">
+                        <c:choose>
+                            <c:when test="${pageCount == 1}">
+                                <li class="page-item active">
+                                    <a class="page-link" href="/do/?action=show-catalog-page&page=${1}">1</a>
+                                </li>
+                            </c:when>
+                            <c:when test="${pageCount == 2}">
+                                <c:forEach var="i" begin="${currentPage}" end="${currentPage+1}">
+                                    <c:choose>
+                                        <c:when test="${i == currentPage}">
+                                            <li class="page-item active">
+                                                <a class="page-link"
+                                                   href="/do/?action=show-catalog-page&page=${i}">${i}</a>
+                                            </li>
+                                        </c:when> <c:otherwise>
+                                        <li class="page-item">
+                                            <a class="page-link" href="/do/?action=show-catalog-page&page=${i}">${i}</a>
+                                        </li>
+                                    </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="i" begin="${currentPage}" end="${currentPage+2}">
+                                    <c:choose>
+                                        <c:when test="${i == currentPage}">
+                                            <li class="page-item active">
+                                                <a class="page-link"
+                                                   href="/do/?action=show-catalog-page&page=${i}">${i}</a>
+                                            </li>
+                                        </c:when> <c:otherwise>
+                                        <li class="page-item">
+                                            <a class="page-link" href="/do/?action=show-catalog-page&page=${i}">${i}</a>
+                                        </li>
+                                    </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:when>
+                    <c:when test="${currentPage == pageCount}">
+                        <c:choose>
+                            <c:when test="${pageCount == 2}">
+                                <c:forEach var="i" begin="${currentPage-1}" end="${currentPage}">
+                                    <c:choose>
+                                        <c:when test="${i == currentPage}">
+                                            <li class="page-item active">
+                                                <a class="page-link"
+                                                   href="/do/?action=show-catalog-page&page=${i}">${i}</a>
+                                            </li>
+                                        </c:when> <c:otherwise>
+                                        <li class="page-item">
+                                            <a class="page-link" href="/do/?action=show-catalog-page&page=${i}">${i}</a>
+                                        </li>
+                                    </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </c:when> <c:otherwise>
+                            <c:forEach var="i" begin="${currentPage-2}" end="${currentPage}">
+                                <c:choose>
+                                    <c:when test="${i == currentPage}">
+                                        <li class="page-item active">
+                                            <a class="page-link" href="/do/?action=show-catalog-page&page=${i}">${i}</a>
+                                        </li>
+                                    </c:when> <c:otherwise>
+                                    <li class="page-item">
+                                        <a class="page-link" href="/do/?action=show-catalog-page&page=${i}">${i}</a>
+                                    </li>
+                                </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                        </c:otherwise>
+                        </c:choose>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach var="i" begin="${currentPage-1}" end="${currentPage+1}">
+                            <c:choose>
+                                <c:when test="${i == currentPage}">
+                                    <li class="page-item active">
+                                        <a class="page-link" href="/do/?action=show-catalog-page&page=${i}">${i}</a>
+                                    </li>
+                                </c:when> <c:otherwise>
+                                <li class="page-item">
+                                    <a class="page-link" href="/do/?action=show-catalog-page&page=${i}">${i}</a>,
+                                </li>
+                            </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
                     </c:otherwise>
-                    </c:choose>
-                </c:forEach>
+                </c:choose>
 
+                <c:choose>
+                    <c:when test="${pageCount == 1 || pageCount == currentPage}">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="+1">Next</a>
+                        </li>
 
-                <c:if test="${pageCount == 1}">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="/do/?action=" tabindex="+1">Next</a>
-                    </li>
-                </c:if>
-                <c:if test="${pageCount != 1}">
+                    </c:when> <c:otherwise>
                     <li class="page-item">
                         <a class="page-link" href="/do/?action=show-catalog-page&page=${currentPage+1}" tabindex="+1">Next</a>
                     </li>
-                </c:if>
+                </c:otherwise>
+                </c:choose>
             </ul>
         </nav>
     </jsp:body>

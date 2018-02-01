@@ -13,10 +13,6 @@ public class ShowCatalogPageAction implements Action {
         } catch (NumberFormatException e) {
             e.getMessage();
         }
-
-        req.getSession().setAttribute("pageCount", 5);
-        req.getSession().setAttribute("bookCount", 20);
-        req.getSession().setAttribute("currentPage", 1);
         return CATALOG_PAGE;
     }
 }
