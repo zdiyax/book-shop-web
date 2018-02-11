@@ -21,8 +21,9 @@ public class JdbcBookDao extends JdbcDao<Book> implements BookDao {
         book.setId(resultSet.getInt(INDEX_1));
         book.setIsbn(resultSet.getString(INDEX_2));
         book.setTitle(resultSet.getString(INDEX_3));
-        book.setDescription(resultSet.getString(INDEX_4));
-        book.setPrice(resultSet.getDouble(INDEX_5));
+        book.setAuthor(resultSet.getString(INDEX_4));
+        book.setDescription(resultSet.getString(INDEX_5));
+        book.setPrice(resultSet.getInt(INDEX_6));
         return book;
     }
 

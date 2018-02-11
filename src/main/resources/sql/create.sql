@@ -2,8 +2,10 @@ CREATE TABLE "book" (
   "book_id"     SERIAL      NOT NULL,
   "isbn"        VARCHAR(17) NOT NULL UNIQUE,
   "title"       VARCHAR(32) NOT NULL,
+  "author"      VARCHAR(32) NOT NULL,
   "description" VARCHAR(255),
-  "price"       FLOAT       NOT NULL,
+  "price"       INTEGER,
+  "amount"      INTEGER DEFAULT 0,
   CONSTRAINT book_pk PRIMARY KEY ("book_id")
 ) WITH (
 OIDS = FALSE

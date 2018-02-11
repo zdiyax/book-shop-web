@@ -28,7 +28,7 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col"><fmt:message key="catalog.isbnField"/></th>
+                        <th scope="col"><fmt:message key="catalog.authorField"/></th>
                         <th scope="col"><fmt:message key="catalog.titleField"/></th>
                         <th scope="col"><fmt:message key="catalog.priceField"/></th>
                     </tr>
@@ -36,10 +36,10 @@
                     <tbody>
                     <c:forEach var="book" items="${books}">
                         <tr>
-                            <td>${book.isbn}</td>
+                            <td>${book.author}</td>
                             <td>${book.title}</td>
                             <td>${book.price}</td>
-                            <td><a href="/do/?action=show-detailed-book-info">details</a></td>
+                            <td><a href="/do/?action=show-detailed-book-info&id=${book.id}">details</a></td>
                         </tr>
                     </c:forEach>
                     </tbody>

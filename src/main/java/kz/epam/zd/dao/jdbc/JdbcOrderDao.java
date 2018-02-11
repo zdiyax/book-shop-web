@@ -21,7 +21,7 @@ public class JdbcOrderDao extends JdbcDao<Order> implements OrderDao {
         Order order = new Order();
         order.setUserId(entity.getUserId());
         order.setId(rs.getInt(INDEX_1));
-        order.setTotalPrice(rs.getDouble(INDEX_2));
+        order.setTotalPrice(rs.getInt(INDEX_2));
         order.setStatus(OrderStatus.valueOf(rs.getString(INDEX_3)));
         return order;
     }

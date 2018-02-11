@@ -8,13 +8,13 @@ public class Order extends Model {
     private int userId;
     private List<Book> books;
     private Date dateOrdered;
-    private Double totalPrice;
+    private Integer totalPrice;
 
-    public Double getTotalPrice() {
+    public Integer getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(Double totalPrice) {
+    public void setTotalPrice(Integer totalPrice) {
         this.totalPrice = totalPrice;
     }
 

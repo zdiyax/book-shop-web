@@ -3,8 +3,9 @@ package kz.epam.zd.model;
 public class Book extends Model {
     private String isbn;
     private String title;
+    private String author;
     private String description;
-    private Double price;
+    private Integer price;
 
     public String getIsbn() {
         return isbn;
@@ -30,11 +31,19 @@ public class Book extends Model {
         this.description = description;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

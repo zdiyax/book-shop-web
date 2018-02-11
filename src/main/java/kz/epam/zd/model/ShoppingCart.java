@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ShoppingCart {
     private List<Book> bookList;
-    private Double sum;
+    private Integer sum;
 
     public ShoppingCart() {
         bookList = new ArrayList<>();

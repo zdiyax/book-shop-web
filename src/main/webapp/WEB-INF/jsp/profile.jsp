@@ -19,15 +19,12 @@
     <jsp:body>
         <div id="fullscreen_bg" class="fullscreen_bg">
         <form class="form-signin" action="/do/?action=update-personal-info" method="post">
-            <div class="container">
+            <div class="container" style="margin-top: 60px">
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4">
                         <div class="panel panel-default">
                             <div class="panel panel-primary">
                                 <div class="panel-body">
-                                    <br>
-                                    <br>
-                                    <br>
                                     <h3 class="text-center">
                                         <fmt:message key="personal.info.message"/></h3>
                                     <div class="form-group">

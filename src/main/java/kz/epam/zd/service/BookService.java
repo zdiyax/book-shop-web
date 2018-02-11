@@ -13,14 +13,15 @@ import java.util.List;
 public class BookService extends AbstractService {
     private static final Logger log = LoggerFactory.getLogger(BookService.class);
 
-    private static final String GET_BOOKS_PAGINATED = "get.books.paginated";
     private static final String GET_BOOKS_AMOUNT = "get.books.amount";
+    private static final String GET_BOOKS_ALL = "get.books.all";
+    private static final String GET_BOOKS_BY_TITLE = "get.books.by.title";
+    private static final String GET_BOOK_BY_ID = "get.book.by.id";
 
 
     private static final int BOOKS_PER_PAGE = 10;
 
     private List<Book> getBooksByQuery(Book book, String query) throws ServiceException {
-        log.debug("Entering getBooksByQuery() method");
         List<Book> bookList;
         try (DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory()) {
             BookDao bookDao = daoFactory.getBookDao();
@@ -31,14 +32,26 @@ public class BookService extends AbstractService {
         return bookList;
     }
 
-    public List<Book> getBooksPaginated(int pageNumber) throws ServiceException {
+    public List<Book> getBooksAll(int pageNumber) throws ServiceException {
         int offset = --pageNumber * BOOKS_PER_PAGE;
         parameters.add(offset);
-        return getBooksByQuery(new Book(), GET_BOOKS_PAGINATED);
+        return getBooksByQuery(new Book(), GET_BOOKS_ALL);
     }
 
     public int getTotalBookAmount() throws ServiceException {
         List<Book> books = getBooksByQuery(new Book(), GET_BOOKS_AMOUNT);
         return books.size();
+    }
+
+    public List<Book> getBooksByTitle(int pageNumber, String title) throws ServiceException {
+        parameters.add(title);
+        int offset = --pageNumber * BOOKS_PER_PAGE;
+        parameters.add(offset);
+        return getBooksByQuery(new Book(), GET_BOOKS_BY_TITLE);
+    }
+
+    public Book getBookById(int id) throws ServiceException {
+        parameters.add(id);
+        return getBooksByQuery(new Book(), GET_BOOK_BY_ID).get(0);
     }
 }
