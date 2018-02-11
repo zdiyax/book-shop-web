@@ -1,12 +1,10 @@
 package kz.epam.zd.model;
 
-import java.math.BigDecimal;
-
 public class Book extends Model {
     private String isbn;
     private String title;
     private String description;
-    private BigDecimal price;
+    private Double price;
 
     public String getIsbn() {
         return isbn;
@@ -32,11 +30,11 @@ public class Book extends Model {
         this.description = description;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 }

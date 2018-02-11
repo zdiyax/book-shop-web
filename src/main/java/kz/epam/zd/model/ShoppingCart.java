@@ -1,12 +1,11 @@
 package kz.epam.zd.model;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCart {
     private List<Book> bookList;
-    private BigDecimal sum;
+    private Double sum;
 
     public ShoppingCart() {
         bookList = new ArrayList<>();
@@ -27,7 +26,7 @@ public class ShoppingCart {
 
     public void updateSum() {
         for (Book book : bookList) {
-            sum.add(book.getPrice());
+            sum = +book.getPrice();
         }
     }
 }

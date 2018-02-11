@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css">
 
 
-
 <html>
 <head>
     <meta charset="utf-8">
@@ -20,8 +19,8 @@
 </head>
 
 <body class="text-center">
-<h1 class="h3 mb-3 font-weight-normal"><fmt:message key="register.success.message" /></h1>
 <div class="cssload-container">
+    <h1 class="h3 mb-3 font-weight-normal"><fmt:message key="register.success.message"/></h1>
     <div class="cssload-speeding-wheel"></div>
 </div>
 </body>

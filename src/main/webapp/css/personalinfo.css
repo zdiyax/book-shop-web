@@ -1,5 +1,4 @@
-body
-{
+body {
     margin-top: 50px;
     background-color: #1b1b1b;
     padding-top: 2rem;
@@ -7,26 +6,24 @@ body
 .form-signin {
     max-width: 280px;
     padding: 15px;
-    margin:100px;
-    margin-top:20px;
+    margin: 20px 100px 100px;
 }
 .panel-default {
     opacity: 0.8;
-    /*margin-top:30px;*/
 }
-.input-group-addon
-{
+.input-group-addon {
     background-color: rgb(50, 118, 177);
     border-color: rgb(40, 94, 142);
     color: rgb(255, 255, 255);
 }
-.form-control:focus
-{
+.form-control:focus {
     background-color: rgb(50, 118, 177);
     border-color: rgb(40, 94, 142);
     color: rgb(255, 255, 255);
 }
-.form-signup input[type="text"],.form-signup input[type="password"] { border: 1px solid rgb(50, 118, 177); }
+.form-signup input[type="text"],.form-signup input[type="password"] {
+    border: 1px solid rgb(50, 118, 177);
+}
 .fullscreen_bg {
     position: relative;
     top: 0;
@@ -34,6 +31,5 @@ body
     bottom: 0;
     left: 0;
     background-size: cover;
-    background-position: 50% 50%;
-    background-repeat:repeat;
+    background: repeat 50% 50%;
 }

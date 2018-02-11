@@ -18,7 +18,6 @@
 </head>
 
 <body class="text-center">
-<%--TODO: center loading animation--%>
 <div class="cssload-container">
     <h1 class="h3 mb-3 font-weight-normal"><fmt:message key="login.success.message"/></h1>
     <div class="cssload-speeding-wheel"></div>

@@ -1,13 +1,9 @@
 package kz.epam.zd.model;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.sql.Date;
 import java.util.List;
 
 public class Order extends Model {
-    private final Logger log = LoggerFactory.getLogger(Order.class);
     private OrderStatus status;
     private int userId;
     private List<Book> books;

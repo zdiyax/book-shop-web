@@ -19,7 +19,7 @@ public class LocaleFilter implements Filter {
     private static final String LOCALE = "locale";
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
     }
 
     @Override

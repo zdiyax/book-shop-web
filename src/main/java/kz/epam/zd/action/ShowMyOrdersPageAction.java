@@ -20,13 +20,13 @@ import static kz.epam.zd.util.ConstantHolder.*;
 public class ShowMyOrdersPageAction implements Action {
     private static final Logger log = LoggerFactory.getLogger(ShowMyOrdersPageAction.class);
     private static final String MY_ORDERS = "my-orders";
-    private static final String PERSONALINFO = "personalinfo";
+    private static final String PERSONAL_INFO = "personalinfo";
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
         try {
             FormValidator validator = new FormValidator();
-            Map<String, List<String>> fieldErrors = validator.validate(PERSONALINFO, request);
+            Map<String, List<String>> fieldErrors = validator.validate(PERSONAL_INFO, request);
             if (validator.hasFieldsErrors(request, fieldErrors))
                 return REDIRECT_PREFIX + "/do/?action=show-my-orders-page";
         } catch (ValidatorException e) {

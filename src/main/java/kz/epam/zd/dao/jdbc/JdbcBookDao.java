@@ -1,13 +1,13 @@
 package kz.epam.zd.dao.jdbc;
 
-import kz.epam.zd.model.Book;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import kz.epam.zd.dao.BookDao;
+import kz.epam.zd.model.Book;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import static kz.epam.zd.util.ConstantHolder.*;
 
 public class JdbcBookDao extends JdbcDao<Book> implements BookDao {
 
@@ -17,13 +17,13 @@ public class JdbcBookDao extends JdbcDao<Book> implements BookDao {
 
     @Override
     protected Book createEntityFromRs(ResultSet resultSet, Book entity) throws SQLException {
-            Book book = new Book();
-            book.setId(Integer.parseInt(resultSet.getString("id")));
-            book.setIsbn(resultSet.getString("isbn"));
-            book.setTitle(resultSet.getString("title"));
-            book.setDescription(resultSet.getString("description"));
-            book.setPrice(resultSet.getBigDecimal("price"));
-            return book;
+        Book book = new Book();
+        book.setId(resultSet.getInt(INDEX_1));
+        book.setIsbn(resultSet.getString(INDEX_2));
+        book.setTitle(resultSet.getString(INDEX_3));
+        book.setDescription(resultSet.getString(INDEX_4));
+        book.setPrice(resultSet.getDouble(INDEX_5));
+        return book;
     }
 
 }

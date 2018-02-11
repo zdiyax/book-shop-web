@@ -7,12 +7,11 @@
 
 <fmt:setBundle basename="lang"/>
 
-<%@attribute name="title" type="java.lang.String" required="true"%>
+<%@attribute name="title" type="java.lang.String" required="true" %>
 <%@attribute name="header" fragment="true" %>
 <%@attribute name="footer" fragment="true" %>
 
 <c:set var="prefix" value="${pageContext.request.contextPath}"/>
-<%--<c:set var="roleType" value="${sessionScope.user.userRole}"/>--%>
 <c:set var="USER" value="USER"/>
 <c:set var="MANAGER" value="MANAGER"/>
 <html>
@@ -40,7 +39,7 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="${prefix}/do/?action=show-catalog-page"><fmt:message
+                    <a class="nav-link" href="${prefix}/do/?action=show-catalog-page&page=1"><fmt:message
                             key="catalog.message"/></a>
                 </li>
                 <li class="nav-item">
@@ -95,6 +94,7 @@
     </div>
 </div>
 </body>
+</html>
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
@@ -106,4 +106,3 @@
         integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
         crossorigin="anonymous"></script>
 <script src="../../dist/js/bootstrap.min.js"></script>
-</html>

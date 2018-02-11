@@ -2,7 +2,7 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-         version="3.0" id="Book-Geek">
+         version="3.0" id="bookshopwebid">
     <display-name>book-shop-web</display-name>
     <session-config>
         <session-timeout>30</session-timeout>
@@ -32,7 +32,7 @@
     </filter-mapping>
     <filter-mapping>
         <filter-name>EncodingFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/do/*</url-pattern>
     </filter-mapping>
 
     <jsp-config>
@@ -41,6 +41,11 @@
             <taglib-location>/WEB-INF/tld/custom.tld</taglib-location>
         </taglib>
     </jsp-config>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/jsp/error404.jsp</location>
+    </error-page>
 
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>

@@ -17,10 +17,9 @@ public class UpdatePersonalInfoAction implements Action {
     private static final Logger log = LoggerFactory.getLogger(UpdatePersonalInfoAction.class);
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) throws ActionException {
+    public String execute(HttpServletRequest req, HttpServletResponse res) {
         UserService userService = new UserService();
         User user = (User) req.getSession().getAttribute(USER);
-        System.out.println(user.getUsername());
 
         user.setFullName(req.getParameter(FULL_NAME));
         user.setEmail(req.getParameter(EMAIL));

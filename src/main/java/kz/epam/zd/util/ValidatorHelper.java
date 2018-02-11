@@ -42,7 +42,6 @@ public class ValidatorHelper {
     public static void setErrorsToSession(HttpServletRequest req, Map<String, List<String>> fieldErrors) {
 
         for (Map.Entry<String, List<String>> entry : fieldErrors.entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
             req.getSession().setAttribute(entry.getKey() + FORM_ERRORS, entry.getValue());
             for (String errorMessage : entry.getValue()) {
                 logger.debug("In filed \"{}\" found error message \"{}\"", entry.getKey(), errorMessage);
