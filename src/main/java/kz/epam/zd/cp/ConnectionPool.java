@@ -109,7 +109,6 @@ public class ConnectionPool {
             } else {
                 connection = connections.take();
             }
-            log.debug("Connection received: {}", connection);
         } catch (InterruptedException e) {
             log.debug("Connection error occurred. Thread interrupted.");
             throw new ConnectionPoolException();

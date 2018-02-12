@@ -1,6 +1,7 @@
 package kz.epam.zd.action;
 
 import kz.epam.zd.exception.ServiceException;
+import kz.epam.zd.model.Book;
 import kz.epam.zd.model.user.Locale;
 import kz.epam.zd.model.user.RoleType;
 import kz.epam.zd.model.user.User;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 
 import static kz.epam.zd.util.ConstantHolder.*;
 
@@ -39,6 +41,8 @@ public class LoginAction implements Action {
         }
         log.debug("User logged in | Username = {}", foundUser.getUsername());
         req.getSession().setAttribute(USER, foundUser);
+        req.getSession().setAttribute("cart", new HashMap<Book, Integer>());
+
         return REDIRECT_LOGIN_SUCCESS;
     }
 }

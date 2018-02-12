@@ -53,7 +53,6 @@ public class JdbcDaoFactory extends DaoFactory {
                 log.debug("Connection is closed or invalid and won't be added to the pool");
             else {
                 pool.returnConnection(connection);
-                log.debug("Connection returned to the pool successfully");
             }
         } catch (SQLException | ConnectionPoolException e) {
             throw new JdbcDaoException(e);

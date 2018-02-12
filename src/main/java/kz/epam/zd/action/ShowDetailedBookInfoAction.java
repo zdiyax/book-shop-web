@@ -22,7 +22,7 @@ public class ShowDetailedBookInfoAction implements Action {
         BookService bookService = new BookService();
         try {
             Book book = bookService.getBookById(id);
-            req.setAttribute(BOOK, book);
+            req.getSession().setAttribute(BOOK, book);
         } catch (ServiceException e) {
             req.setAttribute(BOOKS + FORM_ERRORS, BOOKS_ERROR_MESSAGE);
             return "book-details";

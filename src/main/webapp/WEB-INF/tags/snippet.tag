@@ -56,6 +56,10 @@
                         <a class="nav-link" href="${prefix}/do/?action=show-my-orders-page"><fmt:message
                                 key="orders.message"/> </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${prefix}/do/?action=show-cart-page"><fmt:message
+                                key="cart.message"/> </a>
+                    </li>
                 </c:if>
                 <li class="nav-item">
                     <a class="nav-link" href="${prefix}/do/?action=lang&locale=en">EN</a>

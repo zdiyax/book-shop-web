@@ -10,16 +10,12 @@
 <fmt:setBundle basename="lang"/>
 <c:set var="prefix" value="${pageContext.request.contextPath}"/>
 <fmt:message key="profile.title" var="title"/>
-<fmt:message key="personal.info.full_name.placeholder" var="personalInfoFullNamePlaceholder"/>
-<fmt:message key="personal.info.email.placeholder" var="personalInfoEmailPlaceholder"/>
-<fmt:message key="personal.info.address.placeholder" var="personalInfoAddressPlaceholder"/>
-<fmt:message key="personal.info.telephone_number.placeholder" var="personalInfoTelephoneNumberPlaceholder"/>
 
 <c:set var="book" value="${book}"/>
 
 <t:snippet title="${title}">
     <jsp:body>
-        <div style="margin-top: 60px; margin-left: 60px">
+        <div style="margin-top: 60px; margin-left: 60px; width: 60%">
             <h2><b>${book.title}</b></h2>
 
             <h4><b>${book.author}</b></h4>
@@ -29,7 +25,7 @@
             <p>${book.description}</p>
 
             <button type="button" class="btn btn-outline-primary">
-                <a style="text-decoration: none" href="/do/?action=add-to-cart&id=${book.id}">Add to Cart</a>
+                <a style="text-decoration: none" href="/do/?action=add-book-to-cart&id=${book.id}">Add to Cart</a>
             </button>
         </div>
     </jsp:body>
