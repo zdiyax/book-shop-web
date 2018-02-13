@@ -11,16 +11,25 @@ import kz.epam.zd.service.OrderService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.Map;
 
 import static kz.epam.zd.util.ConstantHolder.*;
 
 public class OrderBooksAction implements Action {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) throws ActionException {
-//        Functionality here
         HashMap books = (HashMap) req.getSession().getAttribute("cart");
         final User user = (User) req.getSession().getAttribute(USER);
         final int userId = user.getId();
+
+        for (int i = 0; i < books.size(); i++) {
+            for (Object o : books.entrySet()) {
+                Map.Entry pair = (Map.Entry) o;
+                System.out.println("quantity" + i);
+                System.out.println(req.getParameter("quantity" + i));
+                books.replace(pair.getKey(), pair.getValue(), Integer.valueOf(req.getParameter("quantity" + i)));
+            }
+        }
 
         Order order = new Order();
         order.setUserId(userId);

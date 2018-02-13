@@ -19,43 +19,45 @@
 
         <div style="width: 80%; height: 80%; float:right; margin-top: 100px;">
             <div class="container">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th scope="col"><fmt:message key="catalog.authorField"/></th>
-                        <th scope="col"><fmt:message key="catalog.titleField"/></th>
-                        <th scope="col"><fmt:message key="catalog.priceField"/></th>
-                        <th scope="col" style="width: 20px">Quantity</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach var="cart" items="${cart}">
+                <form method="post" action="/do/?action=order-books">
+                    <table class="table table-bordered">
+                        <thead>
                         <tr>
-                            <td>${cart.key.author}</td>
-                            <td>${cart.key.title}</td>
-                            <td>${cart.key.price}</td>
-                            <td>${cart.value}</td>
-                            <%--<td>${cart.value}</td>--%>
-
-                        <%--<td><a href="/do/?action=show-detailed-book-info&id=${book.id}">details</a></td>--%>
+                            <th scope="col"><fmt:message key="catalog.authorField"/></th>
+                            <th scope="col"><fmt:message key="catalog.titleField"/></th>
+                            <th scope="col"><fmt:message key="catalog.priceField"/></th>
+                            <th scope="col" style="width: 50px">Quantity</th>
                         </tr>
-                    </c:forEach>
-                    <tr>
-                        <td style="visibility: collapse"></td>
-                        <td><b>Total cost :</b></td>
-                        <td>${totalCost}</td>
-                    </tr>
-                    <tr>
-                        <td style="visibility: collapse"></td>
-                        <td style="visibility: collapse"></td>
-                        <td>
-                            <button type="button" class="btn btn-outline-primary">
-                                <a style="text-decoration: none" href="/do/?action=order-books">Order</a>
-                            </button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="cart" items="${cart}" varStatus="i">
+                            <tr>
+                                <td>${cart.key.author}</td>
+                                <td>${cart.key.title}</td>
+                                <td>${cart.key.price}</td>
+                                <td><input type="number" class="form-control" value="${cart.value}"
+                                           name="quantity${i.index}"
+                                           autocomplete="off" pattern="/^([+-]?[1-9]\d*|0)$/" maxlength="2"/></td>
+                                    <%--<td>${cart.value}</td>--%>
+                            </tr>
+                        </c:forEach>
+                        <tr>
+                            <td style="visibility: collapse"></td>
+                            <td><b>Total cost :</b></td>
+                            <td>${totalCost}</td>
+                        </tr>
+                        <tr>
+                            <td style="visibility: collapse"></td>
+                            <td style="visibility: collapse"></td>
+                            <td>
+                                <button class="btn btn-outline-primary" type="submit">
+                                    Order
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
             </div>
         </div>
     </jsp:body>

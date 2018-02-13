@@ -35,32 +35,29 @@ public class OrderService extends AbstractService {
             throw new ServiceException(e);
         }
 
+
         for (Object o : books.entrySet()) {
-            insertBookOrderedEntry(resultOrder, (Map.Entry) o);
+            parameters.clear();
+            parameters.add(resultOrder.getId());
+            Map.Entry pair = (Map.Entry) o;
+            Book book1 = (Book) pair.getKey();
+            int quantity = (int) pair.getValue();
+            parameters.add(book1.getId());
+            parameters.add(quantity);
+            BookOrdered bookOrdered = new BookOrdered();
+            bookOrdered.setOrderId(resultOrder.getId());
+            bookOrdered.setBookId(book1.getId());
+            bookOrdered.setQuantity(quantity);
+
+            try (DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory()) {
+                BookOrderedDao bookOrderedDao = daoFactory.getBookOrderedDao();
+                bookOrderedDao.insert(bookOrdered, parameters, INSERT_BOOK_ORDERED);
+            } catch (DaoException e) {
+                log.debug("Error in OrderService occurred: " + e.getMessage());
+                throw new ServiceException(e);
+            }
         }
 
-    }
-
-    private void insertBookOrderedEntry(Order resultOrder, Map.Entry o) throws ServiceException {
-        parameters.clear();
-        parameters.add(resultOrder.getId());
-        Map.Entry pair = o;
-        Book book1 = (Book) pair.getKey();
-        int quantity = (int) pair.getValue();
-        parameters.add(book1.getId());
-        parameters.add(quantity);
-        BookOrdered bookOrdered = new BookOrdered();
-        bookOrdered.setOrderId(resultOrder.getId());
-        bookOrdered.setBookId(book1.getId());
-        bookOrdered.setQuantity(quantity);
-
-        try (DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory()) {
-            BookOrderedDao bookOrderedDao = daoFactory.getBookOrderedDao();
-            bookOrderedDao.insert(bookOrdered, parameters, INSERT_BOOK_ORDERED);
-        } catch (DaoException e) {
-            log.debug("Error in OrderService occurred: " + e.getMessage());
-            throw new ServiceException(e);
-        }
     }
 
     private int calculateTotalCost(HashMap books) {
