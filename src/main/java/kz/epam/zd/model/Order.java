@@ -1,13 +1,11 @@
 package kz.epam.zd.model;
 
-import java.sql.Date;
-import java.util.List;
+import java.util.Map;
 
 public class Order extends Model {
     private OrderStatus status;
     private int userId;
-    private List<Book> books;
-    private Date dateOrdered;
+    private Map<Book, Integer> books;
     private Integer totalPrice;
 
     public Integer getTotalPrice() {
@@ -26,22 +24,13 @@ public class Order extends Model {
         this.status = status;
     }
 
-    public List<Book> getBooks() {
+    public Map<Book, Integer> getBooks() {
         return books;
     }
 
-    public void setBooks(List<Book> books) {
+    public void setBooks(Map<Book, Integer> books) {
         this.books = books;
     }
-
-    public Date getDateOrdered() {
-        return dateOrdered;
-    }
-
-    public void setDateOrdered(Date dateOrdered) {
-        this.dateOrdered = dateOrdered;
-    }
-
 
     public int getUserId() {
         return userId;

@@ -15,8 +15,7 @@ CREATE TABLE "order" (
   "order_id"        SERIAL  NOT NULL,
   "user_id"         INTEGER NOT NULL,
   "order_status_id" INTEGER NOT NULL,
-  "date_ordered"    DATE    NOT NULL,
-  "total_price"     FLOAT   NOT NULL,
+  "total_price"     INTEGER   NOT NULL,
   CONSTRAINT order_pk PRIMARY KEY ("order_id")
 ) WITH (
 OIDS = FALSE

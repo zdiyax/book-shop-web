@@ -12,8 +12,8 @@
 
 <t:snippet title="${title}">
     <jsp:body>
-        <c:if test="${fn:length(orders) != 0}">
-            <div class="container" style="margin-top: 150px">
+        <div class="container" style="margin-top: 150px">
+            <c:if test="${fn:length(orders) != 0}">
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -32,8 +32,9 @@
                     </c:forEach>
                     </tbody>
                 </table>
-            </div>
-        </c:if>
+            </c:if>
+        </div>
+
         <c:if test="${fn:length(orders) == 0}">
             <p style="margin-top: 150px; text-align: center"> Order list is empty </p>
         </c:if>

@@ -9,9 +9,8 @@
 <fmt:setBundle basename="lang"/>
 <c:set var="prefix" value="${pageContext.request.contextPath}"/>
 <fmt:message key="catalog.title" var="title"/>
-<c:set var="pageCount" value="${pageCount}"/>
-<c:set var="currentPage" value="${currentPage}"/>
 <c:set var="books" value="${books}"/>
+<c:set var="totalCost" value="${totalCost}"/>
 
 <t:snippet title="${title}">
     <jsp:body>
@@ -26,6 +25,7 @@
                         <th scope="col"><fmt:message key="catalog.authorField"/></th>
                         <th scope="col"><fmt:message key="catalog.titleField"/></th>
                         <th scope="col"><fmt:message key="catalog.priceField"/></th>
+                        <th scope="col" style="width: 20px">Quantity</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -33,14 +33,30 @@
                         <tr>
                             <td>${cart.key.author}</td>
                             <td>${cart.key.title}</td>
+                            <td>${cart.key.price}</td>
                             <td>${cart.value}</td>
-                            <%--<td><a href="/do/?action=show-detailed-book-info&id=${book.id}">details</a></td>--%>
+                            <%--<td>${cart.value}</td>--%>
+
+                        <%--<td><a href="/do/?action=show-detailed-book-info&id=${book.id}">details</a></td>--%>
                         </tr>
                     </c:forEach>
+                    <tr>
+                        <td style="visibility: collapse"></td>
+                        <td><b>Total cost :</b></td>
+                        <td>${totalCost}</td>
+                    </tr>
+                    <tr>
+                        <td style="visibility: collapse"></td>
+                        <td style="visibility: collapse"></td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary">
+                                <a style="text-decoration: none" href="/do/?action=order-books">Order</a>
+                            </button>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
-
         </div>
     </jsp:body>
 </t:snippet>

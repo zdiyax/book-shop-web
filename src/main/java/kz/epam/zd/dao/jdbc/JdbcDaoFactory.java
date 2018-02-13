@@ -1,10 +1,7 @@
 package kz.epam.zd.dao.jdbc;
 
 import kz.epam.zd.cp.ConnectionPool;
-import kz.epam.zd.dao.BookDao;
-import kz.epam.zd.dao.DaoFactory;
-import kz.epam.zd.dao.OrderDao;
-import kz.epam.zd.dao.UserDao;
+import kz.epam.zd.dao.*;
 import kz.epam.zd.exception.ConnectionPoolException;
 import kz.epam.zd.exception.JdbcDaoException;
 import org.slf4j.Logger;
@@ -44,6 +41,11 @@ public class JdbcDaoFactory extends DaoFactory {
     @Override
     public OrderDao getOrderDao() {
         return new JdbcOrderDao(connection);
+    }
+
+    @Override
+    public BookOrderedDao getBookOrderedDao() {
+        return new JdbcBookOrderedDao(connection);
     }
 
     @Override
