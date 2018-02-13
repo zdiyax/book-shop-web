@@ -49,7 +49,7 @@ public class UserService extends AbstractService {
         } catch (PasswordHelper.PasswordHashAlgorithmException e) {
             throw new ServiceException(e);
         }
-        parameters.add(user.getUserRole().toString());
+        parameters.add(user.getRole().toString());
         parameters.add(user.getUsername());
         parameters.add(user.getPassword());
         parameters.add(user.getLocale().getLocaleName());

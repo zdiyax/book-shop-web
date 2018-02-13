@@ -8,17 +8,14 @@ import kz.epam.zd.util.ValidatorHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
-public class    FormValidator {
+public class FormValidator {
 
     private static final Logger log = LoggerFactory.getLogger(FormValidator.class);
     private static final String FORM_PROPERTY_FILE_NAME = "validation.properties";

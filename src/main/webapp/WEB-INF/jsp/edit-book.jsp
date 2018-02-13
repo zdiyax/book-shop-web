@@ -19,6 +19,7 @@
     <jsp:body>
         <div style="margin-top: 60px; margin-left: 60px; width: 60%">
             <h2><b>${book.title}</b></h2>
+
             <h4><b>${book.author}</b></h4>
             <h4><b> Price : ${book.price}</b></h4>
             <p> isbn : ${book.isbn}</p>
@@ -32,7 +33,7 @@
             </c:if>
             <c:if test="${role == OPERATOR}">
                 <button type="button" class="btn btn-outline-primary">
-                    <a style="text-decoration: none" href="/do/?action=show-edit-book-page">Edit</a>
+                    <a style="text-decoration: none" href="/do/?action=add-book-to-cart&id=${book.id}">Edit</a>
                 </button>
             </c:if>
         </div>

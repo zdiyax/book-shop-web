@@ -6,7 +6,7 @@ import kz.epam.zd.model.Order;
 import java.util.List;
 
 public class User extends Model {
-    private UserRole userRole;
+    private UserRole role;
     private Locale locale;
     private String username;
     private String password;
@@ -20,11 +20,11 @@ public class User extends Model {
         this.username = username;
         this.password = password;
         this.locale = locale;
-        this.userRole = userRole;
+        this.role = userRole;
     }
 
     public User(UserRole userRole, Locale locale, String username, String password, List<Order> orders, String fullName, String email, String address, String telephoneNumber) {
-        this.userRole = userRole;
+        this.role = userRole;
         this.locale = locale;
         this.username = username;
         this.password = password;
@@ -71,12 +71,12 @@ public class User extends Model {
         this.telephoneNumber = telephoneNumber;
     }
 
-    public UserRole getUserRole() {
-        return userRole;
+    public UserRole getRole() {
+        return role;
     }
 
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 
     public Locale getLocale() {

@@ -35,6 +35,15 @@
         <url-pattern>/do/*</url-pattern>
     </filter-mapping>
 
+    <filter>
+        <filter-name>AccessFilter</filter-name>
+        <filter-class>kz.epam.zd.filter.AccessFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AccessFilter</filter-name>
+        <url-pattern>/do/*</url-pattern>
+    </filter-mapping>
+
     <jsp-config>
         <taglib>
             <taglib-uri>customtags</taglib-uri>
@@ -45,6 +54,11 @@
     <error-page>
         <error-code>404</error-code>
         <location>/WEB-INF/jsp/error404.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/WEB-INF/jsp/error403.jsp</location>
     </error-page>
 
     <error-page>

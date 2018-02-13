@@ -12,8 +12,9 @@
 <%@attribute name="footer" fragment="true" %>
 
 <c:set var="prefix" value="${pageContext.request.contextPath}"/>
-<c:set var="USER" value="USER"/>
-<c:set var="MANAGER" value="MANAGER"/>
+<c:set var="role" value="${sessionScope.user.role}"/>
+<c:set var="CUSTOMER" value="CUSTOMER"/>
+<c:set var="OPERATOR" value="OPERATOR"/>
 <html>
 <head>
     <meta charset="utf-8">
@@ -47,7 +48,7 @@
                             key="about.message"/></a>
                 </li>
 
-                <c:if test="${not empty sessionScope.user.username}">
+                <c:if test="${role == CUSTOMER}">
                     <li class="nav-item">
                         <a class="nav-link" href="${prefix}/do/?action=show-profile-page"><fmt:message
                                 key="profile.message"/> </a>
@@ -61,6 +62,15 @@
                                 key="cart.message"/> </a>
                     </li>
                 </c:if>
+                <c:if test="${role == OPERATOR}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="${prefix}/do/?action=show-profile-page"><fmt:message
+                                key="allorders.message"/> </a>
+                    </li>
+                </c:if>
+
+
+
                 <li class="nav-item">
                     <a class="nav-link" href="${prefix}/do/?action=lang&locale=en">EN</a>
                 </li>

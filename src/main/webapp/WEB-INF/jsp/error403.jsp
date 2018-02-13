@@ -3,42 +3,23 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" type="text/css" href="/WEB-INF/css/jumbotron.css"/>
-<link rel="stylesheet" type="text/css" href="/WEB-INF/css/personalinfo.css"/>
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
       integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 <fmt:setBundle basename="lang"/>
 <c:set var="prefix" value="${pageContext.request.contextPath}"/>
-<fmt:message key="profile.title" var="title"/>
-<c:set var="role" value="${sessionScope.user.role}"/>
-<c:set var="CUSTOMER" value="CUSTOMER"/>
-<c:set var="OPERATOR" value="OPERATOR"/>
-<c:set var="book" value="${book}"/>
+<fmt:message key="403.title" var="title"/>
 
 <t:snippet title="${title}">
     <jsp:body>
-        <div style="margin-top: 60px; margin-left: 60px; width: 60%">
-            <h2><b>${book.title}</b></h2>
-            <h4><b>${book.author}</b></h4>
-            <h4><b> Price : ${book.price}</b></h4>
-            <p> isbn : ${book.isbn}</p>
-            <p><b>Description: </b></p>
-            <p>${book.description}</p>
-
-            <c:if test="${role == CUSTOMER}">
-                <button type="button" class="btn btn-outline-primary">
-                    <a style="text-decoration: none" href="/do/?action=add-book-to-cart&id=${book.id}">Add to Cart</a>
-                </button>
-            </c:if>
-            <c:if test="${role == OPERATOR}">
-                <button type="button" class="btn btn-outline-primary">
-                    <a style="text-decoration: none" href="/do/?action=show-edit-book-page">Edit</a>
-                </button>
-            </c:if>
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-3">403</h1>
+                <p><fmt:message key="403.message"/></p>
+            </div>
         </div>
     </jsp:body>
 </t:snippet>
-
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
