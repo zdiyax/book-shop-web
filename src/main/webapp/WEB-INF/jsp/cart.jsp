@@ -30,6 +30,7 @@
                             <th scope="col"><fmt:message key="catalog.titleField"/></th>
                             <th scope="col" style="width: 5%"><fmt:message key="catalog.priceField"/></th>
                             <th scope="col" style="width: 5%">Quantity</th>
+                            <th style="width: 2%"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -41,6 +42,7 @@
                                 <td><input class="form-control" value="${cart.value}"
                                            name="quantity${i.index}"
                                            autocomplete="off" pattern="\d*[1-9]\d* " maxlength="2"/></td>
+                                <td><a href="/do/?action=delete-book-from-cart&book=${cart.key.id}">x</a></td>
                             </tr>
                         </c:forEach>
                         <tr>
@@ -51,12 +53,8 @@
                         <tr>
                             <td style="visibility: collapse"></td>
                             <td style="visibility: collapse"></td>
-                            <td>
-                                <button class="btn btn-outline-primary" type="submit" name="order"
-                                        onclick="return onOrder();">
-                                    Order
-                                </button>
-                            </td>
+                            <td><button class="btn btn-outline-primary" type="submit" name="order"
+                                        onclick="return onOrder();">Order</button></td>
                         </tr>
                         </tbody>
                     </table>

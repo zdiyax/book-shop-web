@@ -13,6 +13,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static kz.epam.zd.util.ConstantHolder.INDEX_1;
+
 /**
  * Generic JDBC DAO abstract class for all Model subclasses
  * JDBC implementation
@@ -135,10 +137,10 @@ public abstract class JdbcDao<T extends Model> implements Dao<T> {
     private void setId(T entity, PreparedStatement ps) throws SQLException {
         ResultSet generatedId = ps.getGeneratedKeys();
         generatedId.next();
-        int id = generatedId.getInt(1);
+        int id = generatedId.getInt(INDEX_1);
         entity.setId(id);
         if (entity.getId() != null)
-            log.debug("Entity inserted: {} | entity.id = ", entity.getClass().getSimpleName(), entity.getId());
+            log.debug("Entity inserted: {} | entity.id: {}", entity.getClass().getSimpleName(), id);
     }
 
     abstract T createEntityFromRs(ResultSet rs, T entity) throws SQLException;
