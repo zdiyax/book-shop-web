@@ -11,22 +11,25 @@
 <fmt:message key="catalog.title" var="title"/>
 <c:set var="books" value="${books}"/>
 <c:set var="totalCost" value="${totalCost}"/>
+<c:set var="cartFormErrors" value="${cartFormErrors}"/>
 
 <t:snippet title="${title}">
     <jsp:body>
         <div style="width: 20%; height: 80%; float:left; margin-top: 100px;">
         </div>
-
         <div style="width: 80%; height: 80%; float:right; margin-top: 100px;">
             <div class="container">
-                <form method="post" action="/do/?action=order-books">
+                <c:if test="${not empty cartFormErrors}">
+                    <p><fmt:message key="${cartFormErrors}"/></p>
+                </c:if>
+                <form name="Form1" method="post" action="/do/?action=order-books">
                     <table class="table table-bordered">
                         <thead>
                         <tr>
                             <th scope="col"><fmt:message key="catalog.authorField"/></th>
                             <th scope="col"><fmt:message key="catalog.titleField"/></th>
-                            <th scope="col"><fmt:message key="catalog.priceField"/></th>
-                            <th scope="col" style="width: 50px">Quantity</th>
+                            <th scope="col" style="width: 5%"><fmt:message key="catalog.priceField"/></th>
+                            <th scope="col" style="width: 5%">Quantity</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -35,10 +38,9 @@
                                 <td>${cart.key.author}</td>
                                 <td>${cart.key.title}</td>
                                 <td>${cart.key.price}</td>
-                                <td><input type="number" class="form-control" value="${cart.value}"
+                                <td><input class="form-control" value="${cart.value}"
                                            name="quantity${i.index}"
-                                           autocomplete="off" pattern="/^([+-]?[1-9]\d*|0)$/" maxlength="2"/></td>
-                                    <%--<td>${cart.value}</td>--%>
+                                           autocomplete="off" pattern="\d*[1-9]\d* " maxlength="2"/></td>
                             </tr>
                         </c:forEach>
                         <tr>
@@ -50,18 +52,41 @@
                             <td style="visibility: collapse"></td>
                             <td style="visibility: collapse"></td>
                             <td>
-                                <button class="btn btn-outline-primary" type="submit">
+                                <button class="btn btn-outline-primary" type="submit" name="order"
+                                        onclick="return onOrder();">
                                     Order
                                 </button>
                             </td>
                         </tr>
                         </tbody>
                     </table>
+                    <p>
+                        <button class="btn btn-outline-primary" name="refresh" onclick="return onRefresh();">
+                            &#8635;
+                        </button>
+                    </p>
                 </form>
+
             </div>
         </div>
     </jsp:body>
 </t:snippet>
+
+
+<%--JavaScript to upload info from the same form by two actions--%>
+<script language="Javascript">
+    function onOrder() {
+        document.Form1.action = "/do/?action=order-books";
+        document.Form1.submit();             // Submit the page
+        return true;
+    }
+
+    function onRefresh() {
+        document.Form1.action = "/do/?action=refresh-cart";
+        document.Form1.submit();             // Submit the page
+        return true;
+    }
+</script>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->

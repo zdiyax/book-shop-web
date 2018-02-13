@@ -18,7 +18,7 @@ import java.beans.PropertyDescriptor;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
-public class FormValidator {
+public class    FormValidator {
 
     private static final Logger log = LoggerFactory.getLogger(FormValidator.class);
     private static final String FORM_PROPERTY_FILE_NAME = "validation.properties";
@@ -203,46 +203,6 @@ public class FormValidator {
 
     }
 
-    public void checkImageContentType(String parameter, HttpServletRequest req) throws ValidatorException {
-
-        final String FILE_FORM_CONTENT_HEADER = "application/x-www-form-urlencoded";
-        if (!FILE_FORM_CONTENT_HEADER.equals(req.getContentType())) {
-            try {
-                Part photoPart = req.getPart(parameter);
-                if (photoPart.getSize() != ZERO_FILE_SIZE) {
-                    String contentType = photoPart.getContentType();
-                    ImageValidator validator = new ImageValidator();
-                    log.debug("Validator {} try to validate value of content type \"{}\"", validator.getClass().getSimpleName(), contentType);
-                    if (!validator.isValid(contentType)) fillErrorMap(parameter, WRONG_CONTENT_TYPE_ERROR_MESSAGE);
-                    log.debug("Result is {}", validator.isValid(contentType));
-                }
-            } catch (IOException | ServletException e) {
-                throw new ValidatorException(e);
-            }
-
-        }
-
-    }
-
-    public void checkFileMaxSize(String parameter, HttpServletRequest req) throws ValidatorException {
-
-        final String FILE_FORM_CONTENT_HEADER = "application/x-www-form-urlencoded";
-        if (!FILE_FORM_CONTENT_HEADER.equals(req.getContentType())) {
-            try {
-                Part photoPart = req.getPart(parameter);
-                if (photoPart.getSize() != ZERO_FILE_SIZE) {
-                    Long fileSize = photoPart.getSize();
-                    FileSizeValidator validator = new FileSizeValidator();
-                    log.debug("Validator {} try to validate value of size \"{}\"", validator.getClass().getSimpleName(), fileSize);
-                    if (!validator.isValid(fileSize)) fillErrorMap(parameter, WRONG_FILE_SIZE_ERROR_MESSAGE);
-                    log.debug("Result is {}", validator.isValid(fileSize));
-                }
-            } catch (IOException | ServletException e) {
-                throw new ValidatorException(e);
-            }
-
-        }
-    }
 
     private void fillErrorMap(String parameter, String errorMessagePropertyKey) {
         List<String> errorMessages = new ArrayList<>();

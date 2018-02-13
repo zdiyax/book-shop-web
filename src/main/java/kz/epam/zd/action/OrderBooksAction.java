@@ -7,6 +7,7 @@ import kz.epam.zd.model.Order;
 import kz.epam.zd.model.OrderStatus;
 import kz.epam.zd.model.user.User;
 import kz.epam.zd.service.OrderService;
+import kz.epam.zd.util.ValidatorHelper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,17 +17,25 @@ import java.util.Map;
 import static kz.epam.zd.util.ConstantHolder.*;
 
 public class OrderBooksAction implements Action {
+    private static final String CART = "cart";
+
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) throws ActionException {
         HashMap books = (HashMap) req.getSession().getAttribute("cart");
+        if (books.isEmpty()) {
+            req.getSession().setAttribute("cartFormErrors", "empty.cart.message");
+            return REDIRECT_PREFIX + "/do/?action=show-cart-page";
+        }
+
+        if (ValidatorHelper.checkCartForm(req, books))
+            return REDIRECT_PREFIX + "/do/?action=show-cart-page";
+
         final User user = (User) req.getSession().getAttribute(USER);
         final int userId = user.getId();
 
         for (int i = 0; i < books.size(); i++) {
             for (Object o : books.entrySet()) {
                 Map.Entry pair = (Map.Entry) o;
-                System.out.println("quantity" + i);
-                System.out.println(req.getParameter("quantity" + i));
                 books.replace(pair.getKey(), pair.getValue(), Integer.valueOf(req.getParameter("quantity" + i)));
             }
         }
@@ -40,10 +49,11 @@ public class OrderBooksAction implements Action {
         try {
             orderService.makeOrder(order, userId, books);
         } catch (ServiceException e) {
-            req.setAttribute(ORDERS + ERROR, e.getMessage());
+            req.setAttribute(ORDERS + FORM_ERRORS, e.getMessage());
         }
 
         req.getSession().setAttribute("cart", new HashMap<Book, Integer>());
         return REDIRECT_PREFIX + "/do/?action=show-order-success-page";
     }
+
 }

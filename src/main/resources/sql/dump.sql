@@ -3,6 +3,9 @@ INSERT INTO "locale" ("locale_name") VALUES ('en'), ('ru');
 INSERT INTO "gender" ("gender_name") VALUES ('Male'), ('Female'), ('Do not specify');
 INSERT INTO "order_status" VALUES (1, 'waiting'), (2, 'ready');
 
+INSERT INTO "user" ("locale_id", "username", "password", "user_role_id") VALUES (1, 'operator', '01f1b85bfc0ec175495902a6b735dd73', 2);
+
+
 INSERT INTO "book" ("isbn", "title", "author", "description", "price")
 VALUES
   ('978-3-16-148410-0', 'Clean Code', 'Robert Martin',

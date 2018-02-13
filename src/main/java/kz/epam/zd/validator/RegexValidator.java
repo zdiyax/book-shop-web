@@ -1,10 +1,10 @@
 package kz.epam.zd.validator;
 
-public class RegExValidator extends ParentValidator implements Validator {
+public class RegexValidator extends ParentValidator implements Validator {
 
     private String regex;
 
-    public RegExValidator() {
+    public RegexValidator() {
     }
 
     public String getRegex() {
@@ -22,7 +22,7 @@ public class RegExValidator extends ParentValidator implements Validator {
 
     @Override
     public String toString() {
-        return "RegExValidator{" +
+        return "RegexValidator{" +
                 "regex='" + regex + '\'' +
                 ", message=" + this.getMessage() +
                 '}';
