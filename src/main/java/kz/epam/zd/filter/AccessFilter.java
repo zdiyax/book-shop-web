@@ -20,10 +20,10 @@ import static kz.epam.zd.util.ConstantHolder.USER;
 public class AccessFilter implements Filter {
 
     private static final Logger logger = LoggerFactory.getLogger(AccessFilter.class);
-    private static final String ANONYMOUS_ACTION_FILE_NAME = "anonymous-actions.properties";
-    private static final String USER_ACTION_FILE_NAME = "customer-actions.properties";
-    private static final String MANAGER_ACTION_FILE_NAME = "operator-actions.properties";
-    private static final String ALL_ACTION_FILE_NAME = "all-actions.properties";
+    private static final String ANONYMOUS_ACTION_FILE_NAME = "actions-anonymous.properties";
+    private static final String USER_ACTION_FILE_NAME = "actions-customer.properties";
+    private static final String MANAGER_ACTION_FILE_NAME = "actions-operator.properties";
+    private static final String ALL_ACTION_FILE_NAME = "actions-all.properties";
     private List<String> anonymousActionList = new ArrayList<>();
     private List<String> userActionList = new ArrayList<>();
     private List<String> managerActionList = new ArrayList<>();

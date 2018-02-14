@@ -14,10 +14,9 @@ public class BookService extends AbstractService {
     private static final Logger log = LoggerFactory.getLogger(BookService.class);
 
     private static final String GET_BOOKS_AMOUNT = "get.books.amount";
-    private static final String GET_BOOKS_ALL = "get.books.all";
+    private static final String GET_BOOKS_ALL_ACTIVE = "get.books.all";
     private static final String GET_BOOKS_BY_TITLE = "get.books.by.title";
     private static final String GET_BOOK_BY_ID = "get.book.by.id";
-
 
     private static final int BOOKS_PER_PAGE = 10;
 
@@ -35,7 +34,7 @@ public class BookService extends AbstractService {
     public List<Book> getBooksAll(int pageNumber) throws ServiceException {
         int offset = --pageNumber * BOOKS_PER_PAGE;
         parameters.add(offset);
-        return getBooksByQuery(new Book(), GET_BOOKS_ALL);
+        return getBooksByQuery(new Book(), GET_BOOKS_ALL_ACTIVE);
     }
 
     public int getTotalBookAmount() throws ServiceException {

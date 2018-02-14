@@ -6,15 +6,5 @@
     <short-name>ctg</short-name>
     <uri>customtags</uri>
 
-    <tag>
-        <name>hello</name>
-        <tag-class>kz.epam.zd.tag.HelloTag</tag-class>
-        <body-content>empty</body-content>
-        <attribute>
-            <name>roleType</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
 
 </taglib>

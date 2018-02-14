@@ -1,11 +1,12 @@
 CREATE TABLE "book" (
-  "book_id"     SERIAL      NOT NULL,
-  "isbn"        VARCHAR(17) NOT NULL UNIQUE,
-  "title"       VARCHAR(32) NOT NULL,
-  "author"      VARCHAR(32) NOT NULL,
+  "book_id"     SERIAL            NOT NULL,
+  "isbn"        VARCHAR(17)       NOT NULL UNIQUE,
+  "title"       VARCHAR(32)       NOT NULL,
+  "author"      VARCHAR(32)       NOT NULL,
   "description" VARCHAR(255),
   "price"       INTEGER,
-  "amount"      INTEGER DEFAULT 0,
+  "amount"      INTEGER DEFAULT 0 NOT NULL,
+  "is_active"   BOOLEAN DEFAULT TRUE,
   CONSTRAINT book_pk PRIMARY KEY ("book_id")
 ) WITH (
 OIDS = FALSE
@@ -15,7 +16,8 @@ CREATE TABLE "order" (
   "order_id"        SERIAL  NOT NULL,
   "user_id"         INTEGER NOT NULL,
   "order_status_id" INTEGER NOT NULL,
-  "total_price"     INTEGER   NOT NULL,
+  "total_price"     INTEGER NOT NULL,
+  "is_active"       BOOLEAN DEFAULT TRUE,
   CONSTRAINT order_pk PRIMARY KEY ("order_id")
 ) WITH (
 OIDS = FALSE

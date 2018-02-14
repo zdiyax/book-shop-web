@@ -64,12 +64,10 @@
                 </c:if>
                 <c:if test="${role == OPERATOR}">
                     <li class="nav-item">
-                        <a class="nav-link" href="${prefix}/do/?action=show-profile-page"><fmt:message
-                                key="allorders.message"/> </a>
+                        <a class="nav-link" href="${prefix}/do/?action=show-operator-orders-page&page=1"><fmt:message
+                                key="operator.orders.message"/> </a>
                     </li>
                 </c:if>
-
-
 
                 <li class="nav-item">
                     <a class="nav-link" href="${prefix}/do/?action=lang&locale=en">EN</a>

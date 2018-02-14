@@ -20,6 +20,11 @@ public class OrderService extends AbstractService {
     private static final String MAKE_ORDER_KEY = "make.order";
     private static final String INSERT_BOOK_ORDERED = "insert.bookordered";
 
+    private static final int ORDERS_PER_PAGE = 10;
+    private static final String UPDATE_ORDER_STATUS = "update.order.status";
+    private static final String DELETE_ORDER = "delete.order";
+
+
     public void makeOrder(Order order, int userId, HashMap books) throws ServiceException {
         int totalCost = calculateTotalCost(books);
 
@@ -74,14 +79,52 @@ public class OrderService extends AbstractService {
         parameters.add(userId);
         Order order = new Order();
         order.setUserId(userId);
+        return getOrdersByQuery(order, "get.orders.by.userid");
+    }
+
+    private List<Order> getOrdersByQuery(Order order, String query) throws ServiceException {
         List<Order> orderList;
         try (DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory()) {
             OrderDao orderDao = daoFactory.getOrderDao();
-            orderList = orderDao.getAllByParameters(order, parameters, "get.orders.by.userid");
+            orderList = orderDao.getAllByParameters(order, parameters, query);
         } catch (DaoException e) {
-            log.debug("Error in OrderService occurred");
-            throw new ServiceException(e);
+            log.debug("Error in OrderService occurred: {}", e.getMessage());
+            throw new ServiceException();
         }
         return orderList;
+    }
+
+    public int getTotalOrderAmount() throws ServiceException {
+        List<Order> orderList = getOrdersByQuery(new Order(), "get.orders.all");
+        return orderList.size();
+    }
+
+    public List<Order> getOrdersAllPaginated(int pageNumber) throws ServiceException {
+        int offset = --pageNumber * ORDERS_PER_PAGE;
+        parameters.add(offset);
+        return getOrdersByQuery(new Order(), "get.orders.all.paginated");
+    }
+
+    public void updateOrderStatus(Order order, Integer orderId, String orderStatus) throws ServiceException {
+        parameters.add(orderStatus);
+        parameters.add(orderId);
+        try (DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory()) {
+            OrderDao orderDao = daoFactory.getOrderDao();
+            orderDao.update(order, parameters, UPDATE_ORDER_STATUS);
+        } catch (DaoException e) {
+            log.debug("Error in OrderService occurred: " + e.getMessage());
+            throw new ServiceException(e);
+        }
+    }
+
+    public void deleteOrder(Order order, Integer orderId) throws ServiceException {
+        parameters.add(orderId);
+        try (DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory()) {
+            OrderDao orderDao = daoFactory.getOrderDao();
+            orderDao.delete(order, parameters, DELETE_ORDER);
+        } catch (DaoException e) {
+            log.debug("Error in OrderService occurred: " + e.getMessage());
+            throw new ServiceException(e);
+        }
     }
 }

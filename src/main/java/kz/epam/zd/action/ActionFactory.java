@@ -6,7 +6,7 @@ import kz.epam.zd.util.PropertyManager;
 
 public class ActionFactory {
 
-    private static final String ACTION_PROPERTY_FILE_NAME = "action.properties";
+    private static final String ACTION_PROPERTY_FILE_NAME = "actions.properties";
     private PropertyManager propertyManager;
 
     public void loadActions() throws ActionFactoryException {
