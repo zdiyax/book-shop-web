@@ -10,9 +10,6 @@
 <fmt:setBundle basename="lang"/>
 <c:set var="prefix" value="${pageContext.request.contextPath}"/>
 <fmt:message key="profile.title" var="title"/>
-<c:set var="role" value="${sessionScope.user.role}"/>
-<c:set var="CUSTOMER" value="CUSTOMER"/>
-<c:set var="OPERATOR" value="OPERATOR"/>
 <c:set var="book" value="${book}"/>
 
 <t:snippet title="${title}">
@@ -26,16 +23,9 @@
             <p><b>Description: </b></p>
             <p>${book.description}</p>
 
-            <c:if test="${role == CUSTOMER}">
-                <button type="button" class="btn btn-outline-primary">
-                    <a style="text-decoration: none" href="/do/?action=add-book-to-cart&id=${book.id}">Add to Cart</a>
-                </button>
-            </c:if>
-            <c:if test="${role == OPERATOR}">
-                <button type="button" class="btn btn-outline-primary">
-                    <a style="text-decoration: none" href="/do/?action=add-book-to-cart&id=${book.id}">Edit</a>
-                </button>
-            </c:if>
+            <button type="button" class="btn btn-outline-primary">
+                <a style="text-decoration: none" href="/do/?action=add-book-to-cart&id=${book.id}">Edit</a>
+            </button>
         </div>
     </jsp:body>
 </t:snippet>

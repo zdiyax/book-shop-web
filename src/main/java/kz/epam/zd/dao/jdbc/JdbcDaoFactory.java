@@ -49,6 +49,11 @@ public class JdbcDaoFactory extends DaoFactory {
     }
 
     @Override
+    public BookOrderedDetailsDao getBookOrderedDetailsDao() {
+        return new JdbcBookOrderedDetailsDao(connection);
+    }
+
+    @Override
     public void close() throws JdbcDaoException {
         try {
             if (connection.isClosed() || !connection.isValid(1))

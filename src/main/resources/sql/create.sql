@@ -77,9 +77,10 @@ OIDS = FALSE
 
 
 CREATE TABLE "order_items" (
+  "order_items_id" SERIAL NOT NULL,
   "order_id" INTEGER NOT NULL,
   "book_id"  INTEGER NOT NULL,
-  "quantity" INTEGER NOT NULL DEFAULT '1'
+  "quantity" INTEGER NOT NULL
 ) WITH (
 OIDS = FALSE
 );
