@@ -46,7 +46,7 @@ public class BookService extends AbstractService {
     }
 
     public List<Book> getBooksByTitle(int pageNumber, String title) throws ServiceException {
-        parameters.add(title);
+        parameters.add("%" + title + "%");
         int offset = --pageNumber * BOOKS_PER_PAGE;
         parameters.add(offset);
         return getBooksByQuery(new Book(), GET_BOOKS_BY_TITLE);

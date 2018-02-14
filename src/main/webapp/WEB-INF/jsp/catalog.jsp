@@ -17,9 +17,10 @@
 <t:snippet title="${title}">
     <jsp:body>
         <div style="width: 20%; height: 80%; float:left; margin-top: 100px;">
-            <form class="form-inline my-2 my-lg-0" style="margin-left: 50px;" action="/do/?action=show-catalog-page">
+            <form class="form-inline my-2 my-lg-0" style="margin-left: 50px;"
+                  action="/do/?action=show-catalog-page&page=1" method="post">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"
-                       name="searchRequest">
+                       name="search_input">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
@@ -54,7 +55,7 @@
                 <c:if test="${pageCount != 1}">
                     <ul class="pagination pagination-sm">
                         <c:forEach var="i" begin="${1}" end="${pageCount}">
-                            <li class="page-item"><a class="page-link" href="/do/?action=show-catalog-page&page=${i}"
+                            <li class="page-item"><a class="page-link" href="/do/?action=show-catalog-page&search=${search}&page=${i}"
                                                      class="link-style">${i}</a></li>
                         </c:forEach>
                     </ul>
