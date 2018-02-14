@@ -1,6 +1,6 @@
 package kz.epam.zd.model;
 
-public class BookOrdered extends Model {
+public class BookOrdered extends Entity {
     private int orderId;
     private int bookId;
     private int quantity;

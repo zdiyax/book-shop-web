@@ -40,15 +40,6 @@ OIDS = FALSE
 );
 
 
-CREATE TABLE "gender" (
-  "gender_id"   SERIAL      NOT NULL,
-  "gender_name" VARCHAR(16) NOT NULL UNIQUE,
-  CONSTRAINT gender_pk PRIMARY KEY ("gender_id")
-) WITH (
-OIDS = FALSE
-);
-
-
 CREATE TABLE "user_role" (
   "user_role_id"   SERIAL      NOT NULL,
   "user_role_name" VARCHAR(16) NOT NULL UNIQUE,

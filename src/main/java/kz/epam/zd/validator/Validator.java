@@ -8,7 +8,6 @@ public interface Validator {
 
     Boolean isValid(String parameter, String otherParameter) throws ValidatorException;
 
-    Boolean isValid(Long parameter) throws ValidatorException;
 
     String getMessage();
 

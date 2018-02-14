@@ -1,6 +1,6 @@
 package kz.epam.zd.model;
 
-public class Model {
+public class Entity {
     private Integer id;
 
     public Integer getId() {

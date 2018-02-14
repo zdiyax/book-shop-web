@@ -1,11 +1,11 @@
 package kz.epam.zd.model.user;
 
-import kz.epam.zd.model.Model;
+import kz.epam.zd.model.Entity;
 import kz.epam.zd.model.Order;
 
 import java.util.List;
 
-public class User extends Model {
+public class User extends Entity {
     private UserRole role;
     private Locale locale;
     private String username;

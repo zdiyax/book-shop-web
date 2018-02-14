@@ -1,7 +1,6 @@
 INSERT INTO "user_role" ("user_role_name") VALUES ('CUSTOMER'), ('OPERATOR');
 INSERT INTO "locale" ("locale_name") VALUES ('en'), ('ru');
-INSERT INTO "gender" ("gender_name") VALUES ('Male'), ('Female'), ('Do not specify');
-INSERT INTO "order_status" VALUES (1, 'waiting'), (2, 'ready');
+INSERT INTO "order_status" VALUES (1, 'waiting'), (2, 'ready'), (3, 'completed'), (4, 'cancelled');
 
 INSERT INTO "user" ("locale_id", "username", "password", "user_role_id")
 VALUES (1, 'customer', '01f1b85bfc0ec175495902a6b735dd73', 1);
@@ -13,7 +12,7 @@ INSERT INTO "book" ("isbn", "title", "author", "description", "price", "amount")
 VALUES
   ('978-3-16-148410-0', 'Clean Code', 'Robert Martin',
    'Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees. ' ||
-   'Every year, countless hours and significant resources are lost because of poorly written code. But it doesn’t have to be that way.',
+   'Every year, countless hours and significant resources are lost because of poorly written code. But it does not have to be that way.',
    1000, 50),
   ('978-3-16-148410-1', 'Effective Java', 'Joshua Bloch',
    'Java has changed dramatically since the previous edition of Effective Java was published shortly after the release of Java 6. ', 1500, 50),

@@ -20,11 +20,6 @@ public class ParentValidator implements Validator {
         return null;
     }
 
-    @Override
-    public Boolean isValid(Long parameter) throws ValidatorException {
-        return null;
-    }
-
     public String getMessage() {
         return message;
     }

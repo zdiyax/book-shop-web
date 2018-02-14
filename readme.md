@@ -1,6 +1,6 @@
 # book-shop-web
 
-Java Web Project | EPAM Systems Karagandy Java Web Training
+Java Web Project | EPAM Systems Qaraghandy Java Web Training
 
 ## Description
 
@@ -13,14 +13,14 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 Series of software you need:
-* IDE (IntelliJ IDEA preferred)
-* PostgreSQL (9.4 is used)
+* IDE
+* postgresql
 * JDK (1.8)
 * Maven 3.*
 
 ### Install and run the project
 
-A step by step series of examples that tell you have to get a development env running
+A step by step series of examples to tell you have to get a development env running
 
 1. Download/clone the project
 2. Prepare the database ([schema](http://dbdesigner.net/designer/schema/61369) ):
@@ -39,22 +39,10 @@ Project contains some jUnit-tests to check the following features:
 * Use `ConnectionPoolTest` to test project's connection pooling
 * Use `DBConnectionTest` to test your database connection
 
-
-## Deployment
-
-Apache Tomcat ver. 8.5.8 was used to deploy the project. Use whatever you prefer most.
-
 ## Built With
 
 * [Maven](https://maven.apache.org/) - Dependency Management
 
-
-## Authors
+## Author
 
 * **Zhannur Diyas** - *Initial work* - [zdiyax](https://github.com/zdiyax)
-
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/zdiyax/book-shop-web/blob/master/LICENSE.md) file for details
-

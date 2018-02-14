@@ -2,7 +2,7 @@ package kz.epam.zd.model;
 
 import java.util.Map;
 
-public class Order extends Model {
+public class Order extends Entity {
     private OrderStatus status;
     private int userId;
     private Map<Book, Integer> books;

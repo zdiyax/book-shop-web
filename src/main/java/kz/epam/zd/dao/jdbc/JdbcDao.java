@@ -3,7 +3,7 @@ package kz.epam.zd.dao.jdbc;
 import kz.epam.zd.exception.JdbcDaoException;
 import kz.epam.zd.exception.NonUniqueFieldException;
 import kz.epam.zd.exception.PropertyManagerException;
-import kz.epam.zd.model.Model;
+import kz.epam.zd.model.Entity;
 import kz.epam.zd.util.PropertyManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ import static kz.epam.zd.util.ConstantHolder.INDEX_1;
  *
  * @param <T> - for all Model subclasses
  */
-public abstract class JdbcDao<T extends Model> implements Dao<T> {
+public abstract class JdbcDao<T extends Entity> implements Dao<T> {
 
     private static final Logger log = LoggerFactory.getLogger(JdbcDao.class);
     private static final String QUERY_PROPERTY_FILE = "sql.properties";

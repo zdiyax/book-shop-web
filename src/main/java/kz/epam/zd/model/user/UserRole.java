@@ -1,8 +1,8 @@
 package kz.epam.zd.model.user;
 
-import kz.epam.zd.model.Model;
+import kz.epam.zd.model.Entity;
 
-public class UserRole extends Model {
+public class UserRole extends Entity {
     private RoleType roleType;
 
     public UserRole(RoleType roleType) {

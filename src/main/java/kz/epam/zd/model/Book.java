@@ -1,6 +1,6 @@
 package kz.epam.zd.model;
 
-public class Book extends Model {
+public class Book extends Entity {
     private String isbn;
     private String title;
     private String author;

@@ -23,8 +23,6 @@ DROP TABLE "locale";
 
 DROP TABLE "user_role";
 
-DROP TABLE "gender";
-
 DROP TABLE "user";
 
 DROP TABLE "order";
