@@ -10,29 +10,28 @@
 <fmt:setBundle basename="lang"/>
 <c:set var="prefix" value="${pageContext.request.contextPath}"/>
 <fmt:message key="profile.title" var="title"/>
-<c:set var="book" value="${book}"/>
 
 <t:snippet title="${title}">
     <jsp:body>
         <div style="margin-top: 60px; margin-left: 60px; width: 60%">
-            <form method="post" action="/do/?action=edit-book">
+            <form method="post" action="/do/?action=add-book">
                 <h2>Title:</h2>
-                <h2><b><input name="title" value="${book.title}"></b></h2>
+                <h2><b><input name="title"></b></h2>
 
                 <h4>Author:</h4>
-                <h4><b><input name="author" value="${book.author}"></b></h4>
+                <h4><b><input name="author"></b></h4>
 
                 Price:
-                <b><input name="price" value="${book.price}"></b>
+                <b><input name="price"></b>
 
                 <p>isbn:
-                    <b><input name="isbn" value="${book.isbn}"></b>
+                    <b><input name="isbn""></b>
                 </p>
                 <p><b>Description:</b>
-                </p><input type="text" name="description" value="${book.description}" style="width: 400px">
+                </p><input type="text" name="description" style="width: 400px">
 
                 <p><b>Quantity:</b></p>
-                <b><input name="quantity" value="${book.quantity}"></b>
+                <b><input name="quantity"></b>
                 <br>
                 <button type="submit" class="btn btn-outline-primary">
                     Submit

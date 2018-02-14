@@ -5,6 +5,7 @@ public class Book extends Model {
     private String title;
     private String author;
     private String description;
+    private int quantity;
     private Integer price;
 
     public String getIsbn() {
@@ -45,5 +46,13 @@ public class Book extends Model {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

@@ -67,6 +67,10 @@
                         <a class="nav-link" href="${prefix}/do/?action=show-operator-orders-page&page=1"><fmt:message
                                 key="operator.orders.message"/> </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${prefix}/do/?action=show-add-book-page"><fmt:message
+                                key="operator.add.book.message"/> </a>
+                    </li>
                 </c:if>
 
                 <li class="nav-item">

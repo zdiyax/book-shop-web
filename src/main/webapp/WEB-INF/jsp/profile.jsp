@@ -29,7 +29,7 @@
                                         <fmt:message key="personal.info.message"/></h3>
                                     <div class="form-group">
                                         <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                            <span class="input-group-addon">
                             </span>
                                             <input type="text" class="form-control" name="fullName"
                                                    placeholder="${personalInfoFullNamePlaceholder}"
@@ -39,8 +39,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span
-                                                    class="glyphicon glyphicon-home"></span></span>
+                                            <span class="input-group-addon"></span>
                                             <input type="text" class="form-control" name="address"
                                                    placeholder="${personalInfoAddressPlaceholder}"
                                                    value="${user.address}" autocomplete="off" minlength="6"
@@ -49,8 +48,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span
-                                                    class="glyphicon glyphicon-envelope"></span></span>
+                                            <span class="input-group-addon"></span>
                                             <input type="email" class="form-control" name="email"
                                                    placeholder="${personalInfoEmailPlaceholder}" value="${user.email}"
                                                    autocomplete="off" minlength="6" maxlength="32"/>
@@ -58,8 +56,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span
-                                                    class="glyphicon glyphicon-lock"></span></span>
+                                            <span class="input-group-addon"></span>
                                             <input type="tel" class="form-control" name="telephoneNumber"
                                                    placeholder="${personalInfoTelephoneNumberPlaceholder}"
                                                    value="${user.telephoneNumber}" autocomplete="off" minlength="6"

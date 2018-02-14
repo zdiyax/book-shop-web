@@ -1,6 +1,7 @@
 package kz.epam.zd.service;
 
 import kz.epam.zd.dao.BookDao;
+import kz.epam.zd.dao.BookOrderedDao;
 import kz.epam.zd.dao.DaoFactory;
 import kz.epam.zd.exception.DaoException;
 import kz.epam.zd.exception.ServiceException;
@@ -19,6 +20,8 @@ public class BookService extends AbstractService {
     private static final String GET_BOOK_BY_ID = "get.book.by.id";
 
     private static final int BOOKS_PER_PAGE = 10;
+    private static final String UPDATE_BOOK = "update.book";
+    private static final String INSERT_BOOK = "insert.book";
 
     private List<Book> getBooksByQuery(Book book, String query) throws ServiceException {
         List<Book> bookList;
@@ -52,5 +55,42 @@ public class BookService extends AbstractService {
     public Book getBookById(int id) throws ServiceException {
         parameters.add(id);
         return getBooksByQuery(new Book(), GET_BOOK_BY_ID).get(0);
+    }
+
+    public void updateBook(Book book) throws ServiceException{
+        parameters.add(book.getTitle());
+        parameters.add(book.getAuthor());
+        parameters.add(book.getPrice());
+        parameters.add(book.getIsbn());
+        parameters.add(book.getDescription());
+        parameters.add(book.getQuantity());
+        parameters.add(book.getId());
+
+        try (DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory()) {
+            BookDao bookDao = daoFactory.getBookDao();
+            bookDao.update(book, parameters, UPDATE_BOOK);
+        } catch (DaoException e) {
+            log.debug("Error in OrderService occurred: " + e.getMessage());
+            throw new ServiceException(e);
+        }
+    }
+
+    public Book insertBook(Book book) throws ServiceException{
+        parameters.add(book.getTitle());
+        parameters.add(book.getAuthor());
+        parameters.add(book.getPrice());
+        parameters.add(book.getIsbn());
+        parameters.add(book.getDescription());
+        parameters.add(book.getQuantity());
+
+        Book resultBook;
+        try (DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory()) {
+            BookDao bookDao = daoFactory.getBookDao();
+            resultBook = bookDao.insert(book, parameters, INSERT_BOOK);
+        } catch (DaoException e) {
+            log.debug("Error in OrderService occurred: " + e.getMessage());
+            throw new ServiceException(e);
+        }
+        return resultBook;
     }
 }
