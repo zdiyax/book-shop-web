@@ -20,6 +20,7 @@
                         <th scope="col"><fmt:message key="myorders.idField"/></th>
                         <th scope="col"><fmt:message key="myorders.totalPriceField"/></th>
                         <th scope="col"><fmt:message key="myorders.statusField"/></th>
+                        <th> cancel order</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -28,6 +29,11 @@
                             <td>${order.id}</td>
                             <td>${order.totalPrice}</td>
                             <td>${order.status}</td>
+                            <td width="2%">
+                                <button class="btn btn-outline-primary" name="refresh" type="submit">
+                                    <a href="/do/?action=cancel-order&orderId=${order.id}">&#215;</a>
+                                </button>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>

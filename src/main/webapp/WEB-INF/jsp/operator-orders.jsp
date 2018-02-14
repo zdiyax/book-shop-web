@@ -36,15 +36,34 @@
                                 <td>
                                     <c:if test="${order.status == 'waiting'}">
                                         <select name="${order.id}">
-                                            <option selected value="waiting">waiting
-                                            </option>
+                                            <option selected value="waiting">waiting</option>
                                             <option value="ready">ready</option>
+                                            <option value="completed">completed</option>
+                                            <option value="cancelled">cancelled</option>
                                         </select>
                                     </c:if>
                                     <c:if test="${order.status == 'ready'}">
                                         <select name="${order.id}">
                                             <option value="waiting">waiting</option>
                                             <option selected value="ready">ready</option>
+                                            <option value="completed">completed</option>
+                                            <option value="cancelled">cancelled</option>
+                                        </select>
+                                    </c:if>
+                                    <c:if test="${order.status == 'completed'}">
+                                        <select name="${order.id}">
+                                            <option value="waiting">waiting</option>
+                                            <option value="ready">ready</option>
+                                            <option selected value="completed">completed</option>
+                                            <option value="cancelled">cancelled</option>
+                                        </select>
+                                    </c:if>
+                                    <c:if test="${order.status == 'cancelled'}">
+                                        <select name="${order.id}">
+                                            <option value="waiting">waiting</option>
+                                            <option value="ready">ready</option>
+                                            <option value="completed">completed</option>
+                                            <option selected value="cancelled">cancelled</option>
                                         </select>
                                     </c:if>
 

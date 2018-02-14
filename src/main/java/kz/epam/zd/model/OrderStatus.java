@@ -1,5 +1,5 @@
 package kz.epam.zd.model;
 
 public enum OrderStatus {
-    waiting, ready
+    waiting, ready, completed, cancelled
 }

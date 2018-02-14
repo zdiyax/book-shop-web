@@ -23,6 +23,7 @@ public class OrderService extends AbstractService {
     private static final int ORDERS_PER_PAGE = 10;
     private static final String UPDATE_ORDER_STATUS = "update.order.status";
     private static final String DELETE_ORDER = "delete.order";
+    private static final String CANCEL_ORDER = "cancel.order";
 
 
     public void makeOrder(Order order, int userId, HashMap books) throws ServiceException {
@@ -77,6 +78,7 @@ public class OrderService extends AbstractService {
 
     public List<Order> getOrdersByUserId(Integer userId) throws ServiceException {
         parameters.add(userId);
+        parameters.add("cancelled");
         Order order = new Order();
         order.setUserId(userId);
         return getOrdersByQuery(order, "get.orders.by.userid");
@@ -108,20 +110,24 @@ public class OrderService extends AbstractService {
     public void updateOrderStatus(Order order, Integer orderId, String orderStatus) throws ServiceException {
         parameters.add(orderStatus);
         parameters.add(orderId);
+        updateOrderByQuery(order, UPDATE_ORDER_STATUS);
+    }
+
+    public void deleteOrder(Order order) throws ServiceException {
+        parameters.add(order.getId());
         try (DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory()) {
             OrderDao orderDao = daoFactory.getOrderDao();
-            orderDao.update(order, parameters, UPDATE_ORDER_STATUS);
+            orderDao.delete(order, parameters, DELETE_ORDER);
         } catch (DaoException e) {
             log.debug("Error in OrderService occurred: " + e.getMessage());
             throw new ServiceException(e);
         }
     }
 
-    public void deleteOrder(Order order, Integer orderId) throws ServiceException {
-        parameters.add(orderId);
+    private void updateOrderByQuery(Order order, String cancelOrder) throws ServiceException {
         try (DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory()) {
             OrderDao orderDao = daoFactory.getOrderDao();
-            orderDao.delete(order, parameters, DELETE_ORDER);
+            orderDao.update(order, parameters, cancelOrder);
         } catch (DaoException e) {
             log.debug("Error in OrderService occurred: " + e.getMessage());
             throw new ServiceException(e);
