@@ -1,6 +1,5 @@
 package kz.epam.zd.action;
 
-import kz.epam.zd.exception.ActionException;
 import kz.epam.zd.exception.ServiceException;
 import kz.epam.zd.model.Order;
 import kz.epam.zd.model.OrderedBookDetails;
@@ -24,7 +23,7 @@ public class ShowOrderDetailsAction implements Action {
     private static final String ORDER_DETAILS_PAGE = "order-details";
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         int orderId = Integer.parseInt(request.getParameter(ID));
         OrderedBookDetails orderedBookDetails = new OrderedBookDetails();
 

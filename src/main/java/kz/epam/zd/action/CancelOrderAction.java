@@ -22,7 +22,7 @@ public class CancelOrderAction implements Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        int orderId = Integer.parseInt(request.getParameter(ORDER_ID));
+        int orderId = Integer.parseInt(request.getParameter(ID));
 
         Order order = new Order();
         order.setId(orderId);

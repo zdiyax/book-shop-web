@@ -12,11 +12,11 @@ import java.util.List;
 import static kz.epam.zd.util.ConstantHolder.*;
 
 /**
- * Customer action to display My Orders page.
+ * Customer action to display Customer Orders page.
  */
-public class ShowMyOrdersPageAction implements Action {
+public class ShowCustomerOrdersPageAction implements Action {
 
-    private static final String MY_ORDERS = "my-orders";
+    private static final String CUSTOMER_ORDERS = "customer-orders";
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -30,6 +30,6 @@ public class ShowMyOrdersPageAction implements Action {
             request.setAttribute(ORDERS + FORM_ERRORS, e.getMessage());
         }
 
-        return MY_ORDERS;
+        return CUSTOMER_ORDERS;
     }
 }

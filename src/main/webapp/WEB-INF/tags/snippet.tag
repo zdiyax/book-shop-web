@@ -11,7 +11,7 @@
 <%@attribute name="header" fragment="true" %>
 <%@attribute name="footer" fragment="true" %>
 
-<c:set var="prefix" value="${pageContext.request.contextPath}"/>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <c:set var="role" value="${sessionScope.user.role}"/>
 <c:set var="CUSTOMER" value="CUSTOMER"/>
 <c:set var="OPERATOR" value="OPERATOR"/>
@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="/css/footer.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
 </head>
 <body>
 <div class="header">
@@ -35,61 +36,55 @@
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="${prefix}/do/?action=show-home-page">book-shop</a>
+        <a class="navbar-brand" href="${path}/do/?action=show-home-page">book-shop</a>
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="${prefix}/do/?action=show-catalog-page&page=1"><fmt:message
-                            key="catalog.message"/></a>
+                    <a class="nav-link" href="${path}/do/?action=lang&locale=en">EN</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${prefix}/do/?action=show-about-page"><fmt:message
-                            key="about.message"/></a>
+                    <a class="nav-link" href="${path}/do/?action=lang&locale=ru">RU</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="${path}/do/?action=show-catalog-page&page=1">
+                        <fmt:message key="catalog.title"/></a>
+                </li>
                 <c:if test="${role == CUSTOMER}">
                     <li class="nav-item">
-                        <a class="nav-link" href="${prefix}/do/?action=show-profile-page"><fmt:message
-                                key="profile.message"/> </a>
+                        <a class="nav-link" href="${path}/do/?action=show-profile-page">
+                            <fmt:message key="profile.title"/> </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${prefix}/do/?action=show-my-orders-page"><fmt:message
-                                key="orders.message"/> </a>
+                        <a class="nav-link" href="${path}/do/?action=show-customer-orders-page">
+                            <fmt:message key="customer.orders.title"/> </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${prefix}/do/?action=show-cart-page"><fmt:message
-                                key="cart.message"/> </a>
+                        <a class="nav-link" href="${path}/do/?action=show-cart-page">
+                            <fmt:message key="cart.title"/> </a>
                     </li>
                 </c:if>
                 <c:if test="${role == OPERATOR}">
                     <li class="nav-item">
-                        <a class="nav-link" href="${prefix}/do/?action=show-operator-orders-page&page=1"><fmt:message
-                                key="operator.orders.message"/> </a>
+                        <a class="nav-link" href="${path}/do/?action=show-operator-orders-page&page=1">
+                            <fmt:message key="operator.orders.title"/> </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${prefix}/do/?action=show-add-book-page"><fmt:message
-                                key="operator.add.book.message"/> </a>
+                        <a class="nav-link" href="${path}/do/?action=show-add-book-page">
+                            <fmt:message key="operator.add.book.title"/> </a>
                     </li>
                 </c:if>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="${prefix}/do/?action=lang&locale=en">EN</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${prefix}/do/?action=lang&locale=ru">RU</a>
-                </li>
             </ul>
             <c:if test="${empty sessionScope.user}">
                 <form class="form-inline my-2 my-lg-0">
-                    <a href="/do/?action=show-login-page" style="text-decoration: none;"> <fmt:message
-                            key="login.message"/></a>
+                    <a href="${path}/do/?action=show-login-page" style="text-decoration: none;">
+                        <fmt:message key="login.title"/></a>
                 </form>
             </c:if>
             <c:if test="${not empty sessionScope.user}">
                 <form class="form-inline my-2 my-lg-0">
-                    <a href="/do/?action=logout" style="text-decoration: none;"> <fmt:message
-                            key="logout.message"/></a>
+                    <a href="${path}/do/?action=logout" style="text-decoration: none;">
+                        <fmt:message key="logout.title"/></a>
                 </form>
             </c:if>
         </div>

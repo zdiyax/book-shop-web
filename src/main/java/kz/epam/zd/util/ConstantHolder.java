@@ -74,6 +74,6 @@ public final class ConstantHolder {
 
     //REDIRECTS
     public static final String REDIRECT_CART_PAGE = "redirect:/do/?action=show-cart-page";
-    public static final String BOOK_DETAILS_BY_ID = "/do/?action=show-detailed-book-info&id=";
+    public static final String BOOK_DETAILS_BY_ID = "/do/?action=show-book-details&id=";
 
 }

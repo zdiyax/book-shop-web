@@ -7,8 +7,8 @@
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css">
 <fmt:setBundle basename="lang"/>
-<c:set var="prefix" value="${pageContext.request.contextPath}"/>
-<fmt:message key="myorders.title" var="title"/>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+<fmt:message key="customer.orders.title" var="title"/>
 
 <c:set var="pageCount" value="${pageCount}"/>
 <c:set var="currentPage" value="${currentPage}"/>
@@ -23,9 +23,9 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th scope="col"><fmt:message key="myorders.idField"/></th>
-                            <th scope="col"><fmt:message key="myorders.totalPriceField"/></th>
-                            <th scope="col"><fmt:message key="myorders.statusField"/></th>
+                            <th scope="col"><fmt:message key="customer.orders.id.field"/></th>
+                            <th scope="col"><fmt:message key="customer.orders.total.price.field"/></th>
+                            <th scope="col"><fmt:message key="customer.orders.status.field"/></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -69,7 +69,7 @@
 
                                 </td>
                                 <td width="2%">
-                                    <button class="btn btn-outline-primary" name="refresh" type="submit"
+                                    <button class="btn btn-outline-primary" name="details" type="submit"
                                             onclick="return onDetails(${order.id});">
                                         &#62;
                                     </button>
@@ -81,7 +81,7 @@
                                     </button>
                                 </td>
                                 <td width="2%">
-                                    <button class="btn btn-outline-primary" name="refresh" type="submit"
+                                    <button class="btn btn-outline-primary" name="delete" type="submit"
                                             onclick="return onDelete(${order.id});">
                                         &#215;
                                     </button>

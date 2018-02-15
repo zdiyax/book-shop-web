@@ -22,7 +22,6 @@ public class FormValidator {
     private static final String PROPERTY_KEY_DOT = ".";
     private static final String REGEX_FOR_NUMBER = "[0-9]*";
     private static final String FIELDS_NOT_EQUAL_ERROR_MESSAGE = "fields.not.equal.message";
-    private static final String LIST_NOT_SELECTED_ERROR_MESSAGE = "drop.down.list.item.not.select";
     private static Properties formProperties;
     private Map<String, List<String>> fieldErrors = new HashMap<>();
 

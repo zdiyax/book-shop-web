@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <fmt:setBundle basename="lang"/>
-<c:set var="prefix" value="${pageContext.request.contextPath}"/>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/inputform.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/loader.css"/>
@@ -12,9 +12,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="refresh" content="2; url=/do/?action=show-my-orders-page">
+    <meta http-equiv="refresh" content="2; url=/do/?action=show-customer-orders-page">
 
-    <title><fmt:message key="login.success.title"/></title>
+    <title><fmt:message key="order.success.title"/></title>
 </head>
 
 <body class="text-center">
