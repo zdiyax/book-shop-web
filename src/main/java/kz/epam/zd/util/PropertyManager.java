@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * Utility class to manage properties through property files.
+ */
 public class PropertyManager {
 
     private Properties properties;
@@ -22,7 +25,7 @@ public class PropertyManager {
     }
 
     public String getPropertyKey(String key) throws PropertyManagerException {
-        if (properties == null) throw new PropertyManagerException("Properties not loaded.");
+        if (properties == null) throw new PropertyManagerException("Properties are not loaded.");
         return properties.getProperty(key);
     }
 

@@ -17,7 +17,7 @@ import static kz.epam.zd.util.ConstantHolder.*;
 public class DeleteOrderAction implements Action {
 
     private static final Logger log = LoggerFactory.getLogger(DeleteOrderAction.class);
-    private static final String ORDER_DELETE_ERROR_MESSAGE = "order.delete.error.message";
+    private static final String ORDERS_DELETE_ERROR_MESSAGE = "orders.delete.error.message";
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -31,10 +31,10 @@ public class DeleteOrderAction implements Action {
         try {
             orderService.deleteOrder(order);
         } catch (ServiceException e) {
-            request.setAttribute(ORDERS + FORM_ERRORS, ORDER_DELETE_ERROR_MESSAGE);
-            log.error("Couldn't delete order: {}", e.getMessage());
+            request.setAttribute(ORDERS + FORM_ERRORS, ORDERS_DELETE_ERROR_MESSAGE);
+            log.error("DeleteOrderAction failed {}", e.getMessage());
         }
-
+        log.debug("Order deactivated. Order id = {}", orderId);
         String referer = request.getHeader(REFERER);
         return REDIRECT_PREFIX + referer;
     }

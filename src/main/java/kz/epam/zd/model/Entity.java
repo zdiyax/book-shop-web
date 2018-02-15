@@ -1,5 +1,8 @@
 package kz.epam.zd.model;
 
+/**
+ * Base entity class with id field
+ */
 public class Entity {
     private Integer id;
 

@@ -1,7 +1,6 @@
 package kz.epam.zd.service;
 
 import kz.epam.zd.dao.BookDao;
-import kz.epam.zd.dao.BookOrderedDao;
 import kz.epam.zd.dao.DaoFactory;
 import kz.epam.zd.exception.DaoException;
 import kz.epam.zd.exception.ServiceException;

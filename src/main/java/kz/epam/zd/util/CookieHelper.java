@@ -4,6 +4,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Utility class to manage site cookies.
+ */
 public class CookieHelper {
 
     private CookieHelper() {

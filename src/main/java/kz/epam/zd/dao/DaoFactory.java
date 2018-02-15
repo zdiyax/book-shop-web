@@ -19,9 +19,9 @@ public abstract class DaoFactory implements AutoCloseable {
 
     public abstract OrderDao getOrderDao();
 
-    public abstract BookOrderedDao getBookOrderedDao();
+    public abstract OrderedBookDao getOrderedBookDao();
 
-    public abstract BookOrderedDetailsDao getBookOrderedDetailsDao();
+    public abstract OrderedBookDetailsDao getOrderedBookDetailsDao();
 
     @Override
     public void close() throws JdbcDaoException {

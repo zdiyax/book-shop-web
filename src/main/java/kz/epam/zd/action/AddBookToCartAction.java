@@ -45,5 +45,4 @@ public class AddBookToCartAction implements Action {
             hashMap.put(bookToAddToCart, 1);
         }
     }
-
 }

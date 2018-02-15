@@ -1,9 +1,13 @@
 package kz.epam.zd.action;
 
 import kz.epam.zd.exception.ActionException;
-import kz.epam.zd.exception.LocaleChangerException;
+import kz.epam.zd.exception.ServiceException;
+import kz.epam.zd.model.user.Locale;
+import kz.epam.zd.model.user.User;
+import kz.epam.zd.service.UserService;
 import kz.epam.zd.util.CookieHelper;
-import kz.epam.zd.util.LocaleUpdater;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,18 +19,29 @@ import static kz.epam.zd.util.ConstantHolder.*;
  */
 public class ChangeLocaleAction implements Action {
 
+    private static final Logger log = LoggerFactory.getLogger(ChangeLocaleAction.class);
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
         String userLocale = request.getParameter(LOCALE);
-        try {
-            LocaleUpdater.changeUserLocale(request, userLocale);
-        } catch (LocaleChangerException e) {
-            throw new ActionException(e);
+
+        if (request.getSession().getAttribute(USER) != null) {
+            final User user = (User) request.getSession().getAttribute(USER);
+            user.setLocale(new Locale(userLocale));
+            UserService service = new UserService();
+            try {
+                service.updateUserLocale(user);
+            } catch (ServiceException e) {
+                log.debug("Locale was not changed: {}", e);
+                throw new ActionException(e);
+            }
         }
+        request.getSession().setAttribute(LOCALE, userLocale);
+        log.debug("Locale changed successfully to {}", userLocale);
+
         CookieHelper.setCookie(response, LOCALE, userLocale);
         String referrer = request.getHeader(REFERER);
         return REDIRECT_PREFIX + referrer;
     }
-
 }
 

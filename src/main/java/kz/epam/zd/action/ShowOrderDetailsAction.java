@@ -2,9 +2,11 @@ package kz.epam.zd.action;
 
 import kz.epam.zd.exception.ActionException;
 import kz.epam.zd.exception.ServiceException;
-import kz.epam.zd.model.BookOrderedDetails;
 import kz.epam.zd.model.Order;
+import kz.epam.zd.model.OrderedBookDetails;
 import kz.epam.zd.service.BookOrderedDetailsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,23 +20,24 @@ import static kz.epam.zd.util.ConstantHolder.ID;
  */
 public class ShowOrderDetailsAction implements Action {
 
+    private static final Logger log = LoggerFactory.getLogger(ShowOrderDetailsAction.class);
     private static final String ORDER_DETAILS_PAGE = "order-details";
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
         int orderId = Integer.parseInt(request.getParameter(ID));
-        BookOrderedDetails bookOrderedDetails = new BookOrderedDetails();
+        OrderedBookDetails orderedBookDetails = new OrderedBookDetails();
 
         Order order = new Order();
         order.setId(orderId);
 
         BookOrderedDetailsService bookOrderedDetailsService = new BookOrderedDetailsService();
-        List<BookOrderedDetails> bookOrderedDetailsResult;
+        List<OrderedBookDetails> orderedBookDetailsResult;
         try {
-            bookOrderedDetailsResult = bookOrderedDetailsService.getDetailsByOrderId(bookOrderedDetails, orderId);
-            request.getSession().setAttribute(DETAILS, bookOrderedDetailsResult);
+            orderedBookDetailsResult = bookOrderedDetailsService.getDetailsByOrderId(orderedBookDetails, orderId);
+            request.getSession().setAttribute(DETAILS, orderedBookDetailsResult);
         } catch (ServiceException e) {
-            System.out.println(e.getMessage());
+            log.error("ShowOrderDetailsAction failed: {}", e.getMessage());
         }
 
         return ORDER_DETAILS_PAGE;

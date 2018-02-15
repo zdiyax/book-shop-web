@@ -83,7 +83,7 @@
             <c:if test="${empty sessionScope.user}">
                 <form class="form-inline my-2 my-lg-0">
                     <a href="/do/?action=show-login-page" style="text-decoration: none;"> <fmt:message
-                            key="signin.message"/></a>
+                            key="login.message"/></a>
                 </form>
             </c:if>
             <c:if test="${not empty sessionScope.user}">

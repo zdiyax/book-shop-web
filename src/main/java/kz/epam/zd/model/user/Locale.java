@@ -1,5 +1,6 @@
 package kz.epam.zd.model.user;
 
+@SuppressWarnings("unused")
 public class Locale {
     private String localeName;
 

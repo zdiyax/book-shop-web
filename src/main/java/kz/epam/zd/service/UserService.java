@@ -13,7 +13,7 @@ public class UserService extends AbstractService {
     private static final String USER_LOGIN_KEY = "get.user.by.username";
     private static final String USER_REGISTER_KEY = "insert.user";
     private static final String UPDATE_USER_LOCALE_KEY = "update.user.locale";
-    private static final String UPDATE_USER_PERSONALINFO = "update.user.personal.info";
+    private static final String UPDATE_USER_PERSONAL_INFO = "update.user.personal.info";
 
     public User login(User user) throws ServiceException {
         parameters.add(user.getUsername());
@@ -26,12 +26,12 @@ public class UserService extends AbstractService {
             throw new ServiceException(e);
         }
         if (foundUser == null) {
-            log.debug("User not found | Username = {}", user.getUsername());
+            log.debug("User not found. Username = {}", user.getUsername());
             throw new UserNotFoundException();
         }
         try {
             if (!PasswordHelper.verifyPassword(testPassword, foundUser.getPassword())) {
-                log.debug("Wrong password entered | Username = {}", user.getUsername());
+                log.debug("Wrong password entered. Username = {}", user.getUsername());
                 throw new WrongPasswordException();
             }
         } catch (PasswordHelper.PasswordHashAlgorithmException e) {
@@ -88,7 +88,7 @@ public class UserService extends AbstractService {
             parameters.add(user.getTelephoneNumber());
             parameters.add(user.getUsername());
 
-            user1 = userDao.update(user, parameters, UPDATE_USER_PERSONALINFO);
+            user1 = userDao.update(user, parameters, UPDATE_USER_PERSONAL_INFO);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

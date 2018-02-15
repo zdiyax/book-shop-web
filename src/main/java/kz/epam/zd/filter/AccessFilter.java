@@ -21,8 +21,8 @@ public class AccessFilter implements Filter {
 
     private static final Logger logger = LoggerFactory.getLogger(AccessFilter.class);
     private static final String ANONYMOUS_ACTION_FILE_NAME = "actions-anonymous.properties";
-    private static final String USER_ACTION_FILE_NAME = "actions-customer.properties";
-    private static final String MANAGER_ACTION_FILE_NAME = "actions-operator.properties";
+    private static final String CUSTOMER_ACTION_FILE_NAME = "actions-customer.properties";
+    private static final String OPERATOR_ACTION_FILE_NAME = "actions-operator.properties";
     private static final String ALL_ACTION_FILE_NAME = "actions-all.properties";
     private List<String> anonymousActionList = new ArrayList<>();
     private List<String> userActionList = new ArrayList<>();
@@ -34,8 +34,8 @@ public class AccessFilter implements Filter {
 
         try {
             anonymousActionList = getListFromFile(ANONYMOUS_ACTION_FILE_NAME);
-            userActionList = getListFromFile(USER_ACTION_FILE_NAME);
-            managerActionList = getListFromFile(MANAGER_ACTION_FILE_NAME);
+            userActionList = getListFromFile(CUSTOMER_ACTION_FILE_NAME);
+            managerActionList = getListFromFile(OPERATOR_ACTION_FILE_NAME);
             allActionList = getListFromFile(ALL_ACTION_FILE_NAME);
         } catch (IOException e) {
             logger.error("Unable to open and load access actions from file.", e);
@@ -88,7 +88,6 @@ public class AccessFilter implements Filter {
     }
 
     private List<String> getActionList(User user) {
-
         if (user == null) return anonymousActionList;
         if (RoleType.CUSTOMER.toString().equals(user.getRole().getRoleType().toString())) return userActionList;
         if (RoleType.OPERATOR.toString().equals(user.getRole().getRoleType().toString())) return managerActionList;

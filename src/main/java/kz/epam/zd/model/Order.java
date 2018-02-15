@@ -2,6 +2,7 @@ package kz.epam.zd.model;
 
 import java.util.Map;
 
+@SuppressWarnings("unused")
 public class Order extends Entity {
     private OrderStatus status;
     private int userId;

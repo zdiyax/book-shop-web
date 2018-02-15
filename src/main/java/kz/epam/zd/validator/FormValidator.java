@@ -21,11 +21,8 @@ public class FormValidator {
     private static final String FORM_PROPERTY_FILE_NAME = "validation.properties";
     private static final String PROPERTY_KEY_DOT = ".";
     private static final String REGEX_FOR_NUMBER = "[0-9]*";
-    private static final int ZERO_FILE_SIZE = 0;
     private static final String FIELDS_NOT_EQUAL_ERROR_MESSAGE = "fields.not.equal.message";
     private static final String LIST_NOT_SELECTED_ERROR_MESSAGE = "drop.down.list.item.not.select";
-    private static final String WRONG_CONTENT_TYPE_ERROR_MESSAGE = "add.room.photo.error";
-    private static final String WRONG_FILE_SIZE_ERROR_MESSAGE = "add.room.photo.size.error";
     private static Properties formProperties;
     private Map<String, List<String>> fieldErrors = new HashMap<>();
 
@@ -189,17 +186,6 @@ public class FormValidator {
             log.debug("Result is {}", fieldValidator.isValid(checkField, checkOtherField));
         }
     }
-
-    public void checkDropDownListOnSelect(String parameter, HttpServletRequest req) {
-
-        String checkParameter = req.getParameter(parameter);
-        NotNullValidator nullValidator = new NotNullValidator();
-        log.debug("Validator {} try to validate value of parameter {} on NULL", nullValidator.getClass().getSimpleName(), parameter);
-        if (!nullValidator.isValid(checkParameter)) fillErrorMap(parameter, LIST_NOT_SELECTED_ERROR_MESSAGE);
-        log.debug("Result is {}", nullValidator.isValid(checkParameter));
-
-    }
-
 
     private void fillErrorMap(String parameter, String errorMessagePropertyKey) {
         List<String> errorMessages = new ArrayList<>();

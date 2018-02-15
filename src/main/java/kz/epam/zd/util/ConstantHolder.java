@@ -1,22 +1,18 @@
 package kz.epam.zd.util;
 
+/**
+ * Utility class to store all widely used constants.
+ */
 public final class ConstantHolder {
+
+    //UTILS
     public static final String REDIRECT_PREFIX = "redirect:";
-    public static final String LOGIN = "login";
-    public static final String PASSWORD = "password";
-    public static final String CONFIRM_PASSWORD = "confirm_password";
-    public static final String USER = "user";
-    public static final String USERNAME = "username";
-    public static final String LOCALE = "locale";
-    public static final String FORM_ERRORS = "FormErrors";
     public static final String REFERER = "referer";
-    public static final String ERROR = "error";
-    public static final String ORDERS = "orders";
-
-
     public static final String ACTION = "action";
     public static final String WEB_INF_PATH_TO_JSP = "/WEB-INF/jsp/";
     public static final String EXT_JSP = ".jsp";
+    public static final int DEFAULT_PAGE_NUMBER = 1;
+
 
     //INDEXES FOR RESULT SET
     public static final int INDEX_1 = 1;
@@ -29,7 +25,6 @@ public final class ConstantHolder {
     public static final int INDEX_8 = 8;
     public static final int INDEX_9 = 9;
 
-    public static final int DEFAULT_PAGE_NUMBER = 1;
 
     //JSP PAGES
     public static final String LOGIN_PAGE = "login";
@@ -40,11 +35,6 @@ public final class ConstantHolder {
     public static final String CATALOG_PAGE = "catalog";
     public static final String HOME_PAGE = "index";
     public static final String PROFILE_PAGE = "profile";
-
-
-
-    public static final String USERNAME_PATTERN = "^[a-z0-9_-]{3,15}$";
-
 
 
     //ATTRIBUTES FROM HTTP REQUEST
@@ -58,9 +48,9 @@ public final class ConstantHolder {
     public static final String AUTHOR = "author";
     public static final String PRICE = "price";
     public static final String ISBN = "isbn";
-    public static final String DESCR = "description";
+    public static final String DESCRIPTION = "description";
     public static final String QUANTITY = "quantity";
-    public static final String TOTAL_COST ="totalCost";
+    public static final String TOTAL_COST = "totalCost";
 
     public static final String FULL_NAME = "fullName";
     public static final String EMAIL = "email";
@@ -70,6 +60,16 @@ public final class ConstantHolder {
     public static final String ID = "id";
     public static final String ORDER_ID = "orderId";
     public static final String DETAILS = "details";
+
+    public static final String LOGIN = "login";
+    public static final String PASSWORD = "password";
+    public static final String CONFIRM_PASSWORD = "confirm_password";
+    public static final String USER = "user";
+    public static final String USERNAME = "username";
+    public static final String LOCALE = "locale";
+    public static final String FORM_ERRORS = "FormErrors";
+    public static final String ERROR = "error";
+    public static final String ORDERS = "orders";
 
 
     //REDIRECTS

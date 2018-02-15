@@ -1,12 +1,12 @@
 package kz.epam.zd.service;
 
-import kz.epam.zd.dao.BookOrderedDao;
+import kz.epam.zd.dao.OrderedBookDao;
 import kz.epam.zd.dao.DaoFactory;
 import kz.epam.zd.dao.OrderDao;
 import kz.epam.zd.exception.DaoException;
 import kz.epam.zd.exception.ServiceException;
 import kz.epam.zd.model.Book;
-import kz.epam.zd.model.BookOrdered;
+import kz.epam.zd.model.OrderedBook;
 import kz.epam.zd.model.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,10 +23,9 @@ public class OrderService extends AbstractService {
     private static final int ORDERS_PER_PAGE = 10;
     private static final String UPDATE_ORDER_STATUS = "update.order.status";
     private static final String DELETE_ORDER = "delete.order";
-    private static final String CANCEL_ORDER = "cancel.order";
 
 
-    public void makeOrder(Order order, int userId, HashMap books) throws ServiceException {
+    public void orderBooks(Order order, int userId, HashMap books) throws ServiceException {
         int totalCost = calculateTotalCost(books);
 
         parameters.add(userId);
@@ -41,7 +40,7 @@ public class OrderService extends AbstractService {
             throw new ServiceException(e);
         }
 
-
+        //insert every OrderedBook in database
         for (Object o : books.entrySet()) {
             parameters.clear();
             parameters.add(resultOrder.getId());
@@ -50,14 +49,14 @@ public class OrderService extends AbstractService {
             int quantity = (int) pair.getValue();
             parameters.add(book1.getId());
             parameters.add(quantity);
-            BookOrdered bookOrdered = new BookOrdered();
-            bookOrdered.setOrderId(resultOrder.getId());
-            bookOrdered.setBookId(book1.getId());
-            bookOrdered.setQuantity(quantity);
+            OrderedBook orderedBook = new OrderedBook();
+            orderedBook.setOrderId(resultOrder.getId());
+            orderedBook.setBookId(book1.getId());
+            orderedBook.setQuantity(quantity);
 
             try (DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory()) {
-                BookOrderedDao bookOrderedDao = daoFactory.getBookOrderedDao();
-                bookOrderedDao.insert(bookOrdered, parameters, INSERT_BOOK_ORDERED);
+                OrderedBookDao orderedBookDao = daoFactory.getOrderedBookDao();
+                orderedBookDao.insert(orderedBook, parameters, INSERT_BOOK_ORDERED);
             } catch (DaoException e) {
                 log.debug("Error in OrderService occurred: " + e.getMessage());
                 throw new ServiceException(e);

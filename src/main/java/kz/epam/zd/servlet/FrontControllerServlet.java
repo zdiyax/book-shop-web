@@ -17,6 +17,9 @@ import java.io.IOException;
 
 import static kz.epam.zd.util.ConstantHolder.*;
 
+/**
+ * Main HttpServlet operating with actions.
+ */
 @WebServlet(name = "FrontControllerServlet", urlPatterns = "/do/*")
 public class FrontControllerServlet extends HttpServlet {
 
@@ -64,7 +67,7 @@ public class FrontControllerServlet extends HttpServlet {
         Integer errorStatusCode = (Integer) request.getAttribute(ERROR_STATUS_CODE);
         if (errorStatusCode != null) {
             request.getRequestDispatcher(WEB_INF_PATH_TO_JSP  + ERROR + errorStatusCode + EXT_JSP).forward(request, response);
-            log.error("Received Error with code {}, will be forwarded to proper error page.", errorStatusCode);
+            log.error("Received error code {}, will be forwarded to proper error page.", errorStatusCode);
         }
     }
 

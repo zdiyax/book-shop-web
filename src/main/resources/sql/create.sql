@@ -23,7 +23,6 @@ CREATE TABLE "order" (
 OIDS = FALSE
 );
 
-
 CREATE TABLE "user" (
   "user_id"          SERIAL      NOT NULL,
   "locale_id"        INTEGER     NOT NULL,
@@ -39,7 +38,6 @@ CREATE TABLE "user" (
 OIDS = FALSE
 );
 
-
 CREATE TABLE "user_role" (
   "user_role_id"   SERIAL      NOT NULL,
   "user_role_name" VARCHAR(16) NOT NULL UNIQUE,
@@ -47,7 +45,6 @@ CREATE TABLE "user_role" (
 ) WITH (
 OIDS = FALSE
 );
-
 
 CREATE TABLE "locale" (
   "locale_id"   SERIAL      NOT NULL,
@@ -57,7 +54,6 @@ CREATE TABLE "locale" (
 OIDS = FALSE
 );
 
-
 CREATE TABLE "order_status" (
   "order_status_id"   SERIAL      NOT NULL,
   "order_status_name" VARCHAR(32) NOT NULL UNIQUE,
@@ -66,28 +62,23 @@ CREATE TABLE "order_status" (
 OIDS = FALSE
 );
 
-
 CREATE TABLE "order_items" (
-  "order_items_id" SERIAL NOT NULL,
-  "order_id" INTEGER NOT NULL,
-  "book_id"  INTEGER NOT NULL,
-  "quantity" INTEGER NOT NULL
+  "order_items_id" SERIAL  NOT NULL,
+  "order_id"       INTEGER NOT NULL,
+  "book_id"        INTEGER NOT NULL,
+  "quantity"       INTEGER NOT NULL
 ) WITH (
 OIDS = FALSE
 );
-
 
 ALTER TABLE "order"
   ADD CONSTRAINT "order_fk0" FOREIGN KEY ("user_id") REFERENCES "user" ("user_id");
 ALTER TABLE "order"
   ADD CONSTRAINT "order_fk1" FOREIGN KEY ("order_status_id") REFERENCES "order_status" ("order_status_id");
-
 ALTER TABLE "user"
   ADD CONSTRAINT "user_fk0" FOREIGN KEY ("locale_id") REFERENCES "locale" ("locale_id");
 ALTER TABLE "user"
   ADD CONSTRAINT "user_fk3" FOREIGN KEY ("user_role_id") REFERENCES "user_role" ("user_role_id");
-
-
 ALTER TABLE "order_items"
   ADD CONSTRAINT "order_items_fk0" FOREIGN KEY ("order_id") REFERENCES "order" ("order_id");
 ALTER TABLE "order_items"

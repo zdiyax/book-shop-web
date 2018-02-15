@@ -16,22 +16,22 @@
         <div style="margin-top: 60px; margin-left: 60px; width: 60%">
             <form method="post" action="/do/?action=add-book">
                 <h2>Title:</h2>
-                <h2><b><input name="title"></b></h2>
+                <h2><b><input name="title" required></b></h2>
 
                 <h4>Author:</h4>
-                <h4><b><input name="author"></b></h4>
+                <h4><b><input name="author" required></b></h4>
 
                 Price:
-                <b><input name="price"></b>
+                <b><input name="price" required></b>
 
                 <p>isbn:
-                    <b><input name="isbn""></b>
+                    <b><input name="isbn" required></b>
                 </p>
                 <p><b>Description:</b>
-                </p><input type="text" name="description" style="width: 400px">
+                </p><input type="text" name="description" style="width: 400px" required>
 
                 <p><b>Quantity:</b></p>
-                <b><input name="quantity"></b>
+                <b><input name="quantity" required></b>
                 <br>
                 <button type="submit" class="btn btn-outline-primary">
                     Submit

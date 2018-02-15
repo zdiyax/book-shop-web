@@ -2,14 +2,12 @@ ALTER TABLE "order"
   DROP CONSTRAINT IF EXISTS "order_fk0";
 ALTER TABLE "order"
   DROP CONSTRAINT IF EXISTS "order_fk1";
-
 ALTER TABLE "user"
   DROP CONSTRAINT IF EXISTS "user_fk0";
 ALTER TABLE "user"
   DROP CONSTRAINT IF EXISTS "user_fk1";
 ALTER TABLE "user"
   DROP CONSTRAINT IF EXISTS "user_fk3";
-
 ALTER TABLE "order_items"
   DROP CONSTRAINT IF EXISTS "order_items_fk0";
 ALTER TABLE "order_items"

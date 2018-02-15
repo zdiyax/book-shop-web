@@ -1,11 +1,15 @@
 package kz.epam.zd.exception;
 
+/**
+ * Exception wrapper for DAO layer.
+ */
 public class DaoException extends Exception {
 
-    public DaoException() {
+    DaoException() {
     }
 
-    public DaoException(Throwable cause) {
+    DaoException(Throwable cause) {
         super(cause);
     }
+
 }

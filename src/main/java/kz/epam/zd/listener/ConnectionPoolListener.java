@@ -10,6 +10,9 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+/**
+ * Initializes ConnectionPool when web application starts.
+ */
 @WebListener
 public class ConnectionPoolListener implements ServletContextListener {
 
@@ -19,7 +22,6 @@ public class ConnectionPoolListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         pool = new ConnectionPool();
-
         try {
             pool.configure();
         } catch (ConnectionPoolException e) {
@@ -29,8 +31,9 @@ public class ConnectionPoolListener implements ServletContextListener {
                 log.error("Listener failed to start: " + e1);
             }
             JdbcDaoFactory.setPool(pool);
-            log.error("Initializing a CP failed, error in fill() method." + e);
+            log.error("Initializing CP failed" + e);
         }
+        JdbcDaoFactory.setPool(pool);
     }
 
     @Override

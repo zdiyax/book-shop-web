@@ -1,6 +1,5 @@
 package kz.epam.zd.action;
 
-import kz.epam.zd.exception.ActionException;
 import kz.epam.zd.exception.ServiceException;
 import kz.epam.zd.model.Book;
 import kz.epam.zd.service.BookService;

@@ -1,21 +1,21 @@
 package kz.epam.zd.service;
 
-import kz.epam.zd.dao.BookOrderedDetailsDao;
+import kz.epam.zd.dao.OrderedBookDetailsDao;
 import kz.epam.zd.dao.DaoFactory;
 import kz.epam.zd.exception.DaoException;
 import kz.epam.zd.exception.ServiceException;
-import kz.epam.zd.model.BookOrderedDetails;
+import kz.epam.zd.model.OrderedBookDetails;
 
 import java.util.List;
 
 public class BookOrderedDetailsService extends AbstractService {
 
-    public List<BookOrderedDetails> getDetailsByOrderId(BookOrderedDetails bookOrderedDetails, int orderId) throws ServiceException {
-        List<BookOrderedDetails> bookList;
+    public List<OrderedBookDetails> getDetailsByOrderId(OrderedBookDetails orderedBookDetails, int orderId) throws ServiceException {
+        List<OrderedBookDetails> bookList;
         parameters.add(orderId);
         try (DaoFactory daoFactory = DaoFactory.createJdbcDaoFactory()) {
-            BookOrderedDetailsDao bookDao = daoFactory.getBookOrderedDetailsDao();
-            bookList = bookDao.getAllByParameters(bookOrderedDetails, parameters, "get.details.by.orderid");
+            OrderedBookDetailsDao bookDao = daoFactory.getOrderedBookDetailsDao();
+            bookList = bookDao.getAllByParameters(orderedBookDetails, parameters, "get.details.by.orderid");
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

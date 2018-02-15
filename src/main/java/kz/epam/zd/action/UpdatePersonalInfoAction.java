@@ -34,6 +34,7 @@ public class UpdatePersonalInfoAction implements Action {
         } catch (ServiceException e) {
             log.debug("Error in UpdatePersonalInfoAction.class occurred: {}", e.getMessage());
         }
+        log.debug("Personal info updated. Username = {}", user.getUsername());
         request.getSession().setAttribute(USER, updatedUser);
         String referer = request.getHeader(REFERER);
 

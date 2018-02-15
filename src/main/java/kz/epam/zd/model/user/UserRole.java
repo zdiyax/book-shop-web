@@ -2,6 +2,7 @@ package kz.epam.zd.model.user;
 
 import kz.epam.zd.model.Entity;
 
+@SuppressWarnings("unused")
 public class UserRole extends Entity {
     private RoleType roleType;
 

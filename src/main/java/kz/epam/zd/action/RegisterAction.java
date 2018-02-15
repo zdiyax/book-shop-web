@@ -52,10 +52,11 @@ public class RegisterAction implements Action {
         try {
             userService.register(user);
         } catch (ServiceException e) {
+            log.error("RegisterAction failed: {}", e.getMessage());
             request.getSession().setAttribute(REGISTER + FORM_ERRORS, e.getMessage());
             return REDIRECT_REGISTER_FORM;
         }
-        log.debug("User registered | Username = {}", user.getUsername());
+        log.debug("User registered. Username = {}", user.getUsername());
         request.getSession().setAttribute(USER, user);
         return REDIRECT_REGISTER_SUCCESS;
     }

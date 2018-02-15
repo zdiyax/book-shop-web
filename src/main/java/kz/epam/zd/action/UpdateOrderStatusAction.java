@@ -34,8 +34,9 @@ public class UpdateOrderStatusAction implements Action {
         try {
             orderService.updateOrderStatus(order, orderId, orderStatus);
         } catch (ServiceException e) {
-            log.error("Error in UpdateOrderStatusAction.class occured : {}", e.getMessage());
+            log.error("Error in UpdateOrderStatusAction.class occurred : {}", e.getMessage());
         }
+        log.debug("Order status updated. Order id = {}", orderId);
 
         String referer = request.getHeader(REFERER);
         return REDIRECT_PREFIX + referer;

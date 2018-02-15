@@ -1,6 +1,7 @@
 package kz.epam.zd.model;
 
-public class BookOrdered extends Entity {
+@SuppressWarnings("unused")
+public class OrderedBook extends Entity {
     private int orderId;
     private int bookId;
     private int quantity;

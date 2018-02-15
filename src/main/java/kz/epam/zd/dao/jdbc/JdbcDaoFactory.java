@@ -46,13 +46,13 @@ public class JdbcDaoFactory extends DaoFactory {
     }
 
     @Override
-    public BookOrderedDao getBookOrderedDao() {
-        return new JdbcBookOrderedDao(connection);
+    public OrderedBookDao getOrderedBookDao() {
+        return new JdbcOrderedBookDao(connection);
     }
 
     @Override
-    public BookOrderedDetailsDao getBookOrderedDetailsDao() {
-        return new JdbcBookOrderedDetailsDao(connection);
+    public OrderedBookDetailsDao getOrderedBookDetailsDao() {
+        return new JdbcOrderedBookDetailsDao(connection);
     }
 
     @Override

@@ -1,5 +1,9 @@
 package kz.epam.zd.exception;
 
+
+/**
+ * Exception wrapper for Service layer.
+ */
 public class ServiceException extends Exception {
     private String message;
 
