@@ -3,13 +3,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" type="text/css" href="/WEB-INF/css/jumbotron.css"/>
-<!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css">
 <fmt:setBundle basename="lang"/>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <fmt:message key="customer.orders.title" var="title"/>
-
 <c:set var="pageCount" value="${pageCount}"/>
 <c:set var="currentPage" value="${currentPage}"/>
 <c:set var="orders" value="${orders}"/>
@@ -18,7 +14,7 @@
     <jsp:body>
         <div class="container" style="margin-top: 80px">
             <c:if test="${fn:length(orders) != 0}">
-                <form name="Form1" method="post" action="/do/?action=update-operator-orders">
+                <form name="Form1" method="post" action="${path}/do/?action=update-operator-orders">
 
                     <table class="table table-bordered">
                         <thead>
@@ -99,7 +95,7 @@
                     <ul class="pagination pagination-sm">
                         <c:forEach var="i" begin="${1}" end="${pageCount}">
                             <li class="page-item"><a class="page-link"
-                                                     href="/do/?action=show-operator-orders-page&page=${i}"
+                                                     href="${path}/do/?action=show-operator-orders-page&page=${i}"
                                                      class="link-style">${i}</a></li>
                         </c:forEach>
                     </ul>
@@ -135,15 +131,3 @@
         return true;
     }
 </script>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-        integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-        crossorigin="anonymous"></script>
-<script src="../../dist/js/bootstrap.min.js"></script>

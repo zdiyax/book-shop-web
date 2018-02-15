@@ -19,7 +19,6 @@
             <p><fmt:message key="book.details.isbn.field"/> : ${book.isbn}</p>
             <p><b><fmt:message key="book.details.description.field"/> :</b></p>
             <p>${book.description}</p>
-
             <c:if test="${role == CUSTOMER}">
                 <button type="button" class="btn btn-outline-primary">
                     <a style="text-decoration: none" href="${path}/do/?action=add-book-to-cart&id=${book.id}"><fmt:message key="book.details.customer.button.message"/></a>

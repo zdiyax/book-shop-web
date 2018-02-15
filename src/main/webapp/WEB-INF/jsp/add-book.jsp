@@ -2,49 +2,31 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!-- Bootstrap core CSS -->
 <fmt:setBundle basename="lang"/>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<fmt:message key="profile.title" var="title"/>
+<fmt:message key="operator.add.book.title" var="title"/>
 
 <t:snippet title="${title}">
     <jsp:body>
         <div style="margin-top: 60px; margin-left: 60px; width: 60%">
             <form method="post" action="/do/?action=add-book">
-                <h2>Title:</h2>
+                <h2><fmt:message key="book.details.title.field"/> : </h2>
                 <h2><b><input name="title" required></b></h2>
-
-                <h4>Author:</h4>
+                <h4><fmt:message key="book.details.author.field"/> : </h4>
                 <h4><b><input name="author" required></b></h4>
-
-                Price:
+                <fmt:message key="book.details.price.field"/> :
                 <b><input name="price" required></b>
-
-                <p>isbn:
-                    <b><input name="isbn" required></b>
-                </p>
-                <p><b>Description:</b>
+                <p><fmt:message key="book.details.isbn.field"/> :
+                    <b><input name="isbn" required></b></p>
+                <p><b><fmt:message key="book.details.description.field"/> : </b>
                 </p><input type="text" name="description" style="width: 400px" required>
-
-                <p><b>Quantity:</b></p>
+                <p><b><fmt:message key="book.details.quantity.field"/> : </b></p>
                 <b><input name="quantity" required></b>
                 <br>
                 <button type="submit" class="btn btn-outline-primary">
-                    Submit
+                    <fmt:message key="book.details.button.message"/>
                 </button>
             </form>
         </div>
     </jsp:body>
 </t:snippet>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-        integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-        crossorigin="anonymous"></script>
-<script src="../../dist/js/bootstrap.min.js"></script>
