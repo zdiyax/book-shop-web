@@ -1,6 +1,5 @@
 package kz.epam.zd.action;
 
-import kz.epam.zd.exception.ActionException;
 import kz.epam.zd.exception.ServiceException;
 import kz.epam.zd.model.user.User;
 import kz.epam.zd.service.UserService;
@@ -12,28 +11,31 @@ import javax.servlet.http.HttpServletResponse;
 
 import static kz.epam.zd.util.ConstantHolder.*;
 
+/**
+ * Updates user's personal info in the database
+ */
 public class UpdatePersonalInfoAction implements Action {
 
     private static final Logger log = LoggerFactory.getLogger(UpdatePersonalInfoAction.class);
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         UserService userService = new UserService();
-        User user = (User) req.getSession().getAttribute(USER);
+        User user = (User) request.getSession().getAttribute(USER);
 
-        user.setFullName(req.getParameter(FULL_NAME));
-        user.setEmail(req.getParameter(EMAIL));
-        user.setAddress(req.getParameter(ADDRESS));
-        user.setTelephoneNumber(req.getParameter(TELEPHONE_NUMBER));
+        user.setFullName(request.getParameter(FULL_NAME));
+        user.setEmail(request.getParameter(EMAIL));
+        user.setAddress(request.getParameter(ADDRESS));
+        user.setTelephoneNumber(request.getParameter(TELEPHONE_NUMBER));
 
         User updatedUser = user;
         try {
             updatedUser = userService.updatePersonalInfo(user);
         } catch (ServiceException e) {
-            log.debug("Error in UpdatePersonalInfoAction.class occurred");
+            log.debug("Error in UpdatePersonalInfoAction.class occurred: {}", e.getMessage());
         }
-        req.getSession().setAttribute(USER, updatedUser);
-        String referer = req.getHeader(REFERER);
+        request.getSession().setAttribute(USER, updatedUser);
+        String referer = request.getHeader(REFERER);
 
         return REDIRECT_PREFIX + referer;
     }

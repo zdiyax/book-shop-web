@@ -4,26 +4,29 @@ import kz.epam.zd.exception.ActionException;
 import kz.epam.zd.exception.LocaleChangerException;
 import kz.epam.zd.util.CookieHelper;
 import kz.epam.zd.util.LocaleUpdater;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import static kz.epam.zd.util.ConstantHolder.*;
 
+/**
+ * Global action to update user locale
+ */
 public class ChangeLocaleAction implements Action {
+
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) throws ActionException {
-        String userLocale = req.getParameter(LOCALE);
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
+        String userLocale = request.getParameter(LOCALE);
         try {
-            LocaleUpdater.changeUserLocale(req, userLocale);
+            LocaleUpdater.changeUserLocale(request, userLocale);
         } catch (LocaleChangerException e) {
             throw new ActionException(e);
         }
-        CookieHelper.setCookie(res, LOCALE, userLocale);
-        String referrer = req.getHeader(REFERER);
+        CookieHelper.setCookie(response, LOCALE, userLocale);
+        String referrer = request.getHeader(REFERER);
         return REDIRECT_PREFIX + referrer;
     }
+
 }
 

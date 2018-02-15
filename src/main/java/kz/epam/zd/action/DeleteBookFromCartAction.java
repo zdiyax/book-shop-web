@@ -8,13 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
-import static kz.epam.zd.util.ConstantHolder.REDIRECT_PREFIX;
+import static kz.epam.zd.util.ConstantHolder.*;
 
+/**
+ * Customer action to delete a book instance from the shopping cart
+ */
 public class DeleteBookFromCartAction implements Action {
+
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) throws ActionException {
-        HashMap books = (HashMap) req.getSession().getAttribute("cart");
-        int id = Integer.parseInt(req.getParameter("book"));
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
+        HashMap books = (HashMap) request.getSession().getAttribute(CART);
+        int id = Integer.parseInt(request.getParameter(BOOK));
         for (int i = 0; i < books.size(); i++) {
             for (Object o : books.entrySet()) {
                 Map.Entry pair = (Map.Entry) o;
@@ -25,8 +29,8 @@ public class DeleteBookFromCartAction implements Action {
                 }
             }
         }
-        req.getSession().setAttribute("cart", books);
 
-        return REDIRECT_PREFIX + "/do/?action=show-cart-page";
+        request.getSession().setAttribute(CART, books);
+        return REDIRECT_CART_PAGE;
     }
 }

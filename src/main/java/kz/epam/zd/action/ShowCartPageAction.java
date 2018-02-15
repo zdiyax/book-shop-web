@@ -8,18 +8,28 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
+import static kz.epam.zd.util.ConstantHolder.CART;
+import static kz.epam.zd.util.ConstantHolder.TOTAL_COST;
+
+/**
+ * Customer action to display Cart page
+ */
 public class ShowCartPageAction implements Action {
 
     private int totalCost = 0;
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) throws ActionException {
-        HashMap hashMap = (HashMap) req.getSession().getAttribute("cart");
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
+        HashMap hashMap = (HashMap) request.getSession().getAttribute(CART);
         calculateTotalCost(hashMap);
-        req.getSession().setAttribute("totalCost", totalCost);
-        return "cart";
+        request.getSession().setAttribute(TOTAL_COST, totalCost);
+        return CART;
     }
 
+    /**
+     * Calculates total cost of books in the cart
+     * @param hashMap shopping cart
+     */
     private void calculateTotalCost(HashMap hashMap) {
         for (Object o : hashMap.entrySet()) {
             Map.Entry pair = (Map.Entry) o;

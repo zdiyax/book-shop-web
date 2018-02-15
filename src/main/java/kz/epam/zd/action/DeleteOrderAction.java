@@ -1,20 +1,27 @@
 package kz.epam.zd.action;
 
-import kz.epam.zd.exception.ActionException;
 import kz.epam.zd.exception.ServiceException;
 import kz.epam.zd.model.Order;
 import kz.epam.zd.service.OrderService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static kz.epam.zd.util.ConstantHolder.REDIRECT_PREFIX;
-import static kz.epam.zd.util.ConstantHolder.REFERER;
+import static kz.epam.zd.util.ConstantHolder.*;
 
+/**
+ * Operator action to delete order from displaying by deactivating
+ */
 public class DeleteOrderAction implements Action {
+
+    private static final Logger log = LoggerFactory.getLogger(DeleteOrderAction.class);
+    private static final String ORDER_DELETE_ERROR_MESSAGE = "order.delete.error.message";
+
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) throws ActionException {
-        String parameter = req.getParameter("id");
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
+        String parameter = request.getParameter(ID);
         Integer orderId = Integer.parseInt(parameter);
 
         Order order = new Order();
@@ -24,10 +31,11 @@ public class DeleteOrderAction implements Action {
         try {
             orderService.deleteOrder(order);
         } catch (ServiceException e) {
-            System.out.println(e.getMessage());
+            request.setAttribute(ORDERS + FORM_ERRORS, ORDER_DELETE_ERROR_MESSAGE);
+            log.error("Couldn't delete order: {}", e.getMessage());
         }
 
-        String referer = req.getHeader(REFERER);
+        String referer = request.getHeader(REFERER);
         return REDIRECT_PREFIX + referer;
     }
 }

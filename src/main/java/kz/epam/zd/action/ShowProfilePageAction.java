@@ -5,9 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import static kz.epam.zd.util.ConstantHolder.PROFILE_PAGE;
 
+/**
+ * Customer action to display Profile page
+ */
 public class ShowProfilePageAction implements Action {
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         return PROFILE_PAGE;
     }
 }

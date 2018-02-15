@@ -8,33 +8,35 @@ import kz.epam.zd.service.BookService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static kz.epam.zd.util.ConstantHolder.FORM_ERRORS;
-import static kz.epam.zd.util.ConstantHolder.REDIRECT_PREFIX;
+import static kz.epam.zd.util.ConstantHolder.*;
 
+/**
+ * Operator action to edit Book entry in the database
+ */
 public class EditBookAction implements Action {
-    private static final String BOOKS = "books";
-    private static final String BOOK = "book";
-    private static final String BOOKS_ERROR_MESSAGE = "books.error.message";
+
+    private static final String BOOK_EDIT_ERROR_MESSAGE = "book.edit.error.message";
+    private static final String REDIRECT_EDIT_BOOK_PAGE = "redirect:/do/?action=show-edit-book-page";
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) throws ActionException {
-        Book book = (Book) req.getSession().getAttribute("book");
-        book.setTitle(req.getParameter("title"));
-        book.setAuthor(req.getParameter("author"));
-        book.setPrice(Integer.parseInt(req.getParameter("price")));
-        book.setIsbn(req.getParameter("isbn"));
-        book.setDescription(req.getParameter("description"));
-        book.setQuantity(Integer.parseInt(req.getParameter("quantity")));
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
+        Book book = (Book) request.getSession().getAttribute(BOOK);
+        book.setTitle(request.getParameter(TITLE));
+        book.setAuthor(request.getParameter(AUTHOR));
+        book.setPrice(Integer.parseInt(request.getParameter(PRICE)));
+        book.setIsbn(request.getParameter(ISBN));
+        book.setDescription(request.getParameter(DESCR));
+        book.setQuantity(Integer.parseInt(request.getParameter(QUANTITY)));
 
         BookService bookService = new BookService();
         try {
             bookService.updateBook(book);
-            req.getSession().setAttribute(BOOK, book);
+            request.getSession().setAttribute(BOOK, book);
         } catch (ServiceException e) {
-            req.setAttribute(BOOKS + FORM_ERRORS, BOOKS_ERROR_MESSAGE);
-            return REDIRECT_PREFIX + "/do/?action=show-edit-book-page";
+            request.setAttribute(BOOKS + FORM_ERRORS, BOOK_EDIT_ERROR_MESSAGE);
+            return REDIRECT_EDIT_BOOK_PAGE;
         }
-        return REDIRECT_PREFIX + "/do/?action=show-detailed-book-info&id=" + book.getId();
+        return REDIRECT_PREFIX + BOOK_DETAILS_BY_ID + book.getId();
 
     }
 }

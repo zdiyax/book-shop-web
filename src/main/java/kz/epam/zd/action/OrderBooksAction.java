@@ -16,44 +16,52 @@ import java.util.Map;
 
 import static kz.epam.zd.util.ConstantHolder.*;
 
+/**
+ * Customer action to order books from the cart
+ */
 public class OrderBooksAction implements Action {
-    private static final String CART = "cart";
+
+    private static final String EMPTY_CART_MESSAGE = "empty.cart.message";
+    private static final String REDIRECT_ORDER_SUCCESS = "redirect:/do/?action=show-order-success-page";
+    private static final String WAITING_ORDER_STATUS = "waiting";
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) throws ActionException {
-        HashMap books = (HashMap) req.getSession().getAttribute("cart");
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
+        HashMap books = (HashMap) request.getSession().getAttribute(CART);
         if (books.isEmpty()) {
-            req.getSession().setAttribute("cartFormErrors", "empty.cart.message");
-            return REDIRECT_PREFIX + "/do/?action=show-cart-page";
+            request.getSession().setAttribute(CART + FORM_ERRORS, EMPTY_CART_MESSAGE);
+            return REDIRECT_CART_PAGE;
         }
 
-        if (ValidatorHelper.checkCartForm(req, books))
-            return REDIRECT_PREFIX + "/do/?action=show-cart-page";
+        if (ValidatorHelper.checkCartForm(request, books))
+            return REDIRECT_CART_PAGE;
 
-        final User user = (User) req.getSession().getAttribute(USER);
+        final User user = (User) request.getSession().getAttribute(USER);
         final int userId = user.getId();
 
+        //updates book quantity
         for (int i = 0; i < books.size(); i++) {
             for (Object o : books.entrySet()) {
                 Map.Entry pair = (Map.Entry) o;
-                books.replace(pair.getKey(), pair.getValue(), Integer.valueOf(req.getParameter("quantity" + i)));
+                //noinspection unchecked
+                books.replace(pair.getKey(), pair.getValue(), Integer.valueOf(request.getParameter(QUANTITY + i)));
             }
         }
 
         Order order = new Order();
         order.setUserId(userId);
-        order.setStatus(OrderStatus.valueOf("waiting"));
+        order.setStatus(OrderStatus.valueOf(WAITING_ORDER_STATUS));
 
 
         OrderService orderService = new OrderService();
         try {
             orderService.makeOrder(order, userId, books);
         } catch (ServiceException e) {
-            req.setAttribute(ORDERS + FORM_ERRORS, e.getMessage());
+            request.setAttribute(ORDERS + FORM_ERRORS, e.getMessage());
         }
 
-        req.getSession().setAttribute("cart", new HashMap<Book, Integer>());
-        return REDIRECT_PREFIX + "/do/?action=show-order-success-page";
+        request.getSession().setAttribute(CART, new HashMap<Book, Integer>());
+        return REDIRECT_ORDER_SUCCESS;
     }
 
 }

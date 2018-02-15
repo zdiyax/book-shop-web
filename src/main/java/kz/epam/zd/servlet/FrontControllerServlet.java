@@ -21,7 +21,7 @@ import static kz.epam.zd.util.ConstantHolder.*;
 public class FrontControllerServlet extends HttpServlet {
 
     private static final Logger log = LoggerFactory.getLogger(FrontControllerServlet.class);
-    private static final String ERROR_STATUS_CODE_ATTRIBUTE = "javax.servlet.error.status_code";
+    private static final String ERROR_STATUS_CODE = "javax.servlet.error.status_code";
     private ActionFactory actionFactory;
 
     @Override
@@ -61,7 +61,7 @@ public class FrontControllerServlet extends HttpServlet {
     }
 
     private void checkErrorCode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Integer errorStatusCode = (Integer) request.getAttribute(ERROR_STATUS_CODE_ATTRIBUTE);
+        Integer errorStatusCode = (Integer) request.getAttribute(ERROR_STATUS_CODE);
         if (errorStatusCode != null) {
             request.getRequestDispatcher(WEB_INF_PATH_TO_JSP  + ERROR + errorStatusCode + EXT_JSP).forward(request, response);
             log.error("Received Error with code {}, will be forwarded to proper error page.", errorStatusCode);

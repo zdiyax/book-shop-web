@@ -17,12 +17,15 @@ import java.util.Map;
 
 import static kz.epam.zd.util.ConstantHolder.*;
 
+/**
+ * Customer action to display My Orders page
+ */
 public class ShowMyOrdersPageAction implements Action {
-    private static final Logger log = LoggerFactory.getLogger(ShowMyOrdersPageAction.class);
+
     private static final String MY_ORDERS = "my-orders";
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         final User user = (User) request.getSession().getAttribute(USER);
         final int userId = user.getId();
         OrderService orderService = new OrderService();

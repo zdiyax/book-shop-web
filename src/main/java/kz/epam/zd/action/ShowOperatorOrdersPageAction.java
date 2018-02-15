@@ -1,6 +1,5 @@
 package kz.epam.zd.action;
 
-import kz.epam.zd.exception.ActionException;
 import kz.epam.zd.exception.ServiceException;
 import kz.epam.zd.model.Order;
 import kz.epam.zd.service.OrderService;
@@ -11,35 +10,41 @@ import java.util.List;
 
 import static kz.epam.zd.util.ConstantHolder.*;
 
+/**
+ * Operator action to display Orders page
+ */
 public class ShowOperatorOrdersPageAction implements Action {
+
+    private static final String OPERATOR_ORDERS_PAGE = "operator-orders";
+
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) throws ActionException {
-        int pageNumber = 1;
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
+        int pageNumber = DEFAULT_PAGE_NUMBER;
         try {
-            pageNumber = Integer.parseInt(req.getParameter("page"));
+            pageNumber = Integer.parseInt(request.getParameter(PAGE));
         } catch (NumberFormatException e) {
-            req.getSession().setAttribute("page", pageNumber);
-            return "operator-orders";
+            request.getSession().setAttribute(PAGE, pageNumber);
+            return OPERATOR_ORDERS_PAGE;
         }
-        req.getSession().setAttribute("page", pageNumber);
+        request.getSession().setAttribute(PAGE, pageNumber);
 
 
         OrderService orderService = new OrderService();
         try {
             int orderAmount = orderService.getTotalOrderAmount();
             if (orderAmount % 10 == 0) {
-                req.getSession().setAttribute("pageCount", orderAmount / 10);
+                request.getSession().setAttribute(PAGE_COUNT, orderAmount / 10);
             } else {
-                req.getSession().setAttribute("pageCount", orderAmount / 10 + 1);
+                request.getSession().setAttribute(PAGE_COUNT, orderAmount / 10 + 1);
             }
             List<Order> orders = orderService.getOrdersAllPaginated(pageNumber);
             if (orders.isEmpty()) {
-                orders = orderService.getOrdersAllPaginated(1);
+                orders = orderService.getOrdersAllPaginated(DEFAULT_PAGE_NUMBER);
             }
-            req.getSession().setAttribute(ORDERS, orders);
+            request.getSession().setAttribute(ORDERS, orders);
         } catch (ServiceException e) {
-            req.setAttribute(ORDERS + FORM_ERRORS, "SOME MESSAGE");
+            request.setAttribute(ORDERS + FORM_ERRORS, "SOME MESSAGE");
         }
-        return "operator-orders";
+        return OPERATOR_ORDERS_PAGE;
     }
 }

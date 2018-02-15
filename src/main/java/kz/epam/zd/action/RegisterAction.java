@@ -19,6 +19,9 @@ import java.util.Map;
 
 import static kz.epam.zd.util.ConstantHolder.*;
 
+/**
+ * Anonymous action to register in the system
+ */
 public class RegisterAction implements Action {
     private static final String REDIRECT_REGISTER_SUCCESS = "redirect:/do/?action=show-register-success-page";
     private static final String REDIRECT_REGISTER_FORM = "redirect:/do/?action=show-register-page";
@@ -29,6 +32,7 @@ public class RegisterAction implements Action {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
         String username = request.getParameter(USERNAME);
         request.getSession().setAttribute(USERNAME, username);
+
         try {
             FormValidator validator = new FormValidator();
             Map<String, List<String>> fieldErrors = validator.validate(REGISTER, request);

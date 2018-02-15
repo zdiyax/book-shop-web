@@ -8,31 +8,35 @@ import kz.epam.zd.service.BookOrderedDetailsService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
 
-import static kz.epam.zd.util.ConstantHolder.REDIRECT_PREFIX;
-import static kz.epam.zd.util.ConstantHolder.REFERER;
+import static kz.epam.zd.util.ConstantHolder.DETAILS;
+import static kz.epam.zd.util.ConstantHolder.ID;
 
+/**
+ * User action to display Order Details page
+ */
 public class ShowOrderDetailsAction implements Action {
-    @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) throws ActionException {
-        int orderId = Integer.parseInt(req.getParameter("id"));
-        BookOrderedDetails bookOrderedDetails = new BookOrderedDetails();
 
+    private static final String ORDER_DETAILS_PAGE = "order-details";
+
+    @Override
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
+        int orderId = Integer.parseInt(request.getParameter(ID));
+        BookOrderedDetails bookOrderedDetails = new BookOrderedDetails();
 
         Order order = new Order();
         order.setId(orderId);
 
         BookOrderedDetailsService bookOrderedDetailsService = new BookOrderedDetailsService();
-        List<BookOrderedDetails> bookOrderedDetails1 = new ArrayList<>();
+        List<BookOrderedDetails> bookOrderedDetailsResult;
         try {
-            bookOrderedDetails1 = bookOrderedDetailsService.getDetailsByOrderId(bookOrderedDetails, orderId);
-            req.getSession().setAttribute("details", bookOrderedDetails1);
+            bookOrderedDetailsResult = bookOrderedDetailsService.getDetailsByOrderId(bookOrderedDetails, orderId);
+            request.getSession().setAttribute(DETAILS, bookOrderedDetailsResult);
         } catch (ServiceException e) {
             System.out.println(e.getMessage());
         }
 
-        return "order-details";
+        return ORDER_DETAILS_PAGE;
     }
 }

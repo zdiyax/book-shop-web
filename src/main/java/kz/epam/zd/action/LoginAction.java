@@ -16,18 +16,22 @@ import java.util.HashMap;
 
 import static kz.epam.zd.util.ConstantHolder.*;
 
+/**
+ * Anonymous action to login into system
+ */
 public class LoginAction implements Action {
+
     private static final String REDIRECT_LOGIN_FORM = "redirect:/do/?action=show-login-page";
     private static final String REDIRECT_LOGIN_SUCCESS = "redirect:/do/?action=show-login-success-page";
     private static final Logger log = LoggerFactory.getLogger(LoginAction.class);
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
 
-        String username = req.getParameter(USERNAME);
-        req.getSession().setAttribute(USERNAME, username);
-        String password = req.getParameter(PASSWORD);
-        String locale = (String) req.getSession().getAttribute(LOCALE);
+        String username = request.getParameter(USERNAME);
+        request.getSession().setAttribute(USERNAME, username);
+        String password = request.getParameter(PASSWORD);
+        String locale = (String) request.getSession().getAttribute(LOCALE);
 
         final User user = new User(username, password, new Locale(locale), new UserRole(RoleType.CUSTOMER));
         UserService userService = new UserService();
@@ -36,12 +40,14 @@ public class LoginAction implements Action {
             foundUser = userService.login(user);
             foundUser.setLocale(new Locale(locale));
         } catch (ServiceException e) {
-            req.getSession().setAttribute(LOGIN + FORM_ERRORS, e.getMessage());
+            request.getSession().setAttribute(LOGIN + FORM_ERRORS, e.getMessage());
             return REDIRECT_LOGIN_FORM;
         }
         log.debug("User logged in | Username = {}", foundUser.getUsername());
-        req.getSession().setAttribute(USER, foundUser);
-        req.getSession().setAttribute("cart", new HashMap<Book, Integer>());
+        request.getSession().setAttribute(USER, foundUser);
+
+        //creates an empty cart in user session
+        request.getSession().setAttribute(CART, new HashMap<Book, Integer>());
 
         return REDIRECT_LOGIN_SUCCESS;
     }

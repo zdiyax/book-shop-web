@@ -5,9 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import static kz.epam.zd.util.ConstantHolder.LOGIN_PAGE;
 
+/**
+ * Anonymous action to display Login page
+ */
 public class ShowLoginPageAction implements Action {
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         return LOGIN_PAGE;
     }
 }
