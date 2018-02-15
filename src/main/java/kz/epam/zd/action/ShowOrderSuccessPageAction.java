@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Customer action to display Order Success page
+ * Customer action to display Order Success page.
  */
 public class ShowOrderSuccessPageAction implements Action {
 

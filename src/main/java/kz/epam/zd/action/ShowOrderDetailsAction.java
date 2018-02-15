@@ -14,7 +14,7 @@ import static kz.epam.zd.util.ConstantHolder.DETAILS;
 import static kz.epam.zd.util.ConstantHolder.ID;
 
 /**
- * User action to display Order Details page
+ * User action to display Order Details page.
  */
 public class ShowOrderDetailsAction implements Action {
 

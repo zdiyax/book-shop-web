@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import static kz.epam.zd.util.ConstantHolder.*;
 
 /**
- * Operator action to add Book entry to the database
+ * Operator action to add Book entry to the database.
  */
 public class AddBookAction implements Action {
 

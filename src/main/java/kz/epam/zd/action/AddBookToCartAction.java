@@ -10,7 +10,7 @@ import java.util.Map;
 import static kz.epam.zd.util.ConstantHolder.*;
 
 /**
- * Customer action to add Book to the session shopping cart
+ * Customer action to add Book to the session shopping cart.
  */
 public class AddBookToCartAction implements Action {
 
@@ -28,7 +28,7 @@ public class AddBookToCartAction implements Action {
 
     /**
      * Checks whether book is already present in user's shopping cart and puts one
-     * entity of it if not
+     * entity of it if not.
      *
      * @param bookToAddToCart book to be checked in the cart and put if absent
      * @param hashMap shopping cart HashMap instance

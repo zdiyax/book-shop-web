@@ -12,14 +12,18 @@ import java.sql.SQLException;
 
 import static kz.epam.zd.util.ConstantHolder.*;
 
-public class JdbcUserDao extends JdbcDao<User> implements UserDao {
+
+/**
+ * JDBC DAO for User entity.
+ */
+class JdbcUserDao extends JdbcDao<User> implements UserDao {
 
     JdbcUserDao(Connection connection) {
         super(connection);
     }
 
     @Override
-    protected User createEntityFromRs(ResultSet resultSet, User entity) throws SQLException {
+    User createEntityFromRs(ResultSet resultSet, User entity) throws SQLException {
         User user = new User();
         user.setId(resultSet.getInt(INDEX_1));
         user.setUsername(resultSet.getString(INDEX_2));

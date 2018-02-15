@@ -9,14 +9,17 @@ import java.sql.SQLException;
 
 import static kz.epam.zd.util.ConstantHolder.*;
 
-public class JdbcBookDao extends JdbcDao<Book> implements BookDao {
+/**
+ * JDBC DAO for Book entity.
+ */
+class JdbcBookDao extends JdbcDao<Book> implements BookDao {
 
     JdbcBookDao(Connection connection) {
         super(connection);
     }
 
     @Override
-    protected Book createEntityFromRs(ResultSet resultSet, Book entity) throws SQLException {
+    Book createEntityFromRs(ResultSet resultSet, Book entity) throws SQLException {
         Book book = new Book();
         book.setId(resultSet.getInt(INDEX_1));
         book.setIsbn(resultSet.getString(INDEX_2));

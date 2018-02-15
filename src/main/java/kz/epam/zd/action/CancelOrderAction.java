@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import static kz.epam.zd.util.ConstantHolder.*;
 
 /**
- * Customer action to cancel an active order
+ * Customer action to cancel an active order.
  */
 public class CancelOrderAction implements Action {
 

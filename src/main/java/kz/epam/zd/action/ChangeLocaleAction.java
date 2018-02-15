@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import static kz.epam.zd.util.ConstantHolder.*;
 
 /**
- * Global action to update user locale
+ * Global action to update user locale.
  */
 public class ChangeLocaleAction implements Action {
 

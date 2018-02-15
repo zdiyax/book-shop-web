@@ -20,7 +20,7 @@ import java.util.Map;
 import static kz.epam.zd.util.ConstantHolder.*;
 
 /**
- * Anonymous action to register in the system
+ * Anonymous action to register in the system.
  */
 public class RegisterAction implements Action {
     private static final String REDIRECT_REGISTER_SUCCESS = "redirect:/do/?action=show-register-success-page";

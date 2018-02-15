@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import static kz.epam.zd.util.ConstantHolder.LOGIN_SUCCESS_PAGE;
 
 /**
- * User action to display Login Success page
+ * User action to display Login Success page.
  */
 public class ShowLoginSuccessPage implements Action {
     @Override

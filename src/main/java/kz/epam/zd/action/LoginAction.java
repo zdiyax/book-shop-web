@@ -17,7 +17,7 @@ import java.util.HashMap;
 import static kz.epam.zd.util.ConstantHolder.*;
 
 /**
- * Anonymous action to login into system
+ * Anonymous action to login into system.
  */
 public class LoginAction implements Action {
 
@@ -27,7 +27,6 @@ public class LoginAction implements Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-
         String username = request.getParameter(USERNAME);
         request.getSession().setAttribute(USERNAME, username);
         String password = request.getParameter(PASSWORD);

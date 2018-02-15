@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import static kz.epam.zd.util.ConstantHolder.*;
 
 /**
- * Updates Order entity's order status in the database
+ * Updates Order entity's order status in the database.
  */
 public class UpdateOrderStatusAction implements Action {
 

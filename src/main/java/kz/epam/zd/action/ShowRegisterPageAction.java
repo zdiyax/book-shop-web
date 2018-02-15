@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import static kz.epam.zd.util.ConstantHolder.REGISTER_PAGE;
 
 /**
- * Anonymous action to display Register page
+ * Anonymous action to display Register page.
  */
 public class ShowRegisterPageAction implements Action {
     @Override

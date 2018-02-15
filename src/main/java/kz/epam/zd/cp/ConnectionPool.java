@@ -14,37 +14,61 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 /**
- * Custom connection pool implementation
+ * Custom connection pool implementation. Creates and stores database connections.
+ * Provides connections to use to DAO layer and gets them offered back.
  */
 public class ConnectionPool {
+
     private static final Logger log = LoggerFactory.getLogger(ConnectionPool.class);
     private static final String PROPERTY_FILE_NAME = "db.properties";
-    private static final String JDBC_DRIVERNAME_PROPERTY = "jdbc.driver";
+    private static final String JDBC_DRIVER_PROPERTY = "jdbc.driver";
     private static final String JDBC_URL_PROPERTY = "jdbc.url";
     private static final String JDBC_USERNAME_PROPERTY = "jdbc.username";
     private static final String JDBC_PASSWORD_PROPERTY = "jdbc.password";
-    private static final String JDBC_POOLSIZE_PROPERTY = "jdbc.poolsize";
-    private static ConnectionPool instance;
-    private static BlockingQueue<Connection> connections;
-    private String driverName;
+    private static final String JDBC_POOL_SIZE_PROPERTY = "jdbc.poolsize";
+    private static final int TIMEOUT = 1;
+    private static final int POOL_SIZE_MULTIPLIER = 2;
+
+    private BlockingQueue<Connection> connections;
     private String url;
     private String username;
     private String password;
     private int poolSize;
 
-    public static ConnectionPool getInstance() {
-        return InstanceHolder.instance;
-    }
+    /**
+     * Loads properties from property file using PropertyManager.
+     * Executes {@code fill()} method after.
+     *
+     * @throws ConnectionPoolException - if properties failed to load in
+     */
+    public void configure() throws ConnectionPoolException {
+        try {
+            PropertyManager propertyManager = new PropertyManager(PROPERTY_FILE_NAME);
+            Properties properties = propertyManager.getProperties();
+            log.debug("Properties value: {}", properties);
 
-    static BlockingQueue<Connection> getConnections() {
-        return connections;
+            String driverName = properties.getProperty(JDBC_DRIVER_PROPERTY);
+            try {
+                Class.forName(driverName);
+            } catch (ClassNotFoundException e) {
+                throw new ConnectionPoolException(e);
+            }
+            url = properties.getProperty(JDBC_URL_PROPERTY);
+            username = properties.getProperty(JDBC_USERNAME_PROPERTY);
+            password = properties.getProperty(JDBC_PASSWORD_PROPERTY);
+            poolSize = Integer.parseInt(properties.getProperty(JDBC_POOL_SIZE_PROPERTY));
+            log.info("Properties set");
+        } catch (PropertyManagerException e) {
+            throw new ConnectionPoolException(e);
+        }
+        fill();
     }
 
     /**
-     * Method fills the connection pool with connections using DriverManager
+     * Fills the connection pool with new connections using DriverManager.
      */
     private void fill() throws ConnectionPoolException {
-        connections = new ArrayBlockingQueue<Connection>(poolSize);
+        connections = new ArrayBlockingQueue<>(poolSize);
         try {
             for (int i = 0; i < poolSize; i++) {
                 Connection connection = DriverManager.getConnection(url, username, password);
@@ -59,49 +83,16 @@ public class ConnectionPool {
     }
 
     /**
-     * Method loads properties from property file using PropertyManager
+     * Obtains connection from ConnectionPool.
      *
-     * @throws ConnectionPoolException - if properties failed to load in
-     */
-    public void configure() throws ConnectionPoolException {
-        try {
-            PropertyManager propertyManager = new PropertyManager(PROPERTY_FILE_NAME);
-            Properties properties = propertyManager.getProperties();
-            log.debug("Properties value: {}", properties);
-
-            this.driverName = properties.getProperty(JDBC_DRIVERNAME_PROPERTY);
-            try {
-                Class.forName(driverName);
-            } catch (ClassNotFoundException e) {
-                throw new ConnectionPoolException(e);
-            }
-            this.url = properties.getProperty(JDBC_URL_PROPERTY);
-            this.username = properties.getProperty(JDBC_USERNAME_PROPERTY);
-            this.password = properties.getProperty(JDBC_PASSWORD_PROPERTY);
-            this.poolSize = Integer.parseInt(properties.getProperty(JDBC_POOLSIZE_PROPERTY));
-            if (poolSize < 5 || poolSize > 20) {
-                log.error("Invalid pool size in the property file, should be between 5 and 10");
-                throw new ConnectionPoolException();
-            }
-            log.info("Properties set");
-        } catch (PropertyManagerException e) {
-            throw new ConnectionPoolException(e);
-        }
-        fill();
-
-    }
-
-    /**
-     * Method for retrieving connection from ConnectionPool
-     *
-     * @return - PooledConnection from ConnectionPool
-     * @throws ConnectionPoolException - if
+     * @return connection from ConnectionPool
+     * @throws ConnectionPoolException if pool is empty
      */
     public Connection getConnection() throws ConnectionPoolException {
-        Connection connection = null;
+        Connection connection;
         try {
             if (connections.peek() == null) {
-                connections = new ArrayBlockingQueue<Connection>(poolSize * 2);
+                connections = new ArrayBlockingQueue<>(poolSize * POOL_SIZE_MULTIPLIER);
                 connection = DriverManager.getConnection(url, username, password);
                 for (int i = 0; i < poolSize * 2; i++) {
                     connections.offer(connection);
@@ -109,22 +100,35 @@ public class ConnectionPool {
             } else {
                 connection = connections.take();
             }
-        } catch (InterruptedException e) {
+        } catch (InterruptedException | SQLException e) {
             log.debug("Connection error occurred. Thread interrupted.");
             throw new ConnectionPoolException();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         if (connection == null) {
-            throw new ConnectionPoolException("CONNECTION = NULL");
+            throw new ConnectionPoolException("Connection is null.");
         }
         return connection;
     }
 
     /**
-     * Method for closing the ConnectionPool
+     * Returns connection back to the ConnectionPool.
      *
-     * @throws ConnectionPoolException - if CP cannot be closed at the moment
+     * @param connection connection to be returned
+     * @throws ConnectionPoolException if connection cannot be returned at the moment
+     */
+    public void returnConnection(Connection connection) throws ConnectionPoolException {
+        try {
+            if (connection.isValid(TIMEOUT))
+                connections.offer(connection);
+        } catch (SQLException e) {
+            throw new ConnectionPoolException(e);
+        }
+    }
+
+    /**
+     * Closes the ConnectionPool.
+     *
+     * @throws ConnectionPoolException if ConnectionPool cannot be closed at the moment
      */
     public synchronized void close() throws ConnectionPoolException {
         for (Connection con : connections) {
@@ -141,17 +145,4 @@ public class ConnectionPool {
         connections.clear();
     }
 
-    public void returnConnection(Connection connection) throws ConnectionPoolException {
-        try {
-            if (connection.isValid(1))
-                connections.offer(connection);
-        } catch (SQLException e) {
-            throw new ConnectionPoolException(e);
-        }
-    }
-
-
-    private static class InstanceHolder {
-        final static ConnectionPool instance = new ConnectionPool();
-    }
 }

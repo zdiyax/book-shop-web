@@ -12,7 +12,7 @@ import static kz.epam.zd.util.ConstantHolder.CART;
 import static kz.epam.zd.util.ConstantHolder.TOTAL_COST;
 
 /**
- * Customer action to display Cart page
+ * Customer action to display Cart page.
  */
 public class ShowCartPageAction implements Action {
 
@@ -27,7 +27,7 @@ public class ShowCartPageAction implements Action {
     }
 
     /**
-     * Calculates total cost of books in the cart
+     * Calculates total cost of books in the cart.
      * @param hashMap shopping cart
      */
     private void calculateTotalCost(HashMap hashMap) {

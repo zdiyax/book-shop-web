@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import static kz.epam.zd.util.ConstantHolder.*;
 
 /**
- * Updates user's personal info in the database
+ * Updates user's personal info in the database.
  */
 public class UpdatePersonalInfoAction implements Action {
 

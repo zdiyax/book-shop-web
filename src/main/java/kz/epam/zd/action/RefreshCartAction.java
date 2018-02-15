@@ -10,7 +10,7 @@ import java.util.Map;
 import static kz.epam.zd.util.ConstantHolder.*;
 
 /**
- * Customer action to update book quantities in the shopping cart
+ * Customer action to update book quantities in the shopping cart.
  */
 public class RefreshCartAction implements Action {
     @Override

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import static kz.epam.zd.util.ConstantHolder.*;
 
 /**
- * Global action to display Book details page by id
+ * Global action to display Book details page by id.
  */
 public class ShowBookDetailsAction implements Action {
 

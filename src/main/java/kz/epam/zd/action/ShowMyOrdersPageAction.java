@@ -1,24 +1,18 @@
 package kz.epam.zd.action;
 
-import kz.epam.zd.exception.ActionException;
 import kz.epam.zd.exception.ServiceException;
-import kz.epam.zd.exception.ValidatorException;
 import kz.epam.zd.model.Order;
 import kz.epam.zd.model.user.User;
 import kz.epam.zd.service.OrderService;
-import kz.epam.zd.validator.FormValidator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-import java.util.Map;
 
 import static kz.epam.zd.util.ConstantHolder.*;
 
 /**
- * Customer action to display My Orders page
+ * Customer action to display My Orders page.
  */
 public class ShowMyOrdersPageAction implements Action {
 

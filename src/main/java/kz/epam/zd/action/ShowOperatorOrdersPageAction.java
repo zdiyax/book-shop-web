@@ -11,7 +11,7 @@ import java.util.List;
 import static kz.epam.zd.util.ConstantHolder.*;
 
 /**
- * Operator action to display Orders page
+ * Operator action to display Orders page.
  */
 public class ShowOperatorOrdersPageAction implements Action {
 

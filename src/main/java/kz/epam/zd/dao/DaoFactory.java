@@ -5,7 +5,7 @@ import kz.epam.zd.exception.DaoException;
 import kz.epam.zd.exception.JdbcDaoException;
 
 /**
- * DAO Factory pattern realization
+ * Factory pattern implementation for creating DAOs
  */
 public abstract class DaoFactory implements AutoCloseable {
 
@@ -27,12 +27,5 @@ public abstract class DaoFactory implements AutoCloseable {
     public void close() throws JdbcDaoException {
 
     }
-
-    public abstract void beginTransaction() throws JdbcDaoException;
-
-    public abstract void rollback() throws JdbcDaoException;
-
-    public abstract void commit() throws JdbcDaoException;
-
 
 }

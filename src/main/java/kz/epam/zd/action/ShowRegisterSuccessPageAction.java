@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import static kz.epam.zd.util.ConstantHolder.REGISTER_SUCCESS_PAGE;
 
 /**
- * Global action to display Register success page
+ * Global action to display Register success page.
  */
 public class ShowRegisterSuccessPageAction implements Action {
     @Override

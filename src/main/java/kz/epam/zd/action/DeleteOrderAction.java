@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import static kz.epam.zd.util.ConstantHolder.*;
 
 /**
- * Operator action to delete order from displaying by deactivating
+ * Operator action to delete order from displaying by deactivating.
  */
 public class DeleteOrderAction implements Action {
 

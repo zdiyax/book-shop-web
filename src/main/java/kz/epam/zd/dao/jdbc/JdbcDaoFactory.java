@@ -10,9 +10,12 @@ import org.slf4j.LoggerFactory;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * Factory pattern implementation for creating JDBC DAOs
+ */
 public class JdbcDaoFactory extends DaoFactory {
     private static final Logger log = LoggerFactory.getLogger(JdbcDaoFactory.class);
-    private static ConnectionPool pool = ConnectionPool.getInstance();
+    private static ConnectionPool pool;
     private Connection connection;
 
     public JdbcDaoFactory() throws JdbcDaoException {
@@ -21,7 +24,6 @@ public class JdbcDaoFactory extends DaoFactory {
         } catch (Exception e) {
             throw new JdbcDaoException(e);
         }
-
     }
 
     public static void setPool(ConnectionPool pool) {
@@ -66,42 +68,42 @@ public class JdbcDaoFactory extends DaoFactory {
         }
     }
 
-    @Override
-    public void beginTransaction() throws JdbcDaoException {
-        try {
-            if ((!connection.isClosed()) && (connection.getAutoCommit())) {
-                connection.setAutoCommit(false);
-                log.debug("Transaction opened");
-            }
-        } catch (SQLException e) {
-            throw new JdbcDaoException(e);
-        }
-    }
-
-    @Override
-    public void rollback() throws JdbcDaoException {
-        try {
-            if ((!connection.isClosed()) && (!connection.getAutoCommit())) {
-                connection.rollback();
-                connection.setAutoCommit(true);
-                log.debug("Transaction rollback");
-            }
-        } catch (SQLException e) {
-            throw new JdbcDaoException(e);
-        }
-    }
-
-    @Override
-    public void commit() throws JdbcDaoException {
-        try {
-            if ((!connection.isClosed()) && (!connection.getAutoCommit())) {
-                connection.commit();
-                log.debug("Transaction commit.");
-                connection.setAutoCommit(true);
-            }
-        } catch (SQLException e) {
-            throw new JdbcDaoException(e);
-        }
-    }
+//    @Override
+//    public void beginTransaction() throws JdbcDaoException {
+//        try {
+//            if ((!connection.isClosed()) && (connection.getAutoCommit())) {
+//                connection.setAutoCommit(false);
+//                log.debug("Transaction opened");
+//            }
+//        } catch (SQLException e) {
+//            throw new JdbcDaoException(e);
+//        }
+//    }
+//
+//    @Override
+//    public void rollback() throws JdbcDaoException {
+//        try {
+//            if ((!connection.isClosed()) && (!connection.getAutoCommit())) {
+//                connection.rollback();
+//                connection.setAutoCommit(true);
+//                log.debug("Transaction rollback");
+//            }
+//        } catch (SQLException e) {
+//            throw new JdbcDaoException(e);
+//        }
+//    }
+//
+//    @Override
+//    public void commit() throws JdbcDaoException {
+//        try {
+//            if ((!connection.isClosed()) && (!connection.getAutoCommit())) {
+//                connection.commit();
+//                log.debug("Transaction commit.");
+//                connection.setAutoCommit(true);
+//            }
+//        } catch (SQLException e) {
+//            throw new JdbcDaoException(e);
+//        }
+//    }
 }
 

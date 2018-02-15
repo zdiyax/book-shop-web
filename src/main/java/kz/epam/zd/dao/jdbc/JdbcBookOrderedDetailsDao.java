@@ -9,7 +9,10 @@ import java.sql.SQLException;
 
 import static kz.epam.zd.util.ConstantHolder.*;
 
-public class JdbcBookOrderedDetailsDao extends JdbcDao<BookOrderedDetails> implements BookOrderedDetailsDao {
+/**
+ * JDBC DAO for BookOrderedDetails entity.
+ */
+class JdbcBookOrderedDetailsDao extends JdbcDao<BookOrderedDetails> implements BookOrderedDetailsDao {
     JdbcBookOrderedDetailsDao(Connection connection) {
         super(connection);
     }

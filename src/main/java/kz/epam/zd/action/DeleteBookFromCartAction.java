@@ -11,7 +11,7 @@ import java.util.Map;
 import static kz.epam.zd.util.ConstantHolder.*;
 
 /**
- * Customer action to delete a book instance from the shopping cart
+ * Customer action to delete a book instance from the shopping cart.
  */
 public class DeleteBookFromCartAction implements Action {
 

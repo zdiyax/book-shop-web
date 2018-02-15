@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import static kz.epam.zd.util.ConstantHolder.*;
 
 /**
- * Operator action to edit Book entry in the database
+ * Operator action to edit Book entry in the database.
  */
 public class EditBookAction implements Action {
 

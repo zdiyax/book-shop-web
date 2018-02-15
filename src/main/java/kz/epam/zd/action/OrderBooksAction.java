@@ -17,7 +17,7 @@ import java.util.Map;
 import static kz.epam.zd.util.ConstantHolder.*;
 
 /**
- * Customer action to order books from the cart
+ * Customer action to order books from the cart.
  */
 public class OrderBooksAction implements Action {
 

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import static kz.epam.zd.util.ConstantHolder.PROFILE_PAGE;
 
 /**
- * Customer action to display Profile page
+ * Customer action to display Profile page.
  */
 public class ShowProfilePageAction implements Action {
     @Override

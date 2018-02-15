@@ -13,8 +13,9 @@ import static kz.epam.zd.util.ConstantHolder.CATALOG_PAGE;
 import static kz.epam.zd.util.ConstantHolder.FORM_ERRORS;
 
 /**
- * Global action to display Catalog page
+ * Global action to display Catalog page.
  */
+//TODO: URGENT FORMAT
 public class ShowCatalogPageAction implements Action {
 
     private static final Logger log = LoggerFactory.getLogger(ShowCatalogPageAction.class);

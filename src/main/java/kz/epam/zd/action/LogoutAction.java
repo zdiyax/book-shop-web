@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import static kz.epam.zd.util.ConstantHolder.USER;
 
 /**
- * User action to logout from the system
+ * User action to logout from the system.
  */
 public class LogoutAction implements Action {
 

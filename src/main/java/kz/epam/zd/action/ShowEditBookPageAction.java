@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Operator action to display Edit page action
+ * Operator action to display Edit page action.
  */
 public class ShowEditBookPageAction implements Action {
 

@@ -10,7 +10,10 @@ import java.sql.SQLException;
 
 import static kz.epam.zd.util.ConstantHolder.*;
 
-public class JdbcOrderDao extends JdbcDao<Order> implements OrderDao {
+/**
+ * JDBC DAO for Order entity.
+ */
+class JdbcOrderDao extends JdbcDao<Order> implements OrderDao {
 
     JdbcOrderDao(Connection connection) {
         super(connection);
