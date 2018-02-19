@@ -1,6 +1,6 @@
 package kz.epam.zd.validator;
 
-public class LengthValidator extends ParentValidator implements Validator {
+public class LengthValidator extends ParentValidator  {
 
     private Integer minLength;
     private Integer maxLength;

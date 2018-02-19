@@ -17,9 +17,12 @@ import java.util.List;
 
 import static kz.epam.zd.util.ConstantHolder.USER;
 
+/**
+ * Filter implementation to manage access level and action permissions.
+ */
 public class AccessFilter implements Filter {
 
-    private static final Logger logger = LoggerFactory.getLogger(AccessFilter.class);
+    private static final Logger log = LoggerFactory.getLogger(AccessFilter.class);
     private static final String ANONYMOUS_ACTION_FILE_NAME = "actions-anonymous.properties";
     private static final String CUSTOMER_ACTION_FILE_NAME = "actions-customer.properties";
     private static final String OPERATOR_ACTION_FILE_NAME = "actions-operator.properties";
@@ -30,7 +33,7 @@ public class AccessFilter implements Filter {
     private List<String> allActionList = new ArrayList<>();
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
 
         try {
             anonymousActionList = getListFromFile(ANONYMOUS_ACTION_FILE_NAME);
@@ -38,7 +41,7 @@ public class AccessFilter implements Filter {
             managerActionList = getListFromFile(OPERATOR_ACTION_FILE_NAME);
             allActionList = getListFromFile(ALL_ACTION_FILE_NAME);
         } catch (IOException e) {
-            logger.error("Unable to open and load access actions from file.", e);
+            log.error("Unable to open and load access actions from file.", e);
         }
     }
 
@@ -72,14 +75,14 @@ public class AccessFilter implements Filter {
         if (!allActionList.contains((actionName))) {
             //if no, send on page with 404 error
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
-            logger.debug("The requested action {} not found", actionName);
+            log.debug("The requested action {} not found", actionName);
             return;
         } else {
             //check if user has access to this action
             if (!actionList.contains(actionName)) {
                 //if no, send user on page with 403 error code
                 resp.sendError(HttpServletResponse.SC_FORBIDDEN);
-                logger.debug("Not authorized attempt to application, action \"{}\" from user \"{}\"", actionName, user);
+                log.debug("Not authorized attempt to application, action \"{}\" from user \"{}\"", actionName, user);
                 return;
             }
         }
@@ -87,6 +90,11 @@ public class AccessFilter implements Filter {
         filterChain.doFilter(req, resp);
     }
 
+    /**
+     * Returns corresponding list of actions allowed for entered user.
+     * @param user user whose actions to be returned
+     * @return action list
+     */
     private List<String> getActionList(User user) {
         if (user == null) return anonymousActionList;
         if (RoleType.CUSTOMER.toString().equals(user.getRole().getRoleType().toString())) return userActionList;
@@ -96,6 +104,5 @@ public class AccessFilter implements Filter {
 
     @Override
     public void destroy() {
-
     }
 }

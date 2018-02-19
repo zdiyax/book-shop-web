@@ -9,6 +9,7 @@ import java.util.Objects;
  * Utility class to help operate passwords.
  */
 public class PasswordHelper {
+
     private static final String MD_5_ALGORITHM = "MD5";
 
     public static String hash(String password) throws PasswordHashAlgorithmException {
@@ -23,7 +24,7 @@ public class PasswordHelper {
             throw new PasswordHashAlgorithmException("Requested password hashing algorithm is not available", e);
         }
         StringBuilder sb = new StringBuilder();
-        // Hash algorithm example from Mkyong
+        // Hash algorithm
         for (byte aByteData : byteData) {
             sb.append(Integer.toString((aByteData & 0xff) + 0x100, 16).substring(1));
         }

@@ -13,7 +13,11 @@ import javax.servlet.jsp.jstl.core.Config;
 import java.io.IOException;
 import java.util.Locale;
 
+/**
+ * Manages the locale property on the pages.
+ */
 public class LocaleFilter implements Filter {
+
     private static final Logger log = LoggerFactory.getLogger(LocaleFilter.class);
     private static final String DEFAULT_LOCALE = "en";
     private static final String LOCALE = "locale";

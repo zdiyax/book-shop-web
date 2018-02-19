@@ -57,9 +57,11 @@
                         </tr>
                         </tbody>
                     </table>
-                    <p><button class="btn btn-outline-primary" name="refresh" onclick="return onRefresh();">
+                    <p>
+                        <button class="btn btn-outline-primary" name="refresh" onclick="return onRefresh();">
                             &#8635;
-                        </button></p>
+                        </button>
+                    </p>
                 </form>
             </div>
         </div>

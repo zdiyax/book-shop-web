@@ -3,7 +3,7 @@ package kz.epam.zd.action;
 import kz.epam.zd.exception.ServiceException;
 import kz.epam.zd.model.Order;
 import kz.epam.zd.model.OrderedBookDetails;
-import kz.epam.zd.service.BookOrderedDetailsService;
+import kz.epam.zd.service.OrderedBookDetailsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,10 +30,10 @@ public class ShowOrderDetailsAction implements Action {
         Order order = new Order();
         order.setId(orderId);
 
-        BookOrderedDetailsService bookOrderedDetailsService = new BookOrderedDetailsService();
+        OrderedBookDetailsService orderedBookDetailsService = new OrderedBookDetailsService();
         List<OrderedBookDetails> orderedBookDetailsResult;
         try {
-            orderedBookDetailsResult = bookOrderedDetailsService.getDetailsByOrderId(orderedBookDetails, orderId);
+            orderedBookDetailsResult = orderedBookDetailsService.getDetailsByOrderId(orderedBookDetails, orderId);
             request.getSession().setAttribute(DETAILS, orderedBookDetailsResult);
         } catch (ServiceException e) {
             log.error("ShowOrderDetailsAction failed: {}", e.getMessage());

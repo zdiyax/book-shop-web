@@ -19,7 +19,7 @@ public class ShowBookDetailsAction implements Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter(ID));
+        final int id = Integer.parseInt(request.getParameter(ID));
 
         BookService bookService = new BookService();
         try {

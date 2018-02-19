@@ -21,11 +21,12 @@ import static kz.epam.zd.util.ConstantHolder.*;
  * Customer action to order books from the cart.
  */
 public class OrderBooksAction implements Action {
-    private static final Logger log = LoggerFactory.getLogger(OrderBooksAction.class);
 
-    private static final String EMPTY_CART_MESSAGE = "empty.cart.message";
+    private static final Logger log = LoggerFactory.getLogger(OrderBooksAction.class);
+    private static final String EMPTY_CART_MESSAGE = "cart.empty.message";
     private static final String REDIRECT_ORDER_SUCCESS = "redirect:/do/?action=show-order-success-page";
     private static final String WAITING_ORDER_STATUS = "waiting";
+    private static final Object ORDERS_BOOK_ERROR_MESSAGE = "orders.book.error.message";
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -58,7 +59,7 @@ public class OrderBooksAction implements Action {
         try {
             orderService.orderBooks(order, userId, books);
         } catch (ServiceException e) {
-            request.setAttribute(ORDERS + FORM_ERRORS, e.getMessage());
+            request.setAttribute(ORDERS + FORM_ERRORS, ORDERS_BOOK_ERROR_MESSAGE);
             log.debug("OrderBooksAction failed {}", e.getMessage());
         }
         log.debug("Books ordered successfully.");

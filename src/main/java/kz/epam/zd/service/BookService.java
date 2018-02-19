@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+import static kz.epam.zd.util.ConstantHolder.DEFAULT_PAGE_COUNT;
+
 public class BookService extends AbstractService {
     private static final Logger log = LoggerFactory.getLogger(BookService.class);
 
@@ -17,8 +19,6 @@ public class BookService extends AbstractService {
     private static final String GET_BOOKS_ALL_ACTIVE = "get.books.all";
     private static final String GET_BOOKS_BY_TITLE = "get.books.by.title";
     private static final String GET_BOOK_BY_ID = "get.book.by.id";
-
-    private static final int BOOKS_PER_PAGE = 10;
     private static final String UPDATE_BOOK = "update.book";
     private static final String INSERT_BOOK = "insert.book";
 
@@ -34,7 +34,7 @@ public class BookService extends AbstractService {
     }
 
     public List<Book> getBooksAll(int pageNumber) throws ServiceException {
-        int offset = --pageNumber * BOOKS_PER_PAGE;
+        int offset = --pageNumber * DEFAULT_PAGE_COUNT;
         parameters.add(offset);
         return getBooksByQuery(new Book(), GET_BOOKS_ALL_ACTIVE);
     }
@@ -44,10 +44,8 @@ public class BookService extends AbstractService {
         return books.size();
     }
 
-    public List<Book> getBooksByTitle(int pageNumber, String title) throws ServiceException {
+    public List<Book> getBooksByTitle( String title) throws ServiceException {
         parameters.add("%" + title + "%");
-        int offset = --pageNumber * BOOKS_PER_PAGE;
-        parameters.add(offset);
         return getBooksByQuery(new Book(), GET_BOOKS_BY_TITLE);
     }
 

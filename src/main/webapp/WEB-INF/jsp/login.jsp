@@ -27,7 +27,7 @@
     <input type="password" name="password" class="form-control" placeholder="${passwordPlaceholder}" required
            minlength="6" maxlength="12">
     <c:if test="${not empty loginErrorMessages}">
-        <div id="errorcolortext"><fmt:message key="${loginFormErrors}"/></div>
+        <div><fmt:message key="${loginFormErrors}"/></div>
     </c:if>
     <button class="btn btn-lg btn-primary btn-block" type="submit"><fmt:message key="login.button.message"/></button>
     <p></p>

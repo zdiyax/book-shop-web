@@ -33,6 +33,7 @@ public class RegisterAction implements Action {
         String username = request.getParameter(USERNAME);
         request.getSession().setAttribute(USERNAME, username);
 
+        //form validation
         try {
             FormValidator validator = new FormValidator();
             Map<String, List<String>> fieldErrors = validator.validate(REGISTER, request);

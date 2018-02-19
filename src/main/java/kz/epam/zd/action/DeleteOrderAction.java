@@ -21,8 +21,7 @@ public class DeleteOrderAction implements Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String parameter = request.getParameter(ID);
-        Integer orderId = Integer.parseInt(parameter);
+        int orderId = Integer.parseInt(request.getParameter(ID));
 
         Order order = new Order();
         order.setId(orderId);

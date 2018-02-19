@@ -32,6 +32,7 @@
                                                    value="${user.fullName}" autocomplete="off" minlength="6"
                                                    maxlength="32"/>
                                         </div>
+                                        <t:output-errors errors="${fullnameFormErrors}"/>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
@@ -41,6 +42,7 @@
                                                    value="${user.address}" autocomplete="off" minlength="6"
                                                    maxlength="64"/>
                                         </div>
+                                        <t:output-errors errors="${addressFormErrors}"/>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
@@ -58,6 +60,7 @@
                                                    value="${user.telephoneNumber}" autocomplete="off" minlength="6"
                                                    maxlength="32"/>
                                         </div>
+                                        <t:output-errors errors="${telephoneNumberFormErrors}"/>
                                     </div>
                                     <button class="btn btn-lg btn-primary btn-block" type="submit">
                                         <fmt:message key="personal.info.button"/>

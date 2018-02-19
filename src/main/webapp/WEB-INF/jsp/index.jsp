@@ -16,6 +16,9 @@
         </div>
         <div class="container">
             <div class="row">
+                <h3><fmt:message key="home.contacts"/></h3>
+            </div>
+            <div class="row">
                 <div class="col-md-4">
                     <h2><fmt:message key="home.contacts.telephone"/></h2>
                     <p><fmt:message key="home.contacts.telephone.message"/></p>

@@ -35,7 +35,7 @@
            required minlength="6" maxlength="12">
     <t:output-errors errors="${confirm_passwordFormErrors}"/>
     <c:if test="${not empty registerErrorMessages}">
-        <div id="errorcolortext"><fmt:message key="${registerFormErrors}"/></div>
+        <div><fmt:message key="${registerFormErrors}"/></div>
     </c:if>
     <button class="btn btn-lg btn-primary btn-block" type="submit"><fmt:message key="register.button.message"/></button>
 </form>

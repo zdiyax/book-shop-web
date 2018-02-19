@@ -12,15 +12,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static kz.epam.zd.util.ConstantHolder.FORM_ERRORS;
+import static kz.epam.zd.util.ConstantHolder.*;
 
 /**
  * Utility class to solve validation problems.
  */
 public class ValidatorHelper {
 
-    private static final Logger logger = LoggerFactory.getLogger(ValidatorHelper.class);
-    private static final String REGEX_FOR_NUMBER = "[1-9]*";
+    private static final Logger log = LoggerFactory.getLogger(ValidatorHelper.class);
+    private static final String REGEX_FOR_QUANTITY = "[1-9]*";
+    private static final String CART_INVALID_INPUT_MESSAGE = "cart.invalid.input.message";
 
 
     private ValidatorHelper() {
@@ -45,19 +46,20 @@ public class ValidatorHelper {
 
     public static void setErrorsToSession(HttpServletRequest req, Map<String, List<String>> fieldErrors) {
         for (Map.Entry<String, List<String>> entry : fieldErrors.entrySet()) {
+            entry.getKey().replace("-", "");
             req.getSession().setAttribute(entry.getKey() + FORM_ERRORS, entry.getValue());
             for (String errorMessage : entry.getValue()) {
-                logger.debug("In field \"{}\" found error message \"{}\"", entry.getKey(), errorMessage);
+                log.debug("Field \"{}\" ended up with error message \"{}\"", entry.getKey(), errorMessage);
             }
         }
     }
 
     public static boolean checkCartForm(HttpServletRequest req, HashMap books) {
         RegexValidator regexValidator = new RegexValidator();
-        regexValidator.setRegex(REGEX_FOR_NUMBER);
+        regexValidator.setRegex(REGEX_FOR_QUANTITY);
         for (int i = 0; i < books.size(); i++) {
-            if (!regexValidator.isValid(req.getParameter("quantity" + i))) {
-                req.getSession().setAttribute("cartFormErrors", "empty.cart.asdasd");
+            if (!regexValidator.isValid(req.getParameter(QUANTITY + i))) {
+                req.getSession().setAttribute(CART + FORM_ERRORS, CART_INVALID_INPUT_MESSAGE);
                 return true;
             }
         }

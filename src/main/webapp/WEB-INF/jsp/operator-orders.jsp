@@ -5,17 +5,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <fmt:setBundle basename="lang"/>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<fmt:message key="customer.orders.title" var="title"/>
+<fmt:message key="operator.orders.title" var="title"/>
 <c:set var="pageCount" value="${pageCount}"/>
-<c:set var="currentPage" value="${currentPage}"/>
 <c:set var="orders" value="${orders}"/>
+<c:set var="statuses" value="${statuses}"/>
 
 <t:snippet title="${title}">
     <jsp:body>
         <div class="container" style="margin-top: 80px">
             <c:if test="${fn:length(orders) != 0}">
-                <form name="Form1" method="post" action="${path}/do/?action=update-operator-orders">
-
+                <form name="Form1" method="post">
                     <table class="table table-bordered">
                         <thead>
                         <tr>
@@ -32,37 +31,36 @@
                                 <td>
                                     <c:if test="${order.status == 'waiting'}">
                                         <select name="${order.id}">
-                                            <option selected value="waiting">waiting</option>
-                                            <option value="ready">ready</option>
-                                            <option value="completed">completed</option>
-                                            <option value="cancelled">cancelled</option>
+                                            <option selected value="waiting">${statuses.get(0)}</option>
+                                            <option value="ready">${statuses.get(1)}</option>
+                                            <option value="completed">${statuses.get(2)}</option>
+                                            <option value="cancelled">${statuses.get(3)}</option>
                                         </select>
                                     </c:if>
                                     <c:if test="${order.status == 'ready'}">
                                         <select name="${order.id}">
-                                            <option value="waiting">waiting</option>
-                                            <option selected value="ready">ready</option>
-                                            <option value="completed">completed</option>
-                                            <option value="cancelled">cancelled</option>
+                                            <option value="waiting">${statuses.get(0)}</option>
+                                            <option selected value="ready">${statuses.get(1)}</option>
+                                            <option value="completed">${statuses.get(2)}</option>
+                                            <option value="cancelled">${statuses.get(3)}</option>
                                         </select>
                                     </c:if>
                                     <c:if test="${order.status == 'completed'}">
                                         <select name="${order.id}">
-                                            <option value="waiting">waiting</option>
-                                            <option value="ready">ready</option>
-                                            <option selected value="completed">completed</option>
-                                            <option value="cancelled">cancelled</option>
+                                            <option value="waiting">${statuses.get(0)}</option>
+                                            <option value="ready">${statuses.get(1)}</option>
+                                            <option selected value="completed">${statuses.get(2)}</option>
+                                            <option value="cancelled">${statuses.get(3)}</option>
                                         </select>
                                     </c:if>
                                     <c:if test="${order.status == 'cancelled'}">
                                         <select name="${order.id}">
-                                            <option value="waiting">waiting</option>
-                                            <option value="ready">ready</option>
-                                            <option value="completed">completed</option>
-                                            <option selected value="cancelled">cancelled</option>
+                                            <option value="waiting">${statuses.get(0)}</option>
+                                            <option value="ready">${statuses.get(1)}</option>
+                                            <option value="completed">${statuses.get(2)}</option>
+                                            <option selected value="cancelled">${statuses.get(3)}</option>
                                         </select>
                                     </c:if>
-
                                 </td>
                                 <td width="2%">
                                     <button class="btn btn-outline-primary" name="details" type="submit"
@@ -78,7 +76,7 @@
                                 </td>
                                 <td width="2%">
                                     <button class="btn btn-outline-primary" name="delete" type="submit"
-                                            onclick="return onDelete(${order.id});">
+                                            title="delete" onclick="return onDelete(${order.id});">
                                         &#215;
                                     </button>
                                 </td>

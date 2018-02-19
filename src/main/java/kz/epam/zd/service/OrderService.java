@@ -1,13 +1,13 @@
 package kz.epam.zd.service;
 
-import kz.epam.zd.dao.OrderedBookDao;
 import kz.epam.zd.dao.DaoFactory;
 import kz.epam.zd.dao.OrderDao;
+import kz.epam.zd.dao.OrderedBookDao;
 import kz.epam.zd.exception.DaoException;
 import kz.epam.zd.exception.ServiceException;
 import kz.epam.zd.model.Book;
-import kz.epam.zd.model.OrderedBook;
 import kz.epam.zd.model.Order;
+import kz.epam.zd.model.OrderedBook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +18,7 @@ import java.util.Map;
 public class OrderService extends AbstractService {
     private static final Logger log = LoggerFactory.getLogger(OrderService.class);
     private static final String MAKE_ORDER_KEY = "make.order";
-    private static final String INSERT_BOOK_ORDERED = "insert.bookordered";
+    private static final String INSERT_BOOK_ORDERED = "insert.orderedbook";
 
     private static final int ORDERS_PER_PAGE = 10;
     private static final String UPDATE_ORDER_STATUS = "update.order.status";
@@ -80,7 +80,7 @@ public class OrderService extends AbstractService {
         parameters.add("cancelled");
         Order order = new Order();
         order.setUserId(userId);
-        return getOrdersByQuery(order, "get.orders.by.userid");
+        return getOrdersByQuery(order, "get.orders.by.user.id");
     }
 
     private List<Order> getOrdersByQuery(Order order, String query) throws ServiceException {

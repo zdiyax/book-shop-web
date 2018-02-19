@@ -23,11 +23,11 @@ public class ChangeLocaleAction implements Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
-        String userLocale = request.getParameter(LOCALE);
+        String locale = request.getParameter(LOCALE);
 
         if (request.getSession().getAttribute(USER) != null) {
             final User user = (User) request.getSession().getAttribute(USER);
-            user.setLocale(new Locale(userLocale));
+            user.setLocale(new Locale(locale));
             UserService service = new UserService();
             try {
                 service.updateUserLocale(user);
@@ -36,10 +36,10 @@ public class ChangeLocaleAction implements Action {
                 throw new ActionException(e);
             }
         }
-        request.getSession().setAttribute(LOCALE, userLocale);
-        log.debug("Locale changed successfully to {}", userLocale);
+        request.getSession().setAttribute(LOCALE, locale);
+        log.debug("Locale changed successfully to {}", locale);
 
-        CookieHelper.setCookie(response, LOCALE, userLocale);
+        CookieHelper.setCookie(response, LOCALE, locale);
         String referrer = request.getHeader(REFERER);
         return REDIRECT_PREFIX + referrer;
     }

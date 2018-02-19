@@ -1,6 +1,5 @@
 package kz.epam.zd.action;
 
-import kz.epam.zd.exception.ActionException;
 import kz.epam.zd.model.Book;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,13 +27,14 @@ public class ShowCartPageAction implements Action {
 
     /**
      * Calculates total cost of books in the cart.
+     *
      * @param hashMap shopping cart
      */
     private void calculateTotalCost(HashMap hashMap) {
         for (Object o : hashMap.entrySet()) {
             Map.Entry pair = (Map.Entry) o;
-            Book book1 = (Book) pair.getKey();
-            totalCost = totalCost + book1.getPrice() * (int) pair.getValue();
+            Book book = (Book) pair.getKey();
+            totalCost = totalCost + book.getPrice() * (int) pair.getValue();
         }
     }
 }

@@ -1,6 +1,6 @@
 package kz.epam.zd.validator;
 
-public class RegexValidator extends ParentValidator implements Validator {
+public class RegexValidator extends ParentValidator {
 
     private String regex;
 

@@ -29,7 +29,6 @@ public class UpdateOrderStatusAction implements Action {
         order.setId(orderId);
         order.setStatus(OrderStatus.valueOf(orderStatus));
 
-
         OrderService orderService = new OrderService();
         try {
             orderService.updateOrderStatus(order, orderId, orderStatus);

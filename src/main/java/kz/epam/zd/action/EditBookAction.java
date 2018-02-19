@@ -1,8 +1,11 @@
 package kz.epam.zd.action;
 
+import kz.epam.zd.exception.ActionException;
 import kz.epam.zd.exception.ServiceException;
+import kz.epam.zd.exception.ValidatorException;
 import kz.epam.zd.model.Book;
 import kz.epam.zd.service.BookService;
+import kz.epam.zd.util.ValidatorHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,9 +22,19 @@ public class EditBookAction implements Action {
     private static final Logger log = LoggerFactory.getLogger(DeleteOrderAction.class);
     private static final String BOOKS_EDIT_ERROR_MESSAGE = "books.edit.error.message";
     private static final String REDIRECT_EDIT_BOOK_PAGE = "redirect:/do/?action=show-edit-book-page";
+    private static final String EDIT_BOOK = "edit-book";
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
+        //form validation
+        try {
+            if (ValidatorHelper.checkForm(request, EDIT_BOOK)) return REDIRECT_EDIT_BOOK_PAGE;
+        } catch (ValidatorException e) {
+            throw new ActionException(e);
+        }
+        log.debug("Edit book form is valid");
+
+
         Book book = (Book) request.getSession().getAttribute(BOOK);
         book.setTitle(request.getParameter(TITLE));
         book.setAuthor(request.getParameter(AUTHOR));

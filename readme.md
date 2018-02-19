@@ -12,36 +12,20 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Series of software you need:
 * IDE
-* postgresql
 * JDK (1.8)
 * Maven 3.*
 
 ### Install and run the project
 
-A step by step series of examples to tell you have to get a development env running
+A step by step series of examples to get a project running:
 
 1. Download/clone the project
-2. Prepare the database ([schema](http://dbdesigner.net/designer/schema/61369) ):
-    * Add a PostgreSQL Data Source 
-    * Use the settings from the following property file `db.properties` or change them as you prefer
-    * `jdbc:postgresql:postgres` url is used (see the property file [`db.properties`](https://github.com/zdiyax/book-shop-web/blob/master/src/main/resources/db.properties))
-    * Use the following access settings: `login = postgres, password = root`
-3. Execute SQL code in Data Source from `src.main.resources.sql`:
-    * `create.sql` - initializing schema, tables, relations
-    * `dump.sql` - dumping tables with data
-    * `drop.sql` - dropping tables and schema
+2. Prepare the database:
+    * Customize the following property file `db.properties` to access your data source
+    (postgres preferable as most of the sql is done on postgres dialect)
+3. Execute `init.sql` located in `resources/` in data source console
 
-## Running the tests
-
-Project contains some jUnit-tests to check the following features:
-* Use `ConnectionPoolTest` to test project's connection pooling
-* Use `DBConnectionTest` to test your database connection
-
-## Built With
-
-* [Maven](https://maven.apache.org/) - Dependency Management
 
 ## Author
 

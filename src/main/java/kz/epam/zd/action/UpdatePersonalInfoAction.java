@@ -1,8 +1,11 @@
 package kz.epam.zd.action;
 
+import kz.epam.zd.exception.ActionException;
 import kz.epam.zd.exception.ServiceException;
+import kz.epam.zd.exception.ValidatorException;
 import kz.epam.zd.model.user.User;
 import kz.epam.zd.service.UserService;
+import kz.epam.zd.util.ValidatorHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,12 +19,22 @@ import static kz.epam.zd.util.ConstantHolder.*;
  */
 public class UpdatePersonalInfoAction implements Action {
 
+    private static final String SHOW_PROFILE_PAGE = "/do/?action=show-profile-page";
+    private static final String PERSONALINFO = "personalinfo";
     private static final Logger log = LoggerFactory.getLogger(UpdatePersonalInfoAction.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
         UserService userService = new UserService();
         User user = (User) request.getSession().getAttribute(USER);
+
+        //form validation
+        try {
+            if (ValidatorHelper.checkForm(request, PERSONALINFO)) return REDIRECT_PREFIX + SHOW_PROFILE_PAGE;
+        } catch (ValidatorException e) {
+            throw new ActionException(e);
+        }
+        log.debug("Personal info form is valid");
 
         user.setFullName(request.getParameter(FULL_NAME));
         user.setEmail(request.getParameter(EMAIL));

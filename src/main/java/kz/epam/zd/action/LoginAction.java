@@ -21,9 +21,9 @@ import static kz.epam.zd.util.ConstantHolder.*;
  */
 public class LoginAction implements Action {
 
+    private static final Logger log = LoggerFactory.getLogger(LoginAction.class);
     private static final String REDIRECT_LOGIN_FORM = "redirect:/do/?action=show-login-page";
     private static final String REDIRECT_LOGIN_SUCCESS = "redirect:/do/?action=show-login-success-page";
-    private static final Logger log = LoggerFactory.getLogger(LoginAction.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

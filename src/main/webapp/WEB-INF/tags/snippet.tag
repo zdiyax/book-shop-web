@@ -1,12 +1,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix="ctg" uri="customtags" %>
-
 <%@tag description="generic page snippet" pageEncoding="UTF-8" %>
-
 <fmt:setBundle basename="lang"/>
-
 <%@attribute name="title" type="java.lang.String" required="true" %>
 <%@attribute name="header" fragment="true" %>
 <%@attribute name="footer" fragment="true" %>

@@ -25,7 +25,7 @@ public class PropertyManager {
     }
 
     public String getPropertyKey(String key) throws PropertyManagerException {
-        if (properties == null) throw new PropertyManagerException("Properties are not loaded.");
+        if (properties == null) throw new PropertyManagerException("Couldn't load properties.");
         return properties.getProperty(key);
     }
 

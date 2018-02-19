@@ -3,7 +3,11 @@ package kz.epam.zd.filter;
 import javax.servlet.*;
 import java.io.IOException;
 
+/**
+ * Manages encoding used on the pages.
+ */
 public class EncodingFilter implements Filter {
+
     private static final String ENCODING = "encoding";
     private String encoding = "utf-8";
 

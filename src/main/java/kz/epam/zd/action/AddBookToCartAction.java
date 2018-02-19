@@ -34,15 +34,15 @@ public class AddBookToCartAction implements Action {
      * @param hashMap shopping cart HashMap instance
      */
     private void putBookToCartIfAbsent(Book bookToAddToCart, HashMap<Book, Integer> hashMap) {
-        boolean flag = false;
+        boolean isAbsent = true;
         for (Object o : hashMap.entrySet()) {
             Map.Entry pair = (Map.Entry) o;
             Book book1 = (Book) pair.getKey();
             if (book1.getId().equals(bookToAddToCart.getId()))
-                flag = true;
+                isAbsent = false;
         }
-        if (!flag) {
-            hashMap.put(bookToAddToCart, 1);
+        if (isAbsent) {
+            hashMap.put(bookToAddToCart, ONE);
         }
     }
 }
