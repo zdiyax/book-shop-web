@@ -11,7 +11,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 /**
- * Initializes ConnectionPool when web application starts and destroys it in1 the end.
+ * Initializes ConnectionPool when web application starts and destroys it at the end.
  */
 @WebListener
 public class ConnectionPoolListener implements ServletContextListener {

@@ -70,7 +70,7 @@ public class ShowCatalogPageAction implements Action {
         BookService bookService = new BookService();
         try {
             List<Book> books = bookService.getBooksByTitle(title);
-
+            request.getSession().setAttribute(PAGE_COUNT,  ONE);
             request.getSession().setAttribute(SEARCH, title);
             request.setAttribute(BOOKS, books);
         } catch (ServiceException e) {

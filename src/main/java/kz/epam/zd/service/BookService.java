@@ -21,6 +21,7 @@ public class BookService extends AbstractService {
     private static final String GET_BOOK_BY_ID = "get.book.by.id";
     private static final String UPDATE_BOOK = "update.book";
     private static final String INSERT_BOOK = "insert.book";
+    private static final String PERCENT_SIGN = "%";
 
     private List<Book> getBooksByQuery(Book book, String query) throws ServiceException {
         List<Book> bookList;
@@ -45,7 +46,7 @@ public class BookService extends AbstractService {
     }
 
     public List<Book> getBooksByTitle( String title) throws ServiceException {
-        parameters.add("%" + title + "%");
+        parameters.add(PERCENT_SIGN + title + PERCENT_SIGN);
         return getBooksByQuery(new Book(), GET_BOOKS_BY_TITLE);
     }
 

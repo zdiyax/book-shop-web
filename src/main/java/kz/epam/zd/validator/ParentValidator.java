@@ -1,8 +1,6 @@
 package kz.epam.zd.validator;
 
-import kz.epam.zd.exception.ValidatorException;
-
-public class ParentValidator implements Validator {
+public abstract class ParentValidator implements Validator {
 
     private String message;
 
@@ -11,13 +9,13 @@ public class ParentValidator implements Validator {
 
 
     @Override
-    public Boolean isValid(String parameter) throws ValidatorException {
-        return null;
+    public Boolean isValid(String parameter) {
+        throw new UnsupportedOperationException("Validator method not supported.");
     }
 
     @Override
-    public Boolean isValid(String parameter, String otherParameter) throws ValidatorException {
-        return null;
+    public Boolean isValid(String parameter, String otherParameter) {
+        throw new UnsupportedOperationException("Validator method not supported.");
     }
 
     public String getMessage() {

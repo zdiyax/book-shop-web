@@ -3,6 +3,7 @@ package kz.epam.zd.action;
 import kz.epam.zd.exception.ActionException;
 import kz.epam.zd.exception.ServiceException;
 import kz.epam.zd.exception.ValidatorException;
+import kz.epam.zd.model.Book;
 import kz.epam.zd.model.user.Locale;
 import kz.epam.zd.model.user.RoleType;
 import kz.epam.zd.model.user.User;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -58,6 +60,10 @@ public class RegisterAction implements Action {
             return REDIRECT_REGISTER_FORM;
         }
         log.debug("User registered. Username = {}", user.getUsername());
+
+        //creates an empty cart in user session
+        request.getSession().setAttribute(CART, new HashMap<Book, Integer>());
+
         request.getSession().setAttribute(USER, user);
         return REDIRECT_REGISTER_SUCCESS;
     }

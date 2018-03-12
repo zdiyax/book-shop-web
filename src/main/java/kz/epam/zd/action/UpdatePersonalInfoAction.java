@@ -20,7 +20,7 @@ import static kz.epam.zd.util.ConstantHolder.*;
 public class UpdatePersonalInfoAction implements Action {
 
     private static final String SHOW_PROFILE_PAGE = "/do/?action=show-profile-page";
-    private static final String PERSONALINFO = "personalinfo";
+    private static final String PERSONAL_INFO = "personalinfo";
     private static final Logger log = LoggerFactory.getLogger(UpdatePersonalInfoAction.class);
 
     @Override
@@ -30,7 +30,8 @@ public class UpdatePersonalInfoAction implements Action {
 
         //form validation
         try {
-            if (ValidatorHelper.checkForm(request, PERSONALINFO)) return REDIRECT_PREFIX + SHOW_PROFILE_PAGE;
+            if (ValidatorHelper.checkForm(request, PERSONAL_INFO))
+                return REDIRECT_PREFIX + SHOW_PROFILE_PAGE;
         } catch (ValidatorException e) {
             throw new ActionException(e);
         }

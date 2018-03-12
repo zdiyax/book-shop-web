@@ -25,7 +25,6 @@ public abstract class DaoFactory implements AutoCloseable {
 
     @Override
     public void close() throws JdbcDaoException {
-
     }
 
 }

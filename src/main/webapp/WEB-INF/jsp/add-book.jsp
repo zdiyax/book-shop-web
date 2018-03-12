@@ -19,14 +19,14 @@
                 <h4><fmt:message key="book.details.author.field"/> : </h4>
                 <h4><b><input name="author" maxlength="16" type="text" autocomplete="off"></b></h4>
                 <t:output-errors errors="${authorFormErrors}"/>
-                <fmt:message key="book.details.price.field"/> :
+                <b><fmt:message key="book.details.price.field"/> :</b>
                 <b><input name="price"  maxlength="5" type="text" autocomplete="off"></b>
                 <t:output-errors errors="${priceFormErrors}"/>
                 <p><b><fmt:message key="book.details.isbn.field"/> : </b></p>
-                <b><input name="isbn"  maxlength="16" type="text" autocomplete="off"></b>
+                <b><input name="isbn"  maxlength="17" type="text" autocomplete="off"></b>
                 <t:output-errors errors="${isbnFormErrors}"/>
                 <p><b><fmt:message key="book.details.description.field"/> : </b>
-                </p><input type="text" value="${book.description}" style="width: 400px"
+                </p><input type="text" style="width: 400px"
                            maxlength="256" autocomplete="off">
                 <t:output-errors errors="${descriptionFormErrors}"/>
                 <p><b><fmt:message key="book.details.quantity.field"/> : </b></p>

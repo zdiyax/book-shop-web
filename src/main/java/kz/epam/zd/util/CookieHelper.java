@@ -13,7 +13,6 @@ public class CookieHelper {
     }
 
     public static Cookie findParameter(HttpServletRequest req, String parameter) {
-
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
@@ -24,7 +23,6 @@ public class CookieHelper {
     }
 
     public static void setCookie(HttpServletResponse resp, String name, String value) {
-
         resp.addCookie(new Cookie(name, value));
     }
 }

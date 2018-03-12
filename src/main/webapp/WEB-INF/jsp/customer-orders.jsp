@@ -7,6 +7,8 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <fmt:message key="customer.orders.title" var="title"/>
 <c:set var="orders" value="${orders}"/>
+<c:set var="completedOrder" value="completed"/>
+<c:set var="completedOrderRu" value="выполнен"/>
 
 <t:snippet title="${title}">
     <jsp:body>
@@ -29,18 +31,20 @@
                     <c:forEach var="order" items="${orders}">
                         <tr>
                             <td>${order.id}</td>
-                            <td>${order.totalPrice}</td>
+                            <td>${order.totalPrice} <fmt:message key="book.details.currency"/></td>
                             <td>${order.status}</td>
                             <td width="2%">
                                 <button class="btn btn-outline-primary" name="details" type="submit">
                                     <a href="${path}/do/?action=show-order-details&id=${order.id}">&#62;</a>
                                 </button>
                             </td>
+                            <c:if test="${order.status != completedOrder && order.status != completedOrderRu}">
                             <td width="2%">
                                 <button class="btn btn-outline-primary" name="refresh" type="submit">
                                     <a href="${path}/do/?action=cancel-order&id=${order.id}">&#215;</a>
                                 </button>
                             </td>
+                            </c:if>
                         </tr>
                     </c:forEach>
                     </tbody>

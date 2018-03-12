@@ -2,6 +2,8 @@ package kz.epam.zd.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Utility class to store all widely used constants.
@@ -77,21 +79,21 @@ public final class ConstantHolder {
     /**
      * Local solution for i18n of statuses, as it's the only thing to be localized.
      */
-    public static ArrayList<String> ORDER_STATUSES_EN = new ArrayList<String>() {{
+    public static List<String> ORDER_STATUSES_EN = new ArrayList<String>() {{
         add("waiting");
         add("ready");
         add("completed");
         add("cancelled");
     }};
 
-    public static ArrayList<String> ORDER_STATUSES_RU = new ArrayList<String>() {{
+    public static List<String> ORDER_STATUSES_RU = new ArrayList<String>() {{
         add("ожидает");
         add("готов");
         add("выполнен");
         add("отменен");
     }};
 
-    public static HashMap<String, String> ORDER_STATUSES = new HashMap<String, String>() {{
+    public static Map<String, String> ORDER_STATUSES = new HashMap<String, String>() {{
         put("waiting", "ожидает");
         put("ready", "готов");
         put("completed", "выполнен");

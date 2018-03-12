@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import static kz.epam.zd.util.ConstantHolder.ACTION;
 import static kz.epam.zd.util.ConstantHolder.USER;
 
 /**
@@ -58,13 +59,14 @@ public class AccessFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
+                         FilterChain filterChain) throws IOException, ServletException {
 
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
         //read action from received request
-        String actionName = req.getParameter("action");
+        String actionName = req.getParameter(ACTION);
 
         final User user = (User) req.getSession().getAttribute(USER);
 
@@ -82,7 +84,8 @@ public class AccessFilter implements Filter {
             if (!actionList.contains(actionName)) {
                 //if no, send user on page with 403 error code
                 resp.sendError(HttpServletResponse.SC_FORBIDDEN);
-                log.debug("Not authorized attempt to application, action \"{}\" from user \"{}\"", actionName, user);
+                log.debug("Not authorized attempt to application, action \"{}\" from user \"{}\"",
+                        actionName, user);
                 return;
             }
         }
@@ -92,13 +95,16 @@ public class AccessFilter implements Filter {
 
     /**
      * Returns corresponding list of actions allowed for entered user.
+     *
      * @param user user whose actions to be returned
      * @return action list
      */
     private List<String> getActionList(User user) {
         if (user == null) return anonymousActionList;
-        if (RoleType.CUSTOMER.toString().equals(user.getRole().getRoleType().toString())) return userActionList;
-        if (RoleType.OPERATOR.toString().equals(user.getRole().getRoleType().toString())) return managerActionList;
+        if (RoleType.CUSTOMER.toString().equals(user.getRole().getRoleType().toString()))
+            return userActionList;
+        if (RoleType.OPERATOR.toString().equals(user.getRole().getRoleType().toString()))
+            return managerActionList;
         return anonymousActionList;
     }
 

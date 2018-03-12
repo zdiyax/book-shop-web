@@ -79,8 +79,7 @@ public abstract class JdbcDao<T extends Entity> implements Dao<T> {
             if (result == 0) {
                 log.error("Couldn't update the entity: {}", entity.getClass().getSimpleName());
                 throw new JdbcDaoException();
-            } else
-                log.debug("Entity : {} updated successfully", entity.getClass().getSimpleName());
+            }
         } catch (SQLException e) {
             throw new JdbcDaoException(e);
         }

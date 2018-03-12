@@ -1,3 +1,11 @@
+DROP TABLE IF EXISTS "order_items";
+DROP TABLE IF EXISTS "order_status";
+DROP TABLE IF EXISTS "locale";
+DROP TABLE IF EXISTS "user_role";
+DROP TABLE IF EXISTS "user";
+DROP TABLE IF EXISTS "order";
+DROP TABLE IF EXISTS "book";
+
 ALTER TABLE "order"
   DROP CONSTRAINT IF EXISTS "order_fk0";
 ALTER TABLE "order"
@@ -12,15 +20,6 @@ ALTER TABLE "order_items"
   DROP CONSTRAINT IF EXISTS "order_items_fk0";
 ALTER TABLE "order_items"
   DROP CONSTRAINT IF EXISTS "order_items_fk1";
-
-DROP TABLE IF EXISTS "order_items";
-DROP TABLE IF EXISTS "order_status";
-DROP TABLE IF EXISTS "locale";
-DROP TABLE IF EXISTS "user_role";
-DROP TABLE IF EXISTS "user";
-DROP TABLE IF EXISTS "order";
-DROP TABLE IF EXISTS "book";
-
 -- ____________________________________________________________________________________________________
 
 CREATE TABLE "book" (

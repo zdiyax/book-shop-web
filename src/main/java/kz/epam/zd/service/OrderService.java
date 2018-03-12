@@ -15,7 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class OrderService extends AbstractService {
+public class
+OrderService extends AbstractService {
     private static final Logger log = LoggerFactory.getLogger(OrderService.class);
     private static final String MAKE_ORDER_KEY = "make.order";
     private static final String INSERT_BOOK_ORDERED = "insert.orderedbook";
@@ -23,6 +24,10 @@ public class OrderService extends AbstractService {
     private static final int ORDERS_PER_PAGE = 10;
     private static final String UPDATE_ORDER_STATUS = "update.order.status";
     private static final String DELETE_ORDER = "delete.order";
+    private static final String GET_ORDERS_ALL = "get.orders.all";
+    private static final String GET_ORDERS_ALL_PAGINATED = "get.orders.all.paginated";
+    private static final String GET_ORDERS_BY_USER_ID = "get.orders.by.user.id";
+    public static final String CANCELLED = "cancelled";
 
 
     public void orderBooks(Order order, int userId, HashMap books) throws ServiceException {
@@ -77,10 +82,10 @@ public class OrderService extends AbstractService {
 
     public List<Order> getOrdersByUserId(Integer userId) throws ServiceException {
         parameters.add(userId);
-        parameters.add("cancelled");
+        parameters.add(CANCELLED);
         Order order = new Order();
         order.setUserId(userId);
-        return getOrdersByQuery(order, "get.orders.by.user.id");
+        return getOrdersByQuery(order, GET_ORDERS_BY_USER_ID);
     }
 
     private List<Order> getOrdersByQuery(Order order, String query) throws ServiceException {
@@ -96,14 +101,14 @@ public class OrderService extends AbstractService {
     }
 
     public int getTotalOrderAmount() throws ServiceException {
-        List<Order> orderList = getOrdersByQuery(new Order(), "get.orders.all");
+        List<Order> orderList = getOrdersByQuery(new Order(), GET_ORDERS_ALL);
         return orderList.size();
     }
 
     public List<Order> getOrdersAllPaginated(int pageNumber) throws ServiceException {
         int offset = --pageNumber * ORDERS_PER_PAGE;
         parameters.add(offset);
-        return getOrdersByQuery(new Order(), "get.orders.all.paginated");
+        return getOrdersByQuery(new Order(), GET_ORDERS_ALL_PAGINATED);
     }
 
     public void updateOrderStatus(Order order, Integer orderId, String orderStatus) throws ServiceException {

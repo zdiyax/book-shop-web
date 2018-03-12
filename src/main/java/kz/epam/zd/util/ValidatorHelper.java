@@ -22,6 +22,8 @@ public class ValidatorHelper {
     private static final Logger log = LoggerFactory.getLogger(ValidatorHelper.class);
     private static final String REGEX_FOR_QUANTITY = "[1-9]*";
     private static final String CART_INVALID_INPUT_MESSAGE = "cart.invalid.input.message";
+    private static final String HYPHEN_SIGN = "-";
+    private static final String EMPTY_STRING = "";
 
 
     private ValidatorHelper() {
@@ -44,10 +46,11 @@ public class ValidatorHelper {
         }
     }
 
+    //getKey.replace result is now set to string and passed to request
     public static void setErrorsToSession(HttpServletRequest req, Map<String, List<String>> fieldErrors) {
         for (Map.Entry<String, List<String>> entry : fieldErrors.entrySet()) {
-            entry.getKey().replace("-", "");
-            req.getSession().setAttribute(entry.getKey() + FORM_ERRORS, entry.getValue());
+            String result = entry.getKey().replace(HYPHEN_SIGN, EMPTY_STRING);
+            req.getSession().setAttribute(result + FORM_ERRORS, entry.getValue());
             for (String errorMessage : entry.getValue()) {
                 log.debug("Field \"{}\" ended up with error message \"{}\"", entry.getKey(), errorMessage);
             }

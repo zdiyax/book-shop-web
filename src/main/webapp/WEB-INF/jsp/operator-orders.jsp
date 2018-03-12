@@ -27,7 +27,7 @@
                         <c:forEach var="order" items="${orders}" varStatus="i">
                             <tr>
                                 <td>${order.id}</td>
-                                <td>${order.totalPrice}</td>
+                                <td>${order.totalPrice} <fmt:message key="book.details.currency"/></td>
                                 <td>
                                     <c:if test="${order.status == 'waiting'}">
                                         <select name="${order.id}">
@@ -64,13 +64,13 @@
                                 </td>
                                 <td width="2%">
                                     <button class="btn btn-outline-primary" name="details" type="submit"
-                                            onclick="return onDetails(${order.id});">
+                                            title="details" onclick="return onDetails(${order.id});">
                                         &#62;
                                     </button>
                                 </td>
                                 <td width="2%">
                                     <button class="btn btn-outline-primary" name="refresh" type="submit"
-                                            onclick="return onRefresh(${order.id});">
+                                            title="refresh" onclick="return onRefresh(${order.id});">
                                         &#8635;
                                     </button>
                                 </td>
